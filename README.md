@@ -17,21 +17,15 @@ PASOS DE DESCARGA DE PROYECO EN MI PC
 1 -En GitHub
     
     1.1 - Hacer un "fork" al a mi repositorio
-    
     1.2 - presionar el "Clone o downland" (https://github.com/[mi_cuenta]/repositorio.git)
     
 2 - En Git Bash (PC)
     
     2.1 - cd /c/xampp/htdocs/
-    
     2.2 - git clone https://github.com/[mi_cuenta]/repositorio.git
-    
     2.3 - cd repositorio
-    
-    2.4 - composer update
-    
+    2.4 - composer update o composer install
     2.5 - cp .env.example .env
-    
     2.6 - php artisan key:generate
     
 3 - Crear una base de datos en nuestra PC para el proyecto
@@ -39,15 +33,10 @@ PASOS DE DESCARGA DE PROYECO EN MI PC
 4 - Modificaciones en el Archivo .evn
     
     DB_CONNECTION=mysql //Tipo de base de datos
-    
     DB_HOST=127.0.0.1   //Hots de la base de datos
-    
     DB_PORT=3306        //Puerto de la base de datos
-    
     DB_DATABASE=my_DB   //Nombre de la base de datos creada para el proyoyecto
-    
     DB_USERNAME=root    //Usuario de la base de datos
-    
     DB_PASSWORD=        //Clave de la base de datos
     
 5 - Ejecutamos Migraciones para crear Tablas (Volvemos a Git)
@@ -57,7 +46,10 @@ PASOS DE DESCARGA DE PROYECO EN MI PC
 6 - Ejecutamos nuestro proyecto en un navegador 
     
     6.1 - Prendemos Apache y MySQL
-    
     6.2 - http://localhost/repositorio/public/
 
-Todos los derechos reservados!!!
+Todos los derechos reservados!!
+________________________________________________________________________
+Lamas, Gabriel Adrian - Correo: lamasgabriel1992@gmail.com
+
+
