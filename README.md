@@ -59,8 +59,12 @@ Por cada nueva tareas o funcinalidad crear una rama en el Git y Github
     
 2 - En Git (MI PC)
     
-    1.1 - Nos ubicamos en nuetro repositorio
-    2.2 - git checkout -b Nombre_rama
+    Nos ubicamos en nuetro repositorio
+    a) git branch Nombre_rama 
+    b) git checkout -b Nombre_rama
+
+    Moverse a otra rama
+    a) git checkout Nombre_rama
 
 ____________________________________________________________________________________________________________
 CREAR ARCHIVOS EN EL PROYECTO
@@ -72,7 +76,7 @@ Crear un archivo de Migracion
 
 Ejecutar migracion
 
-    php artisan migrate Nombre
+    php artisan migrate Nombre //Si no se indica el nombre se ejecutan todas las migraciones creadas
 
 Crear Modelo
 
@@ -91,7 +95,7 @@ Revisar que cambios realice
     
 Crear un paquete con los archivos que quiero subir
     
-    git add . // usar . para agregar todos los cambios, puede hacerlouno por uno
+    git add .   //usar . para agregar todos los cambios, puede hacerlo uno por uno inidicando el nombre del archivo
     
 Crear un commit 
 

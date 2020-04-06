@@ -43,6 +43,21 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
+    public function materia_carreras()
+    {
+        return $this->belongsToMany('App\MateriaCarrera','materia_docente')->withPivot('estado')->withTimestamps();
+    }
+
+    public function apuntes()
+    {
+        return $this->hasMany('App\Apuntes');
+    }
+
+    public function carreras()
+    {
+        return $this->belongsToMany('App\Carrera')->withPivot('libreta','anio_ingresp', 'estado')->withTimestamps();
+    }
+
     public function authorizeRoles($roles)
     {
         abort_unless($this->hasAnyRole($roles), 401);
