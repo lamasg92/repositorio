@@ -41,4 +41,15 @@ class LoginController extends Controller
     {
         return 'dni';
     }
+
+
+      public function redirectPath()
+    {
+         $user=\Auth::user();
+        if ($user->roles->name=='user') {
+            return '/index';
+        }
+
+        return '/admin';
+    }
 }

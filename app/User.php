@@ -85,4 +85,8 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function standard(){
+       return $this->role_id===1;
+    }
 }
