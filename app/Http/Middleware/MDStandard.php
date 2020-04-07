@@ -15,8 +15,8 @@ class MDStandard
      */
     public function handle($request, Closure $next)
     {
-        
         $user=\Auth::user();
+        
         if($user->standard()){
             abort(401);
         }
