@@ -45,11 +45,11 @@ class LoginController extends Controller
 
       public function redirectPath()
     {
-         $user=\Auth::user();
-        if ($user->roles->name=='user') {
-            return '/index';
-        }
+        $user=\Auth::user();
 
-        return '/admin';
+        if ($user->adminUser()=='admin') {
+            return '/admin';
+        }
+        return '/index';
     }
 }

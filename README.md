@@ -99,7 +99,7 @@ Crear un paquete con los archivos que quiero subir
     
 Crear un commit 
 
-    git commit -b "Nombre_Commit"
+    git commit -m "Nombre_Commit"
     
 subir al repositorio
 
