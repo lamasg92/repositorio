@@ -10,15 +10,15 @@ use App\Http\Requests\DepartamentoRequest;
 
 class DepartamentosController extends Controller
 {
-
-
-        public function index(Request $request)
+    public function index(Request $request)
     {
-        $departamentos=Departamento::SearchDepartamentoName($request->name)->paginate(10);
-        return view('admin.departamento.index')->with('departamentos',$departamentos);
+        $departamentos=Departamento::paginate(10);
+
+        return view('admin.departamento.index')
+                    ->with('departamentos',$departamentos);
     }
 
-     public function create()
+    public function create()
     {
         return view('admin.departamento.create');
     }

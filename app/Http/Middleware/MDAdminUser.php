@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -17,11 +15,9 @@ class MDAdminUser
      */
     public function handle($request, Closure $next)
     {
+        $user=\Auth::user();
 
-         $user=\Auth::user();
-
-        
-        if (($user->roles->name == 'user')) {
+        if ($user->standard()) {
           flash("No tiene autorización para acceder a esta sección." , 'danger')->important();
           return redirect()->route('noAutorizhed');
         }
