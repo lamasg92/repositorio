@@ -23,7 +23,7 @@ class CreateApuntesTable extends Migration
             $table->string('archivo')->unique();
             $table->string('tipo_archivo');
             $table->string('autores');
-            $table->enum('status', ['activo','inactivo'])->default('activo');
+            $table->enum('estado', ['activo','inactivo'])->default('activo');
             $table->timestamps();
         });
     }
