@@ -51,6 +51,6 @@ class LoginController extends Controller
         if ($user->adminUser()=='admin') {
             return '/admin';
         }
-        return '/index';
+        return '/home';
     }
 }
