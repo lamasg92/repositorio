@@ -31,7 +31,7 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
 });
 
 Route::get('/', function () {
-    return view('layouts.home');
+    return view('home.index');
 });
 
 Auth::routes();

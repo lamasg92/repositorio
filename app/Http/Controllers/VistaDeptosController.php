@@ -13,6 +13,6 @@ class VistaDeptosController extends Controller
         //foreach($departamentos as $depa){
           //  echo $depa->nombre_depto . '<br/>';
         //}
-        return view('vistaDptos', compact('departamentos'));
+        return view('home.vistaDptos')->with('departamentos',$departamentos);
     }
 }
