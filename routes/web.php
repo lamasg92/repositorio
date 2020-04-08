@@ -35,5 +35,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
+Route::get('vistaCarreras/{id}','VistaCarrerasController@mostrarVistaCarreras');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
