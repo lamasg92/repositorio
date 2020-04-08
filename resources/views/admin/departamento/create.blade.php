@@ -1,6 +1,4 @@
-
 @extends('layouts.main')
- 
  
 @section('content')
   <div class="container-fluid spark-screen">
@@ -15,7 +13,7 @@
           <div class="box box-info">
           <div class="box-body box-info">
             
-            {!! Form::open(['route'=>'departamento.store', 'method'=>'POST','files'=>true])!!}
+            {!! Form::open(['route'=>'departamentos.store', 'method'=>'POST','files'=>true])!!}
 
              <div class="form-group">
               <h4>{!! Field::text('nombre_dpto',null, ['class'=>'form-control'])!!}</h4>

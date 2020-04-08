@@ -37,6 +37,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    // lo que agregó gaby
     public function username()
     {
         return 'dni';
@@ -45,11 +46,11 @@ class LoginController extends Controller
 
       public function redirectPath()
     {
-         $user=\Auth::user();
-        if ($user->roles->name=='user') {
-            return '/index';
-        }
+        $user=\Auth::user();
 
-        return '/admin';
+        if ($user->adminUser()=='admin') {
+            return '/admin';
+        }
+        return '/home';
     }
 }
