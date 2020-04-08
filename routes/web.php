@@ -37,3 +37,7 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
 });
 
   });
+
+
+Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
+Route::get('vistaCarreras/{id}','VistaCarrerasController@mostrarVistaCarreras');
