@@ -37,6 +37,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    // lo que agregó gaby
     public function username()
     {
         return 'dni';
@@ -50,6 +51,6 @@ class LoginController extends Controller
         if ($user->adminUser()=='admin') {
             return '/admin';
         }
-        return '/index';
+        return '/home';
     }
 }
