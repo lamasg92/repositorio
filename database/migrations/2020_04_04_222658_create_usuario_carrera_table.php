@@ -19,9 +19,9 @@ class CreateUsuarioCarreraTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('carrera_id');
             $table->foreign('carrera_id')->references('id')->on('carreras');
+            $table->integer('anio_ingreso')->nullable();
+            $table->integer('libreta')->nullable();
             $table->enum('estado', ['activo','inactivo'])->default('activo');
-            $table->integer('anio_ingreso');
-            $table->integer('libreta');
             $table->timestamps();
         });
     }

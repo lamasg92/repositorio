@@ -18,7 +18,9 @@ class CreateCarrerasTable extends Migration
             $table->string('nombre_carrera');
             $table->unsignedBigInteger('departamento_id');
             $table->foreign('departamento_id')->references('id')->on('departamentos');
-            $table->integer('anio_plan');
+            $table->integer('anio_plan')->nullable();
+            $table->integer('imagen')->nullable();
+            $table->integer('duracion')->nullable();
             $table->enum('estado', ['activo','inactivo'])->default('activo');
             $table->timestamps();
         });
