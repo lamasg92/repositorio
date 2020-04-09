@@ -52,9 +52,9 @@
 					        </form>
 						      <div class="collapse navbar-collapse" id="ftco-nav">
 						        <ul class="navbar-nav mr-auto">
-						        	<li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
+						        	<li class="nav-item"><a href="{{url('/')}}" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
 						        	<li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Favoritos</FONT></a></li>
-						        	<li class="nav-item"><a href="{{url('/perfil/')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
+						        	<li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
 						        	<li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
 						        </ul>
 						      </div>
@@ -74,10 +74,10 @@
 					        </form>
 						      <div class="collapse navbar-collapse" id="ftco-nav">
 						        <ul class="navbar-nav mr-auto">
-						        	<li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
+						        	<li class="nav-item"><a href="{{url('/')}}" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
 						        	<li class="nav-item"><a href="{{url('/subida/')}}" class="nav-link pl-0"><FONT SIZE=4>Subir Apuntes</FONT></a></li>
 						        	<li class="nav-item"><a href="{{url('/historial/')}}" class="nav-link pl-0"><FONT SIZE=4>Historial</FONT></a></li>
-						        	<li class="nav-item"><a href="{{url('/perfil/')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
+						        	<li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
 						        	<li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
 						        </ul>
 						      </div>
@@ -97,7 +97,30 @@
         </div>
     </div>
     
-   @yield('content')
+    <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('images/image_2.jpg');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">Editar Perfil</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="ftco-section ftco-no-pt ftc-no-pb">
+      <div class="container">
+        <div class="row d-flex">
+      
+          <div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
+            <h2 class="mb-4">Fox University Stablished Since 1960</h2>
+            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word.</p>
+            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their</p>
+          </div>
+        </div>
+      </div>
+    </section>    
 		
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
