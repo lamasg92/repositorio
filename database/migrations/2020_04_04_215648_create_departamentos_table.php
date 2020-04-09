@@ -16,6 +16,7 @@ class CreateDepartamentosTable extends Migration
         Schema::create('departamentos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre_dpto');
+            $table->string('sitio_web')->nullable();
             $table->string('logo')->default('logo.jpg');
             $table->enum('estado', ['activo','inactivo'])->default('activo');
             $table->timestamps();

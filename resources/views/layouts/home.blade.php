@@ -37,27 +37,53 @@
 		  <div class=class="col-lg-8 d-block" align="right">
            		@if (Route::has('login'))
                 	<div class="top-rigth links">
-                    @auth 
-                    	<nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
-					    <div class="container d-flex align-items-center px-4">
-								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-					        	<span class="oi oi-menu"></span> Menu
-					      </button>
-					      <form action="#" class="searchform order-lg-last">
-				          <div class="form-group d-flex">
-				            <input type="text" class="form-control pl-3" placeholder="Buscar">
-				            <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
-				          </div>
-				        </form>
-					      <div class="collapse navbar-collapse" id="ftco-nav">
-					        <ul class="navbar-nav mr-auto">
-					        	<li class="nav-item active"><a href="#" class="nav-link pl-0">Home</a></li>
-					        	<li class="nav-item"><a href="#" class="nav-link pl-0">Mi Perfil</a></li>
-					        	<li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0">Cerrar Sesión</a></li>
-					        </ul>
-					      </div>
-					    </div>
-					  </nav>                  	
+              @auth 
+              @if (Auth::user()->type == 'alumno')
+	              <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+                 <div class="container d-flex align-items-center px-4">
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="oi oi-menu"></span> Menu Alumno
+                  </button>
+                  <form action="#" class="searchform order-lg-last">
+                    <div class="form-group d-flex">
+                      <input type="text" class="form-control pl-3" placeholder="Buscar">
+                      <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
+                    </div>
+                  </form>
+                  <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item"><a href="{{url('/')}}" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
+                      <li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Favoritos</FONT></a></li>
+                      <li class="nav-item"><a href="{{url('/perfil/')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
+                      <li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </nav> 
+					  @else
+						  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+                <div class="container d-flex align-items-center px-4">
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="oi oi-menu"></span> Menu Docente
+                  </button>
+                  <form action="#" class="searchform order-lg-last">
+                    <div class="form-group d-flex">
+                      <input type="text" class="form-control pl-3" placeholder="Buscar">
+                      <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
+                    </div>
+                  </form>
+                  <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item"><a href="{{url('/')}}" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
+                      <li class="nav-item"><a href="{{url('/subida/')}}" class="nav-link pl-0"><FONT SIZE=4>Subir Apuntes</FONT></a></li>
+                      <li class="nav-item"><a href="{{url('/historial/')}}" class="nav-link pl-0"><FONT SIZE=4>Historial</FONT></a></li>
+                      <li class="nav-item"><a href="{{url('/perfil/')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
+                      <li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+					  @endif              	
                     @else
                         <a href="{{ route('login') }}" class="btn btn-primary">Ingresar</a>
                         @if (Route::has('register'))
