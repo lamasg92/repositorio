@@ -24,6 +24,9 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
   //******************************Rutas para departamentos******************************************
   Route::resource('departamentos','DepartamentosController');
 
+//******************************Rutas para carreras******************************************
+  Route::resource('carreras','CarrerasController');
+
 
 
 
@@ -37,7 +40,6 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
 Route::get('vistaCarreras/{id}','VistaCarrerasController@mostrarVistaCarreras');
-
 Route::get('materiasdocente', 'MateriasDocenteController@index')->name('materiasdocente');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

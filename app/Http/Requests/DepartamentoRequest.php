@@ -25,8 +25,8 @@ class DepartamentoRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'max:120|required',
-          /*  'cuil'=> 'max:11|min:11|unique:clients',
+        'nombre_dpto'=>'max:120|required|unique:departamentos',
+         /* 'cuil'=> 'max:11|min:11|unique:clients',
             'location'=>'required',
             'address'=>'required',
             'email'=>'unique:clients',
