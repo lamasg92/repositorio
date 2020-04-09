@@ -14,10 +14,11 @@
  <table id="tabla table-striped" class="display table table-hover" cellspacing="0" width="100%">
     <thead>
         <tr>
-            <th style="width:10px">Codigo</th>
+            <th style="width:10px">#</th>
             <th>Nombre</th>
+            <th>Sitio Web</th>
             <th>Estado</th>
-            <th>logo</th> 
+            <th>Imagen</th> 
             <th></th>
         </tr>
     </thead>
@@ -31,14 +32,22 @@
           @endif
             <td>{{$departamento->id}}</td>
             <td>{{$departamento->nombre_dpto}}</td>
+            <td>{{$departamento->sitio_web}}</td>
             <td>{{$departamento->estado}}</td>
             <td> 
-            @if($departamento->extension!=null)
-
+            @if($departamento->logo!=null)
+                 <div>
+                  
+                  <a data-toggle="modal">
+                   <img src="{{ asset('images/departamento/'.$departamento->logo)  }}" width="40" height="40"> 
+                   </a>
+                  
+                   </div>
             @endif
             </td>
-            <td>
+            <td></td>
                       
+        </tr>
         </tr>
   @endforeach
    </tbody>
