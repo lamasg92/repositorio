@@ -72,8 +72,8 @@
     </div>
     
    <ul>
-        @foreach($departamentos as $depa)
-            <li><a href="{{ url('vistaCarreras', ['id' => $depa->id]) }}">{{ $depa->nombre_dpto }}</a></li>
+        @foreach($carreras as $car)
+            <li><a href="#">{{ $car->nombre_carrera }}</a></li>
         @endforeach
     </ul>
 		
@@ -89,7 +89,8 @@
           </div>
         </div>
       </div>
-    </footer>   
+    </footer>
+    
   
 
   <!-- loader -->
@@ -114,4 +115,3 @@
     
   </body>
 </html>
-

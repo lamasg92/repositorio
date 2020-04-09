@@ -43,7 +43,13 @@
           <div class="col-md-3 d-flex services align-self-stretch py-5 px-4 ftco-animate bg-darken">
             <div class="media block-6 d-block text-center">
               <div class="media-body p-2 mt-3">
-                <h3><a href="#" style="color: white" >Departamento de Matemática</a> </h3>
+                  @if (Route::has('login'))
+                   @auth 
+                        <h3><a href="{{ url('vistaCar/2')}}" style="color: white" >Departamento de Matemática</a> </h3>
+                   @else
+                        <h3><a href="#" style="color: white" >Departamento de Matemática</a> </h3>
+                   @endauth
+                  @endif
               </div>
             </div>    
           </div>
@@ -57,7 +63,7 @@
           <div class="col-md-3 d-flex services align-self-stretch py-5 px-4 ftco-animate bg-darken">
             <div class="media block-6 d-block text-center">
                 <div class="media-body p-2 mt-3">
-                <h3><a href="http://quimica.unsa.edu.ar/" target="_blank" style="color: white" >Departamento de Quimica</a> </h3>
+                <h3><a href="http://quimica.unsa.edu.ar/" target="_blank" style="color: white" >Departamento de Química</a> </h3>
               </div>
             </div>      
           </div>
