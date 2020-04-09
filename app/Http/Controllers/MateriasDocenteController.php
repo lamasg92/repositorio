@@ -9,10 +9,7 @@ class MateriasDocenteController extends Controller
 {
     public function index()
     {
-        $materiasdocente = MateriaDocente::all();
-        //return view('layouts.subida') -> with('materiasdocente', $materiasdocente);
-        return view('layouts.subida') -> with('materiasdocente', $materiasdocente);
-        //dd('materiasdocente');
+
     
     }
 }

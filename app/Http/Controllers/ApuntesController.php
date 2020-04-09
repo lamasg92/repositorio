@@ -3,26 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection; 
 use App\Apunte;
+use App\MateriaDocente;
 
-use App\Http\Requests\Apunte;
-
-class ApunteController extends Controller
+class ApuntesController extends Controller
 {
     public function index(Request $request)
     {
        
     }
 
-    public function create()
+    public function subida()
     {
-        //return view('admin.departamento.create');
+        $user=Auth::user();
+        $materiacarreras=$user->materia_carreras;
+        $materiasdocente= new Collection();
+        foreach ($materiacarreras as $materiacarrera) {
+            $materiasdocente->prepend($materiacarrera->materia);
+        }
+
+        return view('home.subida') ->with('materiasdocente', $materiasdocente);
+
     }
 
   
-    public function store(DepartamentoRequest $request)
+    public function store(Request $request)
     {
+        dd($request);
         //$departamento= new Departamento($request->all());
         //$departamento->nombre_dpto=strtoupper($departamento->nombre_dpto);
         if($request->file('image'))

@@ -19,7 +19,7 @@ class CreateMateriaCarreraTable extends Migration
             $table->foreign('materia_id')->references('id')->on('materias');
             $table->unsignedBigInteger('carrera_id');
             $table->foreign('carrera_id')->references('id')->on('carreras');
-            $table->integer('anio');
+            $table->integer('anio')->nullable();
             $table->enum('estado', ['activo','inactivo'])->default('activo');
             $table->timestamps();
         });

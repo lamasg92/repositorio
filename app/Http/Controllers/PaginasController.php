@@ -10,17 +10,17 @@ class PaginasController extends Controller
 
     public function subida()
     {
-        return view('layouts.subida');
+        return view('home.subida');
     }
     /******************************************/
     public function historial()
     {
-        return view('layouts.historial');
+        return view('home.historial');
     }
     /******************************************/
    	public function perfil()
     {
-        return view('layouts.perfil');
+        return view('home.perfil');
     }
    
 }
