@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function materia_carreras()
     {
-        return $this->belongsToMany('App\MateriaCarrera','materia_docente')->withPivot('estado')->withTimestamps();
+        return $this->belongsToMany('App\MateriaCarrera','materia_docente','user_id','materia_carrera_id')->withPivot('estado')->withTimestamps();
     }
 
     public function apuntes()

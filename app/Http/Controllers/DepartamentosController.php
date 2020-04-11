@@ -28,17 +28,17 @@ class DepartamentosController extends Controller
     {
         $departamento= new Departamento($request->all());
         $departamento->nombre_dpto=strtoupper($departamento->nombre_dpto);
-        if($request->file('image')){
-            $file =$request->file('image');
-            $extension=$file->getClientOriginalName();//nombre de img
+        if($request->file('imagen')){
+            $file =$request->file('imagen');
+            $logo=$file->getClientOriginalName();//nombre de img
             $path=public_path().'/images/departamento/';//donde guardamos img
-            $file->move($path,$extension);//guardar imagen
-            $departamento->extension=$extension;
+            $file->move($path,$logo);//guardar imagen
+            $departamento->logo=$logo;
         }
         $departamento->save();
         flash("El departamento ". $departamento->nombre_dpto . " ha sido creada con exito" , 'success')->important();
 
-        return redirect()->route('departamento.index');
+        return redirect()->route('departamentos.index');
     }
     
     
