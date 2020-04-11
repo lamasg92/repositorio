@@ -36,6 +36,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
 //***********************Rutas de Materias Decentes***************************
 Route::resource('materiasdocente','MateriasDocenteController');
 //***********************Rutas de Apuntes*************************************
@@ -52,4 +53,5 @@ Route::get('perfil','PaginasController@perfil');
 
 //***********************Rutas de vista de Apuntes****************************
 Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
-Route::get('vistaCarreras/{id}','VistaCarrerasController@mostrarVistaCarreras');
+Route::get('vistaCar/{nombre}','VistaCarrerasController@mostrarVistaCarreras')
+        ->name('home')->middleware('auth');
