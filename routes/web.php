@@ -38,9 +38,9 @@ Auth::routes();
 Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
 Route::get('vistaCarreras/{id}','VistaCarrerasController@mostrarVistaCarreras');
 
-Route::get('materiasdocente', 'MateriasDocenteController@index')->name('materiasdocente');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Route::get('subida','PaginasController@subida');
-Route::get('historial','PaginasController@historial');
+Route::get('subida/{id_user}','MateriasDocenteController@index')->name('subida');
+Route::post('subirapunte/{id_user}','ApunteController@store');
+Route::get('historial/{id_user}','ApunteController@index');
 Route::get('perfil','PaginasController@perfil');

@@ -35,7 +35,7 @@
 
 		  <div class="container">
 		  <div class=class="col-lg-8 d-block" align="right">
-           		@if (Route::has('login'))
+           		@if (Route::has('login'))                 
                 	<div class="top-rigth links">
                     @auth 
                     	@if (Auth::user()->type == 'alumno')
@@ -54,13 +54,14 @@
 						        <ul class="navbar-nav mr-auto">
 						        	<li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
 						        	<li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Favoritos</FONT></a></li>
-						        	<li class="nav-item"><a href="{{url('/perfil/')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
+						        	<li class="nav-item"><a href="{{url('/perfil')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
 						        	<li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
 						        </ul>
 						      </div>
 						    </div>
 						  </nav> 
-					  @else
+					  @else             
+              
 						  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
 						    <div class="container d-flex align-items-center px-4">
 									<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,9 +76,9 @@
 						      <div class="collapse navbar-collapse" id="ftco-nav">
 						        <ul class="navbar-nav mr-auto">
 						        	<li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
-						        	<li class="nav-item"><a href="{{url('/subida/')}}" class="nav-link pl-0"><FONT SIZE=4>Subir Apuntes</FONT></a></li>
-						        	<li class="nav-item"><a href="{{url('/historial/')}}" class="nav-link pl-0"><FONT SIZE=4>Historial</FONT></a></li>
-						        	<li class="nav-item"><a href="{{url('/perfil/')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
+						        	<li class="nav-item"><a href="{{url('subida',['id_user'=>Auth::user()->id])}}" class="nav-link pl-0"><FONT SIZE=4>Subir Apuntes</FONT></a></li>
+						        	<li class="nav-item"><a href="{{url('historial',['id_user'=>Auth::user()->id])}}" class="nav-link pl-0"><FONT SIZE=4>Historial</FONT></a></li>
+						        	<li class="nav-item"><a href="{{url('perfil')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
 						        	<li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
 						        </ul>
 						      </div>
@@ -97,7 +98,7 @@
         </div>
     </div>
     
-   @yield('content')
+   @yield('content') <!-- Acá va lo que cambia -->
 		
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
