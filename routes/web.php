@@ -36,6 +36,6 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
-Route::get('vistaCar/{nombre}','VistaCarrerasController@mostrarVistaCarreras');
+Route::get('vistaCar/{nombre}','VistaCarrerasController@mostrarVistaCarreras')->name('home')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

@@ -13,11 +13,11 @@ class VistaCarrerasController extends Controller
         
         //$departamentos = Departamento::where('nombre_dpto', '==', $nombre);
 
-        $carreras = Carrera::has('departamento_id', '==', $nombre)->get();
+        $carreras = Carrera::where('departamento_id', '=', $nombre)->get();
 
         //$id = $departamentos->id;
-        //foreach($departamentos as $depa){
-        //    echo 'ID:'.$depa->nombre_dpto. '<br/>';
+        //foreach($carreras as $car){
+        //    echo 'ID:'.$car->nombre_carrera. '<br/>';
         //}
         //$carreras = Carrera::all();
         //$carreras = Carrera::where('departamento_id', '==', $id);
