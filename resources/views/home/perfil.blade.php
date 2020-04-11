@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
-@section('content')
-    
+@section('content')  
+
     <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('images/image_2.jpg');">
       <div class="overlay"></div>
       <div class="container">
@@ -44,4 +44,4 @@
       </div>
     </section>    
 
-@endsection
+ @endsection

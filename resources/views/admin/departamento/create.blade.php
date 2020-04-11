@@ -16,13 +16,25 @@
             {!! Form::open(['route'=>'departamentos.store', 'method'=>'POST','files'=>true])!!}
 
              <div class="form-group">
-              <h4>{!! Field::text('nombre_dpto',null, ['class'=>'form-control'])!!}</h4>
+
+              <h4>
+                {!! Field::text('nombre_dpto',null, ['class'=>'form-control'])!!}</h4>
              </div>
 
-              <h4>{!! Field::file('logo')!!}</h4>
+              <div class="form-group">
+
+              <h4>
+                {!! Field::text('sitio_web',null, ['class'=>'form-control'])!!}</h4>
+             </div>
+
+              <div><h4>{!! Field::file('imagen',['class'=>'foto'] )!!}</h4>
             
+              <img src="" class="img-thumbnail previsualizarFoto" width="100%">
+
+              </div>
               <div class= "form-group">
   
+
              <h4> {!! Form::label('estado','Estado')!!}
               {!! Form::select('estado', ['activo'=>'activo','inactivo'=>'inactivo'],null,['class'=>'form-control'])!!}</h4>
               </div>
@@ -43,4 +55,13 @@
       </div>
     </div>
   </div>
+
+
+@section('js')
+<script src="{{asset('stylesAdmin/js/plantilla.js')}}">
+  
+
+</script>
 @endsection
+@endsection
+

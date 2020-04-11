@@ -21,10 +21,11 @@ Route::group(['middleware' => 'auth'], function(){
 Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
   Route::group(['middleware' => 'adminUser'], function () {
  
-  //******************************Rutas para departamentos******************************************
+//******************************Rutas para departamentos***********************************
   Route::resource('departamentos','DepartamentosController');
 
-
+//******************************Rutas para carreras****************************************
+  Route::resource('carreras','CarrerasController');
 
 
   });
@@ -35,12 +36,20 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
-Route::get('vistaCarreras/{id}','VistaCarrerasController@mostrarVistaCarreras');
+//***********************Rutas de Materias Decentes***************************
+Route::resource('materiasdocente','MateriasDocenteController');
+//***********************Rutas de Apuntes*************************************
+Route::resource('apuntes','ApuntesController');
+//Route::get('subida','ApuntesController@subida');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('subida/{id_user}','MateriasDocenteController@index')->name('subida');
-Route::post('subirapunte/{id_user}','ApunteController@store');
-Route::get('historial/{id_user}','ApunteController@index');
+Route::post('subirapunte/{id_user}','ApuntesController@store');
+Route::get('historial/{id_user}','ApuntesController@index');
+
 Route::get('perfil','PaginasController@perfil');
+
+//***********************Rutas de vista de Apuntes****************************
+Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
+Route::get('vistaCarreras/{id}','VistaCarrerasController@mostrarVistaCarreras');

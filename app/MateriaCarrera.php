@@ -13,6 +13,17 @@ class MateriaCarrera extends Pivot
 
     public function users()
     {
-        return $this->belongsToMany('App\User','materia_docente')->withPivot('estado')->withTimestamps();
+        return $this->belongsToMany('App\User','materia_docente','user_id','materia_carrera_id')->withPivot('estado')->withTimestamps();
     }
+
+    public function materia()
+    {
+        return $this->belongsTo('App\Materia');
+    }
+
+    public function carrera()
+    {
+        return $this->belongsTo('App\Carrera');
+    }
+
 }

@@ -1,0 +1,108 @@
+¿Qué es Flying Donut?
+
+    ¿Qué es Flying Donut?
+
+    Flying Donut es un software de Scrum en línea potente, simple y efectivo. Scrum es un marco de gestión de proyectos iterativo e incremental para gestionar diferentes tipos de proyectos. Puede utilizar Flying Donut como su software de gestión de proyectos Agile, para colaborar con personas locales y remotas. Todo lo que necesitan es una invitación suya para unirse a su proyecto.
+
+    Flying Donut mejora la comunicación entre los miembros del equipo, mientras que al mismo tiempo elimina el tráfico de correo electrónico. La vista de todos se actualiza inmediatamente cuando cualquier miembro del equipo modifica una entrada.
+
+    Flying Donut le permite organizarse sin siquiera pensar en ello. No toma tiempo aprender Flying Donut, y cada acción es instantánea.
+    ¿Flying Donut es solo para proyectos de desarrollo de software?
+
+    Aunque las prácticas de gestión de proyectos ágiles y el scrum se utilizan normalmente para el desarrollo de software, creemos que cualquier proyecto puede beneficiarse del uso de un marco de gestión de proyectos de estilo ágil. Simplemente piense en términos de dividir su proyecto en componentes más pequeños, cada uno con sus propios plazos y tareas.
+
+Empezando
+
+    ¿Cómo empiezo?
+
+    Puede crear una cuenta gratuita para comenzar. Puede elegir un nombre de usuario y una contraseña específicos para el servicio Flying Donut, o puede iniciar sesión usando las credenciales de cualquiera de los proveedores integrados de OpenID. Ya nos hemos integrado con Google ™, YAHOO !, AOL, myOpenID, LiveJournal ™, WordPress, Blogger, VeriSign y claimID. Para obtener detalles sobre el uso de OpenID para iniciar sesión, consulte cómo comenzar a utilizar su OpenId.
+    ¿Cómo creo un proyecto?
+
+    Después de crear una cuenta en el servicio Flying Donut, haga clic en el menú desplegable Proyectos y seleccione Crear proyecto. Se le presentará un formulario para especificar el título del proyecto, las fechas de inicio y finalización, y la visibilidad del proyecto. La visibilidad del proyecto por defecto está establecida en privado. Siempre puede cambiar la visibilidad más adelante, desde la opción Configuración del proyecto en el menú desplegable del proyecto.
+    ¿Quiero crear un proyecto público o privado?
+
+    Si sus proyectos son altamente sensibles, debería considerar hacerlos privados. Solo las personas que ha invitado a sus proyectos privados pueden ver el contenido o publicar su propia actividad.
+
+    Los proyectos públicos son visibles en los resultados de búsqueda y, en general, están abiertos para que las personas simplemente naveguen. Los usuarios registrados de Flying Donut pueden ver sus páginas de proyectos. Si está planeando una campaña benéfica de recaudación de fondos, configurarla como un proyecto público podría no ser una mala idea; puede generar ideas y exposición que ni siquiera has pensado.
+    ¿Cómo puedo colaborar con la gente?
+
+    Simplemente invite a las personas a su proyecto. Haga clic en el menú desplegable de su proyecto en la barra de menú y seleccione Invitar a proyecto en el menú desplegable. Se te presentará un formulario para especificar la dirección de correo electrónico de tu amigo o colega, para que puedan subir a bordo contigo. Puede seleccionar si su nuevo miembro del equipo se unirá al proyecto como seguidor, miembro o administrador.
+    Roles del usuario
+
+    Las personas pueden unirse a un proyecto con cualquiera de las siguientes funciones de usuario:
+
+    Seguidor
+        Un seguidor puede simplemente ver la información del proyecto pero no puede modificar nada. Los usuarios que navegan por proyectos públicos están actuando en un rol de seguidor.
+    Miembro del proyecto
+        Los miembros del proyecto pueden crear sprints, tareas y elementos. Pueden mover elementos entre sprints o atrasados. Pueden asignar elementos y tareas a ellos mismos o a otros miembros del equipo. Pueden invitar a otras personas al equipo. En general, pueden realizar todas las acciones, excepto para eliminar un proyecto.
+    Administrador
+        Un administrador tiene plenos derechos sobre el proyecto. Además de las acciones de un miembro del proyecto, también pueden eliminar proyectos.
+
+    Mira el video de presentación
+
+    Mira Flying Donut en acción, en nuestro video de introducción de 8 minutos de duración. El video muestra las características más importantes y le dará una buena idea de lo que puede hacer con Flying Donut como un software de scrum.
+
+Comenzando con su propio desglose del proyecto
+
+    Vea nuestro Tutorial de Flying Donut, para un recorrido detallado de un proyecto que no es de software.
+
+Integraciones
+
+    Integración API
+
+    Al habilitar la integración de API para un proyecto, podrá recuperar todos los datos disponibles de su proyecto. Puede usarlo para generar sus propios informes personalizados o incluso usarlo para almacenar copias de seguridad locales.
+
+    Para obtener más información, consulte las instrucciones de integración de API.
+    Integración de GitHub
+
+    Al habilitar la integración de GitHub para un proyecto, podrá ver qué compromiso es parte de qué tarea (o tarjeta). Un enlace rápido a la confirmación de GitHub está disponible. También podrá actualizar tareas y tarjetas con comandos simples de Flying Donut desde el comentario de confirmación. Por ejemplo, puede actualizar el tiempo que queda de una tarea en 5 horas escribiendo # 1556 -salida 5h en el comentario de confirmación.
+
+    Para obtener más información, consulte las instrucciones de integración de GitHub.
+
+Ágil y Scrum
+
+    ¿Qué es ágil?
+
+    De la Wikipedia:
+
+        El desarrollo de software ágil es un grupo de métodos de desarrollo de software basado en el desarrollo iterativo e incremental, donde los requisitos y las soluciones evolucionan a través de la colaboración entre equipos autoorganizados y multifuncionales. Promueve la planificación adaptativa, el desarrollo evolutivo y la entrega, un enfoque iterativo en el tiempo, y alienta una respuesta rápida y flexible al cambio.
+
+    Vea la página de Wikipedia para más.
+
+    ¿Qué es Scrum?
+
+    De la Wikipedia:
+
+        Scrum es un marco de desarrollo de software ágil iterativo e incremental para administrar proyectos de software y desarrollo de productos o aplicaciones. Se centra en "una estrategia de desarrollo de productos flexible y holística donde un equipo de desarrollo trabaja como una unidad para alcanzar un objetivo común" en lugar de un "enfoque tradicional y secuencial".
+
+    Vea la página de Wikipedia para más.
+
+    Scrum Sprints, Backlog y tareas
+
+    Cuando sigues la metodología Scrum, comienzas con un bosquejo de los elementos de alto nivel que definen tu proyecto. Estos elementos son la acumulación de proyectos. A continuación, divide el proyecto en fases, llamadas sprints, y asigna los elementos a los diferentes sprints. Cada sprint tiene una fecha de inicio y finalización. Su proyecto puede estar compuesto por sprints paralelos, con equipos que trabajan en paralelo, o sprints secuenciales, donde el mismo equipo completa cada sprint en el plazo.
+
+    Cuando asigna un elemento a un sprint, puede proporcionar una lista de verificación más detallada, un conjunto de tareas que explican aún más el elemento de alto nivel que se debe lograr.
+
+    En términos simples: piense en definir diferentes tareas para su proyecto, y asigne plazos para completar un conjunto de estas tareas.
+
+Soporte y retroalimentación
+
+    Informar problemas
+
+    La primera opción es usar el rastreador de incidencias en GitHub para informar problemas. En el rastreador de problemas, también puede buscar problemas ya informados, para ver si ya hay una solución disponible.
+
+    La segunda opción es usar la categoría Problemas actuales en el Grupo de usuarios de Flying Donut para informar problemas. En el foro, también puede buscar problemas ya informados, para ver si ya hay una solución disponible.
+
+    La tercera opción es contactarnos directamente a support@flyingdonut.io. Use esta opción en caso de que piense que la pregunta o problema solo se aplica a usted o si desea mantenerlo en privado.
+    Sugerir características
+
+    Para solicitar nuevas funciones o mejorar las mejoras a las existentes, puede utilizar el seguimiento de incidencias en GitHub o la categoría de solicitudes de funciones en el Grupo de usuarios de Flying Donut o enviarnos un correo electrónico directamente a rfc@flyingdonut.io.
+
+Problemas de membresía y privacidad
+
+    Membresías
+
+    La membresía gratuita incluye un número ilimitado de proyectos públicos, con miembros ilimitados y un proyecto privado, con 3 miembros (incluido el propietario del proyecto).
+    Privacidad de datos
+
+    Consulte la política de privacidad de Flying Donut.

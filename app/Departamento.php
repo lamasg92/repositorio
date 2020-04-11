@@ -8,7 +8,7 @@ class Departamento extends Model
 {
 	protected $table="departamentos";
 
-    protected $fillable= ['id','nombre_dpto','logo','estado'];
+    protected $fillable= ['id','nombre_dpto','sitio_web','logo','estado'];
 
     public function carreras()
     {
