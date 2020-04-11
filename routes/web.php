@@ -37,11 +37,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 //***********************Rutas de Materias Decentes***************************
 Route::resource('materiasdocente','MateriasDocenteController');
 //***********************Rutas de Apuntes*************************************
 Route::resource('apuntes','ApuntesController');
 //Route::get('subida','ApuntesController@subida');
+
+Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
+Route::get('vistaCar/{nombre}','VistaCarrerasController@mostrarVistaCarreras')->name('home')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
