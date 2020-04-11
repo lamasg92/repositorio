@@ -40,12 +40,14 @@ Auth::routes();
 Route::resource('materiasdocente','MateriasDocenteController');
 //***********************Rutas de Apuntes*************************************
 Route::resource('apuntes','ApuntesController');
-Route::get('subida','ApuntesController@subida');
+//Route::get('subida','ApuntesController@subida');
 
-//***********************Rutas de Perfil**************************************
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Route::get('historial','PaginasController@historial');
+Route::get('subida/{id_user}','MateriasDocenteController@index')->name('subida');
+Route::post('subirapunte/{id_user}','ApuntesController@store');
+Route::get('historial/{id_user}','ApuntesController@index');
+
 Route::get('perfil','PaginasController@perfil');
 
 //***********************Rutas de vista de Apuntes****************************

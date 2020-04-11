@@ -29,82 +29,81 @@
     			<div class="col-md-4 d-flex align-items-center py-4">
     				<a class="navbar-brand" href="{{route('home')}}">REPOSITORIO DE APUNTES <span>Facultad de Ciencias Exactas</span></a>
     			</div>
-
 	    	</div>
 		  </div>
+    </div>
 
-		  <div class="container">
-		  <div class=class="col-lg-8 d-block" align="right">
-           		@if (Route::has('login'))
-                	<div class="top-rigth links">
-              @auth 
-              @if (Auth::user()->type == 'alumno')
-	              <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
-                 <div class="container d-flex align-items-center px-4">
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="oi oi-menu"></span> Menu Alumno
-                  </button>
-                  <form action="#" class="searchform order-lg-last">
-                    <div class="form-group d-flex">
+    <div class="container">
+    <div class=class="col-lg-8 d-block" align="right">
+              @if (Route::has('login'))                 
+                <div class="top-rigth links">
+                   @auth 
+          @if (Auth::user()->type == 'alumno')
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+                        <div class="container d-flex align-items-center px-4">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                       <span class="oi oi-menu"></span> Menu Alumno
+                      </button>
+                      <form action="#" class="searchform order-lg-last">
+                       <div class="form-group d-flex">
                       <input type="text" class="form-control pl-3" placeholder="Buscar">
                       <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
-                    </div>
-                  </form>
-                  <div class="collapse navbar-collapse" id="ftco-nav">
+                     </div>
+                     </form>
+                    <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav mr-auto">
-                      <li class="nav-item"><a href="{{url('/')}}" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
+                      <li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
                       <li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Favoritos</FONT></a></li>
-                      <li class="nav-item"><a href="{{url('/perfil/')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
+                      <li class="nav-item"><a href="{{url('/perfil')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
                       <li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </nav> 
-					  @else
-						  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
-                <div class="container d-flex align-items-center px-4">
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="oi oi-menu"></span> Menu Docente
-                  </button>
-                  <form action="#" class="searchform order-lg-last">
-                    <div class="form-group d-flex">
-                      <input type="text" class="form-control pl-3" placeholder="Buscar">
-                      <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
+                      </ul>
+                   </div>
+                 </div>
+                </nav> 
+               @else                  
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+                  <div class="container d-flex align-items-center px-4">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="oi oi-menu"></span> Menu Docente
+                    </button>
+                    <form action="#" class="searchform order-lg-last">
+                      <div class="form-group d-flex">
+                        <input type="text" class="form-control pl-3" placeholder="Buscar">
+                        <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
+                      </div>
+                    </form>
+                    <div class="collapse navbar-collapse" id="ftco-nav">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
+                        <li class="nav-item"><a href="{{url('subida',['id_user'=>Auth::user()->id])}}" class="nav-link pl-0"><FONT SIZE=4>Subir Apuntes</FONT></a></li>
+                        <li class="nav-item"><a href="{{url('historial',['id_user'=>Auth::user()->id])}}" class="nav-link pl-0"><FONT SIZE=4>Historial</FONT></a></li>
+                        <li class="nav-item"><a href="{{url('perfil')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
+                        <li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
+                      </ul>
                     </div>
-                  </form>
-                  <div class="collapse navbar-collapse" id="ftco-nav">
-                    <ul class="navbar-nav mr-auto">
-                      <li class="nav-item"><a href="{{url('/')}}" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
-                      <li class="nav-item"><a href="{{url('/subida/')}}" class="nav-link pl-0"><FONT SIZE=4>Subir Apuntes</FONT></a></li>
-                      <li class="nav-item"><a href="{{url('/historial/')}}" class="nav-link pl-0"><FONT SIZE=4>Historial</FONT></a></li>
-                      <li class="nav-item"><a href="{{url('/perfil/')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
-                      <li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
-                    </ul>
                   </div>
-                </div>
-              </nav>
-					  @endif              	
-                    @else
-                        <a href="{{ route('login') }}" class="btn btn-primary">Ingresar</a>
+                  </nav> 
+            @endif      
+        @else
+                      <a href="{{ route('login') }}" class="btn btn-primary">Ingresar</a>
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="btn btn-primary" >Registrarse</a>
                         @endif
                      <div><p></p></div>
                     @endauth             
-                	</div>
-            	@endif
-        	</div>
-        </div>
-    </div>
-    
-   @yield('content')
+                  </div>
+              @endif
+          </div>
+</div>
+
+		  
+   </body>   
+   @yield('content') <!-- Acá va lo que cambia -->
 		
     <footer class="ftco-footer ftco-bg-dark ftco-section">
-      <div class="container">
-        
+      <div class="container">        
         <div class="row">
           <div class="col-md-12 text-center">
-
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart" aria-hidden="true"></i>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
@@ -113,8 +112,6 @@
       </div>
     </footer>
     
-  
-
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 

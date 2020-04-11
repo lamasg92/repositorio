@@ -20,4 +20,6 @@ class Apunte extends Model
         return $this->belongsTo('App\Materia');
     }
 
+  
+
 }
