@@ -21,16 +21,16 @@
             <p>Todos los campos son obligatorios</p>           
           </div>
         </div>
-
-      <form action="{{url('subirapunte',['id_user'=>Auth::user()->id])}}" method="POST" enctype="multipart/form-data">
+        @include('flash::message')  
+      <form action="{{url('subirapunte')}}" method="POST" enctype="multipart/form-data">
 
         {{csrf_field()}}
 
       <div class="form-group">
-        <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp" placeholder="Nombre del archivo" required="true">
+        <input type="text" class="form-control" id="nombre_apunte" name="nombre_apunte" aria-describedby="emailHelp" placeholder="Nombre del archivo" required="true">
       </div>
         <div class="form-group">
-        <select class="form-control" name="materia" id="materia_id" required="true"> 
+        <select class="form-control" name="materia_id" id="materia_id" required="true"> 
             <option value="">-- Elija una materia --</option>
             @foreach($materiasdocente as $materia)
               <option value="{{$materia['id']}}">{{$materia['nombre_materia']}}</option>
@@ -41,7 +41,7 @@
           <input type="file" class="form-control" id="archivo" name="archivo" required="true">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="autor" name="autor" required="true" placeholder="autor">
+          <input type="text" class="form-control" id="autores" name="autores" required="true" placeholder="autor">
         </div>
         <button type="submit" class="btn btn-primary">Subir apunte</button>
       </form>
