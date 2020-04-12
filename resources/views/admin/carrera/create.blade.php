@@ -28,7 +28,7 @@
              </div>
 
                
-              <div class= "form-group titulo_h4">
+              <div class= "form-group ">
               {!! Field::select('departamento_id', $departamentos, ['class'=>'select-departamento','empty'=>'Seleccione un departamento'])!!} 
 
               </div>
@@ -71,9 +71,8 @@
   $('.select-departamento').chosen();
  </script>
 
- <script src="{{asset('stylesAdmin/js/plantilla.js')}}">
-  
-</script>
+ <script src="{{asset('stylesAdmin/js/plantilla.js')}}"></script>
+
  
 
 @endsection

@@ -60,7 +60,7 @@
 
  <div class="text-center">
 
-  {!!$carreras->appends(request()->input())->links()!!}
+  {!!$carreras->links()!!}
 
 </div>
 @else
