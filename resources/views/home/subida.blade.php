@@ -1,6 +1,7 @@
 @extends('layouts.home')
 
-@section('content')   
+@section('content')
+
   <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('images/image_3.jpg');">
       <div class="overlay"></div>
       <div class="container">
@@ -20,29 +21,32 @@
             <p>Todos los campos son obligatorios</p>           
           </div>
         </div>
+        @include('flash::message')  
+      <form action="{{url('subirapunte')}}" method="POST" enctype="multipart/form-data">
 
-      {!! Form::open(['route'=>'apuntes.store', 'method'=>'POST','files'=>true])!!}
+        {{csrf_field()}}
+
       <div class="form-group">
-        <input type="text" class="form-control" name="nombre_apunte" aria-describedby="emailHelp" placeholder="Nombre del archivo">
+        <input type="text" class="form-control" id="nombre_apunte" name="nombre_apunte" aria-describedby="emailHelp" placeholder="Nombre del archivo" required="true">
       </div>
         <div class="form-group">
-            <select class="form-control" name="materia_id" placeholder="Seleccione materia">
-                <option></option>
-               @foreach ($materiasdocente as $materia)  
-                    <option value='{{$materia->id}}'>{{$materia->nombre_materia}}</option>
-                @endforeach
-            </select>
-        </div>
+        <select class="form-control" name="materia_id" id="materia_id" required="true"> 
+            <option value="">-- Elija una materia --</option>
+            @foreach($materiasdocente as $materia)
+              <option value="{{$materia['id']}}">{{$materia['nombre_materia']}}</option>
+            @endforeach
+        </select>
+      </div>
       <div class="form-group">
-          <input type="file" class="form-control" id="archivo">
+          <input type="file" class="form-control" id="archivo" name="archivo" required="true">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" name="autores" placeholder="autor">
+          <input type="text" class="form-control" id="autores" name="autores" required="true" placeholder="autor">
         </div>
         <button type="submit" class="btn btn-primary">Subir apunte</button>
-      {!! Form::close() !!}
-
+      </form>
       </div>
     </section>  
-    <div><p></p></div> 
+    <div><p></p></div>  
+    
 @endsection

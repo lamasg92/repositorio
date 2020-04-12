@@ -30,8 +30,7 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
 //******************************Rutas para carreras****************************************
   Route::resource('materias','MateriasController');
 
-Route::get('carrerasjs/{id}','MateriasController@getCarreras');
-
+  Route::get('carrerasjs/{id}','MateriasController@getCarreras');
 
   });
 });
@@ -41,18 +40,22 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+
 //***********************Rutas de Materias Decentes***************************
 Route::resource('materiasdocente','MateriasDocenteController');
+
 //***********************Rutas de Apuntes*************************************
 Route::resource('apuntes','ApuntesController');
-Route::get('subida','ApuntesController@subida');
+Route::get('subida','ApuntesController@create')->name('subida');
+Route::post('subirapunte','ApuntesController@store');
+Route::get('historial','ApuntesController@index');
 
-//***********************Rutas de Perfil**************************************
+Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
+Route::get('vistaCar/{nombre}','VistaCarrerasController@mostrarVistaCarreras');
+
+//***********************Rutas WEB****************************
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Route::get('historial','PaginasController@historial');
 Route::get('perfil','PaginasController@perfil');
 
-//***********************Rutas de vista de Apuntes****************************
-Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
-Route::get('vistaCarreras/{id}','VistaCarrerasController@mostrarVistaCarreras');

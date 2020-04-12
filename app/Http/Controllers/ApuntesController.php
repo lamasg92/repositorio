@@ -7,28 +7,51 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection; 
 use App\Apunte;
 use App\MateriaDocente;
+use App\Http\Requests\ApunteRequest;
+
 
 class ApuntesController extends Controller
 {
-    public function index(Request $request)
-    {
-       
-    }
-
-    public function subida()
+    public function create()
     {
         $user=Auth::user();
-        $materiacarreras=$user->materia_carreras;
-        $materiasdocente= new Collection();
-        foreach ($materiacarreras as $materiacarrera) {
-            $materiasdocente->prepend($materiacarrera->materia);
-        }
-
-        return view('home.subida') ->with('materiasdocente', $materiasdocente);
+        $materiasdocente = MateriaDocente::where('user_id','=', $user->id)->join('materia_carrera','materia_carrera.id','=','materia_docente.materia_carrera_id')->join('materias','materias.id','=','materia_carrera.materia_id')->select('materia_carrera.id','materias.nombre_materia')->get();
+        return view('home.subida', ['materiasdocente' => $materiasdocente]); 
 
     }
 
+    public function index()
+    {
+        $user=Auth::user();
+        $apuntesdocente = Apunte::where('user_id','=', $user->id)->join('materias','materias.id','=','apuntes.materia_id')->get();
+        return view('home.historial', ['apuntesdocente' => $apuntesdocente]);       
+    }
   
+    public function store(ApunteRequest $request)
+    {
+        $user=Auth::user();
+        $apunte = new Apunte($request->all());
+
+        if($request->file('archivo')){
+            $archivo = $request->file('archivo');
+            $nombre_archivo = $archivo->getClientOriginalName();
+            $archivo->move('apuntes',$nombre_archivo);
+            $apunte->archivo = $nombre_archivo; 
+            $tipo = $archivo->getClientMimeType();  
+            $apunte->tipo_archivo = $tipo;
+        } 
+
+        $apunte->user_id = $user->id;
+        $apunte->estado = 'activo';
+        $apunte->save();
+
+        flash("El apunte ". $apunte->nombre_apunte . " ha sido subido con exito." , 'success')->important();
+
+        return redirect()->route('subida');
+
+    }
+
+    /*
     public function store(Request $request)
     {
         dd($request);
@@ -46,7 +69,6 @@ class ApuntesController extends Controller
         flash("El departamento ". $departamento->nombre_dpto . " ha sido creada con exito" , 'success')->important();
 
         return redirect()->route('departamento.index');
-    }
-    
+    }*/
     
 }

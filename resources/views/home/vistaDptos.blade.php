@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.home')
 
-        <title>Departamentos</title>
-</head>
-<body>
+@section('content')
+    
     <ul>
         @foreach($departamentos as $depa)
-            <li><a href="{{ url('vistaCarreras', ['id' => $depa->id]) }}">{{ $depa->nombre_dpto }}</a></li>
+            <li><a href="{{ url('vistaCar', ['id' => $depa->id]) }}">{{ $depa->nombre_dpto }}</a></li>
         @endforeach
     </ul>
 
-</body>
-</html>
+@endsection
