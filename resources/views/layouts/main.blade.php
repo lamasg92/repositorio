@@ -121,7 +121,7 @@
             <li class="treeview">
               <a href="#">
                  <i class="fa fa-gift"></i>
-                 <span>Departamentos</span> <i class="fa fa-angle-left pull-right"></i>
+                 <span>Gestor de Departamentos</span> <i class="fa fa-angle-left pull-right"></i>
                  </a>
                  <ul class="treeview-menu">
                 <li class="active"><a href="{{route('departamentos.index')}}"><i class="fa fa-circle-o"></i>Lista de departamentos</a></li>
@@ -132,10 +132,21 @@
               <li class="treeview">
               <a href="#">
                  <i class="fa fa-gift"></i>
-                 <span>Carreras</span> <i class="fa fa-angle-left pull-right"></i>
+                 <span>Gestor de Carreras</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                  <ul class="treeview-menu">
                 <li class="active"><a href="{{route('carreras.index')}}"><i class="fa fa-circle-o"></i>Lista de Carreras</a></li>
+                
+                </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                 <i class="fa fa-gift"></i>
+                 <span>Gestor de Materias</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                 <ul class="treeview-menu">
+                <li class="active"><a href="{{route('materias.index')}}"><i class="fa fa-circle-o"></i>Lista de Materias</a></li>
                 
                 </ul>
             </li>
@@ -203,9 +214,13 @@
     <script src="{{asset('stylesAdmin/plugins/chosen/chosen.jquery.js')}}"></script>
 
     <script src="{{asset('stylesAdmin/js/plantilla.js')}}"></script>
+
+
    
     @yield('js')
     @stack('scripts')
+
+
     
     <script>
       function baseUrl(url){

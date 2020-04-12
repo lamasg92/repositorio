@@ -27,6 +27,11 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
 //******************************Rutas para carreras****************************************
   Route::resource('carreras','CarrerasController');
 
+//******************************Rutas para carreras****************************************
+  Route::resource('materias','MateriasController');
+
+Route::get('carrerasjs/{id}','MateriasController@getCarreras');
+
 
   });
 });

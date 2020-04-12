@@ -8,7 +8,7 @@ class Carrera extends Model
 {
     protected $table="carreras";
 
-    protected $fillable= ['id','nombre_carrera','departamento_id','duracion','anio_plan','estado', 'imagen'];
+    protected $fillable= ['nombre_carrera','departamento_id','anio_plan','estado'];
 
     public function departamento()
     {
@@ -24,4 +24,7 @@ class Carrera extends Model
     {
         return $this->belongsToMany('App\User')->withPivot('libreta','anio_ingreso', 'estado')->withTimestamps();
     }
+
+  
+
 }
