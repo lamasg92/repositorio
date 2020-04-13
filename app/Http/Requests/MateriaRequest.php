@@ -25,12 +25,14 @@ class MateriaRequest extends FormRequest
     public function rules()
     {
         return [
-        /*'nombre_dpto'=>'max:120|required|unique:departamentos',
-          'cuil'=> 'max:11|min:11|unique:clients',
-            'location'=>'required',
-            'address'=>'required',
-            'email'=>'unique:clients',
-            'phone'=>'max:15|min:7|required',*/
+            'nombre_materia'=>'max:120|required|unique:materias',
+            'slug_materia'=> 'max:120|required|unique:materias',
+            'departamento_id'=>'required',
+            'carreras'=>'required',
+            'semestre'=>'required',
+            'tipo'=>'required',
+            'anio'=>'required',
+            'estado'=>'required',
         ];
     }
 }
