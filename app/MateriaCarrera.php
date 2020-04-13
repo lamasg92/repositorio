@@ -26,8 +26,4 @@ class MateriaCarrera extends Pivot
         return $this->belongsTo('App\Carrera');
     }
 
-     
-    }
-
-
 }

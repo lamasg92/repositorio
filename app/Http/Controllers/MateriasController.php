@@ -21,18 +21,14 @@ class MateriasController extends Controller
     public function index(Request $request)
     {
        
-        
          $materias= DB::table('materia_carrera as mc')
               ->join('materias as m','mc.materia_id','=','m.id')
               ->join('carreras as c','mc.carrera_id','=','c.id')
               ->paginate(10);
 
-
-           
         return view('admin.materia.index')
                     ->with('materias',$materias);
-                   
-             
+        
         }           
 
 
@@ -49,21 +45,21 @@ class MateriasController extends Controller
 
     
     public function store(MateriaRequest $request)
-    {
-        $materias= new Materia($request->all());
+    { 
+      $materia= new Materia($request->all());
+      $materia->save();
+      $cont = 0;
+      while ( $cont < count($request->carreras) ) {
+          $materia->carreras()->attach($request->carreras[$cont],
+            [ 'anio' => $request->anio,
+              'estado' => 'activo'
+          ]);
+          $cont++;
+      }
 
-        $materias->save();
+      flash("La materia ". $materia->nombre_materia . " ha sido registrado con exito" , 'success')->important();
 
-        $materias2= new MateriaCarrera($request->all());
-        
-       $materias2->materia_id=$materias->id;
-
-       $materias2->estado=$materias->estado;
-       
-        
-         $materias2->save();
-         flash("La materia ". $materias->nombre_materia . " ha sido registrado con exito" , 'success')->important();
-       return redirect()->route('materias.index');
+      return redirect()->route('materias.index');
 
     }                    
 

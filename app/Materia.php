@@ -10,13 +10,12 @@ class Materia extends Model
 {
     protected $table="materias";
 
-    protected $fillable= ['id','nombre_materia','semestre','tipo','estado'];
+    protected $fillable= ['id','nombre_materia','slug_materia','semestre','tipo','estado'];
 
     public function carreras()
     {
-        return $this->belongsToMany('App\Carrera')->using('App\MateriaCarrera')->withPivot('anio', 'estado')->withTimestamps();
+        return $this->belongsToMany('App\Carrera','materia_carrera')->using('App\MateriaCarrera')->withPivot('anio', 'estado')->withTimestamps();
     }
-
    
     public function apuntes()
     {
@@ -28,10 +27,10 @@ class Materia extends Model
         return $this->belongsTo('App\Carrera');
     }
 
- public static function selectCarreras($id){
+    public static function selectCarreras($id){
       
       return Carrera::where('departamento_id','=', $id)->get();
 
-
+    }
     
 }

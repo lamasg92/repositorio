@@ -16,10 +16,12 @@
             {!! Form::open(['route'=>'departamentos.store', 'method'=>'POST','files'=>true])!!}
 
              <div class="form-group">
-
               <h4>
                 {!! Field::text('nombre_dpto',null, ['class'=>'form-control'])!!}</h4>
              </div>
+
+             {{ Form::label('slug_dpto', 'URL:') }}
+             {{ Form::text('slug_dpto', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255') ) }}
 
               <div class="form-group">
 
@@ -56,12 +58,18 @@
     </div>
   </div>
 
+@endsection
 
 @section('js')
-<script src="{{asset('stylesAdmin/js/plantilla.js')}}">
-  
-
+<script src="{{asset('stylesAdmin/js/plantilla.js')}}"></script>
+<script>
+$(document).ready(function(){
+      $("#nombre_dpto, #slug_dpto").stringToSlug({
+          callback: function(text){
+              $('#slug_dpto').val(text);
+          }
+      });
+ });
 </script>
-@endsection
 @endsection
 

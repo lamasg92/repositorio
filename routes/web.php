@@ -41,21 +41,33 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('perfil','PaginasController@perfil');
+  //***********************Rutas de Materias Decentes***************************
+  Route::resource('materiasdocente','MateriasDocenteController');
 
-//***********************Rutas de Materias Decentes***************************
-Route::resource('materiasdocente','MateriasDocenteController');
+  //***********************Rutas de Apuntes*************************************
+  Route::resource('apuntes','ApuntesController');
+  Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
+  Route::get('vistaCar/{nombre}','VistaCarrerasController@mostrarVistaCarreras');
 
-//***********************Rutas de Apuntes*************************************
-Route::resource('apuntes','ApuntesController');
-Route::get('subida','ApuntesController@create')->name('subida');
-Route::post('subirapunte','ApuntesController@store');
-Route::get('historial','ApuntesController@index');
-
-Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
-Route::get('vistaCar/{nombre}','VistaCarrerasController@mostrarVistaCarreras');
+  Route::group(['middleware' => 'standard'], function () { 
+      //******Rutas exclusivas de Docenes ********
+    Route::get('subida','ApuntesController@create')->name('subida');
+    Route::post('subirapunte','ApuntesController@store');
+    Route::get('historial','ApuntesController@index');
+  });
+});
 
 //***********************Rutas WEB****************************
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Route::get('perfil','PaginasController@perfil');
 
+/*****************Vistas de Ejemplos*********************
+Route::get('dpto', 'VistaController@mostrarDptos');
+Route::get('dpto/{slug_dpto}', 'VistaController@mostrarCarreras');
+Route::get('dpto/{slug_dpto}/carreras', 'VistaController@mostrarCarreras');
+Route::get('dpto/{slug_dpto}/carreras/{slug_carrera}', 'VistaController@mostrarMateria');
+Route::get('dpto/{slug_dpto}/carreras/{slug_carrera}/materias', 'VistaController@mostrarMateria');
+Route::get('dpto/{slug_dpto}/carreras/{slug_carrera}/materias/{slug_materia}', 'VistaController@mostrarApunte');
+/*/ //*/

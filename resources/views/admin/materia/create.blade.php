@@ -19,6 +19,9 @@
               <h4>{!! Field::text('nombre_materia',null, ['class'=>'form-control'])!!}</h4>
             </div>
 
+            {{ Form::label('slug_materia', 'URL:') }}
+            {{ Form::text('slug_materia', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255') ) }}
+
             <div class= "form-group">
               <h4> {!! Form::label('semestre','Cuatrimestre')!!}
               {!! Form::select('semestre', ['primer'=>'primer','segundo'=>'segundo','anual'=>'anual'],null,['class'=>'form-control'])!!}</h4>
@@ -31,10 +34,12 @@
 
                           
               <div class= "form-group titulo_h4">
-              {!! Field::select('departamento_id', $departamentos, ['class'=>'dpto' ,'select-carrera','empty'=>'Seleccione un departamento'])!!}
+              {!! Field::select('departamento_id', $departamentos, ['class'=>'select-dpto' ,'select-carrera','empty'=>'Seleccione un departamento'])!!}
+              </div>
 
-
-              {!! Field::select('carrera_id', $carreras, ['class'=>'select-carrera','empty'=>'Seleccione una carrera'])!!} 
+              <div class="form-group">
+              {!! Form::label('carreras','Carreras')!!}
+              {!! Form::select('carreras[]', $carreras, null, ['class'=>'form-control select-carrera','multiple'])!!} 
               </div>
 
               <div class="form-group">
@@ -68,20 +73,26 @@
 
 @section('js')
 <script>
-    $('.select-departamento').chosen();
-    $('.select-carrera').chosen();
+    $('.select-dpto').chosen();
+
+    $('.select-carrera').chosen({
+      placeholder_text_multiple: "Seleccione las Carreras",
+    });
  </script>
 
- <script src="{{asset('stylesAdmin/js/plantilla.js')}}">
-  
+<script>
+  $(document).ready(function(){
+        $("#nombre_materia, #slug_materia").stringToSlug({
+            callback: function(text){
+                $('#slug_materia').val(text);
+            }
+        });
+   });
 </script>
 
- <script src="{{asset('stylesAdmin/js/dropdown.js')}}">
-  
-</script>
+ <script src="{{asset('stylesAdmin/js/plantilla.js')}}"></script>
 
-    <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
-
- 
+ <script src="{{asset('stylesAdmin/js/dropdown.js')}}"></script>
+   
 
 @endsection
