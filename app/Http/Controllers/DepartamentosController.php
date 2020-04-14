@@ -40,6 +40,8 @@ class DepartamentosController extends Controller
 
         return redirect()->route('departamentos.index');
     }
+
+
     
     
 }

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Panel de Control</title>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -21,15 +22,12 @@
     <link rel="stylesheet" href="{{asset('stylesAdmin/plugins/iCheck/flat/blue.css')}}">
     <!-- Morris chart -->
     <link rel="stylesheet" href="{{asset('stylesAdmin/plugins/morris/morris.css')}}">
-    <!-- jvectormap -->
-    <link rel="stylesheet" href="{{asset('stylesAdmin/plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">
     <!-- Date Picker -->
     <link rel="stylesheet" href="{{asset('stylesAdmin/plugins/datepicker/datepicker3.css')}}">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{asset('stylesAdmin/plugins/daterangepicker/daterangepicker-bs3.css')}}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('stylesAdmin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
-    <link rel="stylesheet" href="{{asset('stylesAdmin/bower_components/EasyAutocomplete/dist/easy-autocomplete.css')}}">
 
     <link rel="stylesheet" href="{{asset('stylesAdmin/plugins/chosen/chosen.css')}}">
 
@@ -121,7 +119,7 @@
             <li class="treeview">
               <a href="#">
                  <i class="fa fa-gift"></i>
-                 <span>Departamentos</span> <i class="fa fa-angle-left pull-right"></i>
+                 <span>Gestor de Departamentos</span> <i class="fa fa-angle-left pull-right"></i>
                  </a>
                  <ul class="treeview-menu">
                 <li class="active"><a href="{{route('departamentos.index')}}"><i class="fa fa-circle-o"></i>Lista de departamentos</a></li>
@@ -132,10 +130,21 @@
               <li class="treeview">
               <a href="#">
                  <i class="fa fa-gift"></i>
-                 <span>Carreras</span> <i class="fa fa-angle-left pull-right"></i>
+                 <span>Gestor de Carreras</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                  <ul class="treeview-menu">
                 <li class="active"><a href="{{route('carreras.index')}}"><i class="fa fa-circle-o"></i>Lista de Carreras</a></li>
+                
+                </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                 <i class="fa fa-gift"></i>
+                 <span>Gestor de Materias</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                 <ul class="treeview-menu">
+                <li class="active"><a href="{{route('materias.index')}}"><i class="fa fa-circle-o"></i>Lista de Materias</a></li>
                 
                 </ul>
             </li>
@@ -151,6 +160,7 @@
         <!-- Main content -->
         <section class="content">
 
+        @include('flash::message') 
        
         @yield('content')
 
@@ -163,8 +173,8 @@
 
     </div><!-- ./wrapper -->
 
-    <!-- jQuery 2.1.4 -->
-    <script src="{{asset('stylesAdmin/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>
+    <!-- jQuery 3.5.0 -->
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -178,9 +188,6 @@
     <script src="{{asset('stylesAdmin/plugins/morris/morris.min.js')}}"></script>
     <!-- Sparkline -->
     <script src="{{asset('stylesAdmin/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
-    <!-- jvectormap -->
-    <script src="{{asset('stylesAdmin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
-    <script src="{{asset('stylesAdmin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
     <!-- jQuery Knob Chart -->
     <script src="{{asset('stylesAdmin/plugins/knob/jquery.knob.js')}}"></script>
     <!-- datepicker -->
@@ -199,13 +206,17 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('stylesAdmin/dist/js/demo.js')}}"></script>
   
-    <script src="{{asset('stylesAdmin/bower_components/EasyAutocomplete/dist/jquery.easy-autocomplete.js')}}"></script>
     <script src="{{asset('stylesAdmin/plugins/chosen/chosen.jquery.js')}}"></script>
 
     <script src="{{asset('stylesAdmin/js/plantilla.js')}}"></script>
+
+    <script src="{{asset('stylesAdmin/stringToSlug/jquery.stringToSlug.min.js') }}"></script>
+
    
     @yield('js')
     @stack('scripts')
+
+
     
     <script>
       function baseUrl(url){

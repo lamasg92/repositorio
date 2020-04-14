@@ -95,10 +95,10 @@
                     @endauth             
                   </div>
               @endif
+  @yield('navegacion')
           </div>
-</div>
-
-		  
+  </div>
+		
    </body>   
    @yield('content') <!-- Acá va lo que cambia -->
 		

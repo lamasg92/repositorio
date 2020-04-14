@@ -9,20 +9,14 @@ use App\Departamento;
 class VistaCarrerasController extends Controller
 {
     public function mostrarVistaCarreras($nombre){
-        //$departamentos = Departamento::all();
-        
-        //$departamentos = Departamento::where('nombre_dpto', '==', $nombre);
+        $dpto = Departamento::where('slug_dpto','=',$nombre)->first();
 
-        $carreras = Carrera::where('departamento_id', '=', $nombre)->get();
+        $carreras = Carrera::where('departamento_id', '=', $dpto->id)->get();
 
-        //$id = $departamentos->id;
-        //foreach($carreras as $car){
-        //    echo 'ID:'.$car->nombre_carrera. '<br/>';
-        //}
-        //$carreras = Carrera::all();
-        //$carreras = Carrera::where('departamento_id', '==', $id);
-
-       return view('home.vistaCarreras')->with('carreras',$carreras);
+        return view('home.vistaCarreras')->with([
+                'carreras' => $carreras,
+                'dpto' => $dpto,
+       ]);
         
     }
 }

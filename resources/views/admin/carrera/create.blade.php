@@ -19,6 +19,9 @@
               <h4>{!! Field::text('nombre_carrera',null, ['class'=>'form-control'])!!}</h4>
              </div>
 
+             {{ Form::label('slug_carrera', 'URL:') }}
+             {{ Form::text('slug_carrera', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255') ) }}
+
              <div class="form-group">
               <h4>{!! Field::number('duracion',null, ['class'=>'form-control'])!!}</h4>
              </div>
@@ -27,8 +30,7 @@
               <h4>{!! Field::number('anio_plan',null, ['class'=>'form-control'])!!}</h4>
              </div>
 
-               
-              <div class= "form-group titulo_h4">
+              <div class= "form-group ">
               {!! Field::select('departamento_id', $departamentos, ['class'=>'select-departamento','empty'=>'Seleccione un departamento'])!!} 
 
               </div>
@@ -70,10 +72,15 @@
   });
   $('.select-departamento').chosen();
  </script>
-
- <script src="{{asset('stylesAdmin/js/plantilla.js')}}">
-  
+ <script>
+$(document).ready(function(){
+      $("#nombre_carrera, #slug_carrera").stringToSlug({
+          callback: function(text){
+              $('#slug_carrera').val(text);
+          }
+      });
+ });
 </script>
- 
 
+ <script src="{{asset('stylesAdmin/js/plantilla.js')}}"></script>
 @endsection
