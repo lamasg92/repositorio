@@ -15,7 +15,10 @@ class ApuntesController extends Controller
     public function create()
     {
         $user=Auth::user();
-        $materiasdocente = MateriaDocente::where('user_id','=', $user->id)->join('materia_carrera','materia_carrera.id','=','materia_docente.materia_carrera_id')->join('materias','materias.id','=','materia_carrera.materia_id')->select('materia_carrera.id','materias.nombre_materia')->get();
+        $materiasdocente = MateriaDocente::where('user_id','=', $user->id)
+        ->join('materia_carrera','materia_carrera.id','=','materia_docente.materia_carrera_id')
+        ->join('materias','materias.id','=','materia_carrera.materia_id')
+        ->select('materia_carrera.id','materias.nombre_materia')->get();
         return view('home.subida', ['materiasdocente' => $materiasdocente]); 
 
     }
@@ -23,7 +26,8 @@ class ApuntesController extends Controller
     public function index()
     {
         $user=Auth::user();
-        $apuntesdocente = Apunte::where('user_id','=', $user->id)->join('materias','materias.id','=','apuntes.materia_id')->get();
+        $apuntesdocente = Apunte::where('user_id','=', $user->id)
+        ->join('materias','materias.id','=','apuntes.materia_id')->get();
         return view('home.historial', ['apuntesdocente' => $apuntesdocente]);       
     }
   
@@ -48,7 +52,6 @@ class ApuntesController extends Controller
         flash("El apunte ". $apunte->nombre_apunte . " ha sido subido con exito." , 'success')->important();
 
         return redirect()->route('subida');
-
     }
 
     /*

@@ -52,5 +52,6 @@ Route::get('vistaCar/{nombre}','VistaCarrerasController@mostrarVistaCarreras');
 //***********************Rutas WEB****************************
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Route::get('perfil','PaginasController@perfil');
+Route::get('perfil','UsuarioController@datosUsuario')->name('perfil');
+Route::post('actualizarperfil', 'UsuarioController@store');
 

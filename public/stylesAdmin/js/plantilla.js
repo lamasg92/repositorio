@@ -23,6 +23,8 @@ $(".foto").change(function(){
   		var datosImagen = new FileReader;
   		datosImagen.readAsDataURL(imagen); //convertimos la vlble en un archivo
 
+
+
   		$(datosImagen).on("load", function(event){
 		
   			var rutaImagen = event.target.result;
