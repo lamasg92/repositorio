@@ -27,10 +27,17 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
 //******************************Rutas para carreras****************************************
   Route::resource('carreras','CarrerasController');
 
-//******************************Rutas para carreras****************************************
+//******************************Rutas para materias****************************************
   Route::resource('materias','MateriasController');
 
   Route::get('carrerasjs/{id}','MateriasController@getCarreras');
+
+//******************************Rutas para users****************************************
+
+  Route::resource('users','UsersController');
+  Route::get('user/{tipo}','UsersController@index');
+  Route::get('usercreate/{tipo}','UsersController@create');
+  Route::post('userstore/{tipo}','UsersController@store')->name('users.store');
 
   });
 });

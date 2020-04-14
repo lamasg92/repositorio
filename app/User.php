@@ -39,7 +39,8 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany('App\Role')->withTimestamps();
+    
+        return $this->belongsToMany('App\Role','role_user')->using('App\RoleUser')->withPivot('user_id','role_id')->withTimestamps();
     }
 
     public function materia_carreras()

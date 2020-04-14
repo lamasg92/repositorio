@@ -51,7 +51,18 @@
                    
             @endif
             </td>
-            <td></td>
+             <td>
+              <a href=""  >
+                        <button type="submit" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>
+                        </button>
+                     </a>
+              <a href="" onclick="return confirm('¿Seguro dara de baja la carrera?')">
+                        <button type="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" ></span>
+                        </button>
+                     </a>
+            </td>   
                       
         </tr>  </tr>
   @endforeach
