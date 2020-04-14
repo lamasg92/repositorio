@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection; 
 use App\Apunte;
+use App\Carrera;
 use App\MateriaDocente;
 use App\Http\Requests\ApunteRequest;
 
@@ -15,7 +16,10 @@ class ApuntesController extends Controller
     public function create()
     {
         $user=Auth::user();
-        $materiasdocente = MateriaDocente::where('user_id','=', $user->id)->join('materia_carrera','materia_carrera.id','=','materia_docente.materia_carrera_id')->join('materias','materias.id','=','materia_carrera.materia_id')->select('materia_carrera.id','materias.nombre_materia')->get();
+        $materiasdocente = MateriaDocente::where('user_id','=', $user->id)
+        ->join('materia_carrera','materia_carrera.id','=','materia_docente.materia_carrera_id')
+        ->join('materias','materias.id','=','materia_carrera.materia_id')
+        ->select('materia_carrera.id','materias.nombre_materia')->get();
         return view('home.subida', ['materiasdocente' => $materiasdocente]); 
 
     }
@@ -23,7 +27,8 @@ class ApuntesController extends Controller
     public function index()
     {
         $user=Auth::user();
-        $apuntesdocente = Apunte::where('user_id','=', $user->id)->join('materias','materias.id','=','apuntes.materia_id')->get();
+        $apuntesdocente = Apunte::where('user_id','=', $user->id)
+        ->join('materias','materias.id','=','apuntes.materia_id')->get();
         return view('home.historial', ['apuntesdocente' => $apuntesdocente]);       
     }
   
@@ -48,27 +53,20 @@ class ApuntesController extends Controller
         flash("El apunte ". $apunte->nombre_apunte . " ha sido subido con exito." , 'success')->important();
 
         return redirect()->route('subida');
+    }
+
+    public function show($nombre, $carrera, $materia,$apunte){
+        
+        $carrera = Carrera::where('slug_carrera', $carrera)->first();
+        $apunte = Apunte::where('nombre_apunte', $apunte)->first();
+
+        return view('home.showApunte')->with([
+            'apunte' => $apunte,
+            'carrera' => $carrera,
+            'materia' => $apunte->materia,
+            'dpto' => $carrera->departamento,
+        ]);
 
     }
 
-    /*
-    public function store(Request $request)
-    {
-        dd($request);
-        //$departamento= new Departamento($request->all());
-        //$departamento->nombre_dpto=strtoupper($departamento->nombre_dpto);
-        if($request->file('image'))
-        {
-            $file =$request->file('image');
-            $extension=$file->getClientOriginalName();//nombre de img
-            $path=public_path().'/images/departamento/';//donde guardamos img
-            $file->move($path,$extension);//guardar imagen
-            $departamento->extension=$extension;
-        }
-        $departamento->save();
-        flash("El departamento ". $departamento->nombre_dpto . " ha sido creada con exito" , 'success')->important();
-
-        return redirect()->route('departamento.index');
-    }*/
-    
 }

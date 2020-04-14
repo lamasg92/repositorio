@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
+use Request;
 
 class PaginasController extends Controller
 {
 
-   	public function perfil()
+   	public function perfilOK()
     {
-        return view('home.perfil');
+        //return Request::input('imagen');
+        //return Request::input('carrera');
+        //return Request::input('ingreso');
+        //return Request::input('lu');
+        //return view('home.temporal');
     }
    
 }

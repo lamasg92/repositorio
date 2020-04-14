@@ -24,7 +24,7 @@
         @include('flash::message')  
       <form action="{{url('subirapunte')}}" method="POST" enctype="multipart/form-data">
 
-        {{csrf_field()}}
+        {{csrf_field()}}        
 
       <div class="form-group">
         <input type="text" class="form-control" id="nombre_apunte" name="nombre_apunte" aria-describedby="emailHelp" placeholder="Nombre del archivo" required="true">
