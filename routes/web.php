@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
 Route::group(['middleware' => 'auth'], function(){
   Route::group(['middleware' => 'adminUser'], function () {
           Route::get('/admin', function(){
@@ -38,8 +40,9 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
 Route::get('/', function () {
     return view('home.index');
 });
-
-Auth::routes();
+//***********************Rutas WEB****************************
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
   Route::get('perfil','PaginasController@perfil');
@@ -50,18 +53,16 @@ Route::group(['middleware' => 'auth'], function () {
   Route::resource('apuntes','ApuntesController');
   Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
   Route::get('vistaCar/{nombre}','VistaCarrerasController@mostrarVistaCarreras');
+  Route::get('vistaMaterias/{id}/{nombDpto}','VistaMateriasController@mostrarVistaMaterias');
+  Route::get('vistaApuntes/{id}/{nombDpto}/{nombCarr}/{idCarr}','VistaApuntesController@mostrarVistaApuntes');
 
   Route::group(['middleware' => 'standard'], function () { 
-      //******Rutas exclusivas de Docenes ********
+    //**********Rutas exclusivas de Docenes ***********
     Route::get('subida','ApuntesController@create')->name('subida');
     Route::post('subirapunte','ApuntesController@store');
     Route::get('historial','ApuntesController@index');
   });
 });
-
-//***********************Rutas WEB****************************
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 /*****************Vistas de Ejemplos*********************
 Route::get('dpto', 'VistaController@mostrarDptos');

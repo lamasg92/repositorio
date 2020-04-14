@@ -12,6 +12,22 @@ class VistaCarrerasController extends Controller
         //$departamentos = Departamento::all();
         
         //$departamentos = Departamento::where('nombre_dpto', '==', $nombre);
+        switch ($nombre) {
+            case '1':
+                  $name = "Departamento de Informática";
+                break;
+            case '2':
+                  $name = "Departamento de Matemática";
+                break;
+            
+            case '3':
+                  $name = "Departamento de Química";
+                break;
+
+            case '4':
+                  $name = "Departamento de Física";
+                break;
+        }
 
         $carreras = Carrera::where('departamento_id', '=', $nombre)->get();
 
@@ -22,7 +38,10 @@ class VistaCarrerasController extends Controller
         //$carreras = Carrera::all();
         //$carreras = Carrera::where('departamento_id', '==', $id);
 
-       return view('home.vistaCarreras')->with('carreras',$carreras);
+       return view('home.vistaCarreras')->with([
+                'carreras' => $carreras,
+                'elnombredpto' => $name,
+       ]);
         
     }
 }
