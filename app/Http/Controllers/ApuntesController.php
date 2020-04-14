@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection; 
 use App\Apunte;
+use App\Carrera;
 use App\MateriaDocente;
 use App\Http\Requests\ApunteRequest;
 
@@ -51,24 +52,18 @@ class ApuntesController extends Controller
 
     }
 
-    /*
-    public function store(Request $request)
-    {
-        dd($request);
-        //$departamento= new Departamento($request->all());
-        //$departamento->nombre_dpto=strtoupper($departamento->nombre_dpto);
-        if($request->file('image'))
-        {
-            $file =$request->file('image');
-            $extension=$file->getClientOriginalName();//nombre de img
-            $path=public_path().'/images/departamento/';//donde guardamos img
-            $file->move($path,$extension);//guardar imagen
-            $departamento->extension=$extension;
-        }
-        $departamento->save();
-        flash("El departamento ". $departamento->nombre_dpto . " ha sido creada con exito" , 'success')->important();
+    public function show($nombre, $carrera, $materia,$apunte){
+        
+        $carrera = Carrera::where('slug_carrera', $carrera)->first();
+        $apunte = Apunte::where('nombre_apunte', $apunte)->first();
 
-        return redirect()->route('departamento.index');
-    }*/
-    
+        return view('home.showApunte')->with([
+            'apunte' => $apunte,
+            'carrera' => $carrera,
+            'materia' => $apunte->materia,
+            'dpto' => $carrera->departamento,
+        ]);
+
+    }
+
 }

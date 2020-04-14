@@ -5,22 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Apunte;
 use App\Materia;
+use App\Carrera;
 
 class VistaApuntesController extends Controller
 {
-    public function mostrarVistaApuntes($idMat, $nombDpto, $nombCarr, $idCarr){
-    	$materias = Materia::where('id', $idMat)->get();
-    	foreach ($materias as $value) {
-    		$nombMat = $value->nombre_materia;
-    	}
-    	$apuntes = Apunte::where('materia_id', $idMat)->get();
+    public function mostrarVistaApuntes($nombre, $carrera, $materia){
+    	
+        $materia = Materia::where('slug_materia', $materia)->first();
+    	$carrera = Carrera::where('slug_carrera', $carrera)->first();
+    	$apuntes = Apunte::where('materia_id', $materia->id)->get();
 
     	return view('home.vistaApuntes')->with([
     		'apuntes' => $apuntes,
-    		'idCarr' => $idCarr,
-    		'nombMat' => $nombMat,
-    		'nombDpto' => $nombDpto,
-    		'nombCarr' => $nombCarr,
+    		'carrera' => $carrera,
+    		'materia' => $materia,
+    		'dpto' => $carrera->departamento,
     	]);
 
     }

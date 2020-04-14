@@ -51,10 +51,11 @@ Route::group(['middleware' => 'auth'], function () {
 
   //***********************Rutas de Apuntes*************************************
   Route::resource('apuntes','ApuntesController');
-  Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
-  Route::get('vistaCar/{nombre}','VistaCarrerasController@mostrarVistaCarreras');
-  Route::get('vistaMaterias/{id}/{nombDpto}','VistaMateriasController@mostrarVistaMaterias');
-  Route::get('vistaApuntes/{id}/{nombDpto}/{nombCarr}/{idCarr}','VistaApuntesController@mostrarVistaApuntes');
+  //Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
+  Route::get('dpto/{nombre}','VistaCarrerasController@mostrarVistaCarreras')->name('dpto.carreras');
+  Route::get('dpto/{nombre}/{carrera}','VistaMateriasController@mostrarVistaMaterias')->name('dpto.materias');
+  Route::get('dpto/{nombre}/{carrera}/{materia}','VistaApuntesController@mostrarVistaApuntes')->name('dpto.apuntes');
+  Route::get('dpto/{nombre}/{carrera}/{materia}/{apunte}','ApuntesController@show')->name('show.apunte');
 
   Route::group(['middleware' => 'standard'], function () { 
     //**********Rutas exclusivas de Docenes ***********

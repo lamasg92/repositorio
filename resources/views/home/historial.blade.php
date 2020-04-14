@@ -29,7 +29,7 @@
               <label for="name">{{$apunte['nombre_materia']}}</label>
               <p></p>
               <label for="archivo">{{$apunte['archivo']}}</label>
-              <a href="{{asset('apuntes')}}/{{$apunte['archivo']}}" target="_blank">ver</a>
+              <a href="{{asset('apuntes/'.$apunte->archivo)}}" target="_blank">ver</a>
               <p></p>
               <label for="autor">{{$apunte['autores']}}</label>
               <p></p>

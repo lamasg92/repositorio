@@ -1,8 +1,6 @@
 $(".dpto").change(function(event){
 
 	var id_dpto = event.target.value;
-
-	
     
     $.get("carreras/",{id:id_dpto},function(response){
            
