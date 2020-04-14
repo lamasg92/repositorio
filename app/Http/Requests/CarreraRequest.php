@@ -26,11 +26,12 @@ class CarreraRequest extends FormRequest
     {
         return [
             'nombre_carrera'=>'max:120|required|unique:carreras',
-          /*  'cuil'=> 'max:11|min:11|unique:clients',
-            'location'=>'required',
-            'address'=>'required',
-            'email'=>'unique:clients',
-            'phone'=>'max:15|min:7|required',*/
+            'slug_carrera'=> 'max:120|required|unique:carreras',
+            'departamento_id'=>'required',
+            'imagen'=>'required',
+            'duracion'=>'required',
+            'anio_plan'=>'required',
+            'estado'=>'required',
         ];
     }
 }

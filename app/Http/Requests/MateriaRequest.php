@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Client;
 
-class DepartamentoRequest extends FormRequest
+class MateriaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,14 @@ class DepartamentoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_dpto'=>'max:120|required|unique:departamentos',
-            'slug_dpto'=> 'max:120|required|unique:departamentos',
-            'imagen'=>'required',
-            'sitio_web'=>'required',
+            'nombre_materia'=>'max:120|required|unique:materias',
+            'slug_materia'=> 'max:120|required|unique:materias',
+            'departamento_id'=>'required',
+            'carreras'=>'required',
+            'semestre'=>'required',
+            'tipo'=>'required',
+            'anio'=>'required',
+            'estado'=>'required',
         ];
     }
 }

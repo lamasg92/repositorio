@@ -9,7 +9,7 @@ class MateriaCarrera extends Pivot
 {
     protected $table="materia_carrera";
 
-    protected $fillable= ['materia_id','carrera_id','anio', 'estado'];
+    protected $fillable= ['id','materia_id','carrera_id','anio', 'estado'];
 
     public function users()
     {
