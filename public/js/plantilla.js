@@ -24,6 +24,8 @@ $(".foto").change(function(){
 
   	}else{
 
+  		
+
   		var datosImagen = new FileReader;
   		datosImagen.readAsDataURL(imagen); //convertimos la vlble en un archivo
 

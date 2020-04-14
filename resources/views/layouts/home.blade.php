@@ -56,7 +56,7 @@
                     <ul class="navbar-nav mr-auto">
                       <li class="nav-item"><a href="{{url('/')}}" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
                       <li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Favoritos</FONT></a></li>
-                      <li class="nav-item"><a href="{{url('/perfil')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
+                      <li class="nav-item"><a href="{{url('perfil')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
                       <li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
                       </ul>
                    </div>

@@ -45,7 +45,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
-  Route::get('perfil','PaginasController@perfil');
+  //Route::get('perfil','PaginasController@perfil');
+  Route::get('perfil','UsuarioController@datosUsuario')->name('perfil');
+  Route::post('actualizarperfil', 'UsuarioController@store');
   //***********************Rutas de Materias Decentes***************************
   Route::resource('materiasdocente','MateriasDocenteController');
 
@@ -65,11 +67,3 @@ Route::group(['middleware' => 'auth'], function () {
   });
 });
 
-/*****************Vistas de Ejemplos*********************
-Route::get('dpto', 'VistaController@mostrarDptos');
-Route::get('dpto/{slug_dpto}', 'VistaController@mostrarCarreras');
-Route::get('dpto/{slug_dpto}/carreras', 'VistaController@mostrarCarreras');
-Route::get('dpto/{slug_dpto}/carreras/{slug_carrera}', 'VistaController@mostrarMateria');
-Route::get('dpto/{slug_dpto}/carreras/{slug_carrera}/materias', 'VistaController@mostrarMateria');
-Route::get('dpto/{slug_dpto}/carreras/{slug_carrera}/materias/{slug_materia}', 'VistaController@mostrarApunte');
-/*/ //*/

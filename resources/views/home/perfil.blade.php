@@ -12,36 +12,66 @@
         </div>
       </div>
     </section>
-    
-    <section class="ftco-section ftco-no-pt ftc-no-pb">
+
+       <section class="ftco-section ftco-no-pt ftc-no-pb">
       <div class="container">
         <div class="row d-flex">
+
       
           <div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
             <h2 class="mb-4">Mis datos</h2>
-            <form name="formulario" method="post" action="http://pagina.com/send.php">
-              <ul>
-                <li>
-                  <label for="dni">DNI:</label>
-                <input type="dni" name="dni" readonly placeholder='{{Auth::user()->dni}}'>
-                </li>
-                <li>
-                  <label for="apellido">Apellido:</label>
-                <input type="apellido" name="apellido" readonly placeholder='{{Auth::user()->surname}}'>
-                </li>
-                <li>
-                  <label for="nombre">Nombre:</label>
-                  <input type="nombre" name="nombre" readonly placeholder='{{Auth::user()->name}}'>
-                </li>
-                <li>
-                  <label for="email">Email:</label>
-                  <input type="email" name="email" readonly placeholder='{{Auth::user()->email}}'>
-                </li>
-              </ul>              
+            <form name="formulario" method="POST" enctype="multipart/form-data" action="{{url('actualizarperfil')}}">
+              {{csrf_field()}}
+                    <img src="{{asset('imagenes/users')}}/{{Auth::user()->foto}}" class="img-thumbnail previsualizarFoto" width="200" height="200">
+                    <div><h4>{!! Field::file('imagen',['class'=>'foto'] )!!}</h4></div>         
+                
+                <div>
+                  <label for="dni">DNI: {{Auth::user()->dni}} </label>
+                </div>
+                  
+                <div>
+                  <label for="apellido">Apellido: {{Auth::user()->surname}}</label>
+                </div>
+                  
+                 <div>
+                   <label for="nombre">Nombre: {{Auth::user()->name}}</label>
+                 </div>
+                  
+             
+                  <label for="email">Email: {{Auth::user()->email}} </label>
+                  <input type="button" name="cambiaremail" value="Cambiar Email">
+             
+                  <select class="form-control" name="carrera" id="carrera" required="true"> 
+                    <option value="">-- Elija Carrera --</option>
+                    @foreach($carreras as $carrera)
+                      <option value="{{$carrera['id']}}">{{$carrera['nombre_carrera']}}</option>
+                    @endforeach
+                    </select>
+                  @if(!$datosusuario->isEmpty())
+                  @foreach($datosusuario as $usuario)
+                  <label for="ingreso">Año Ingreso:</label>                  
+                  <input type="text" id="ingreso" name="ingreso" value="{{$usuario['anio_ingreso']}}" required="true">                   
+                  <label for="lu">LU:</label>
+                  <input type="text" id="lu" name="lu" value="{{$usuario['libreta']}}" required="true">
+                  @endforeach
+                  @else
+                  <label for="ingreso">Año Ingreso:</label>                  
+                  <input type="text" id="ingreso" name="ingreso" value="" required="true">                   
+                  <label for="lu">LU:</label>
+                  <input type="text" id="lu" name="lu" value="" required="true">
+                  @endif
+              <div><input type="submit" value="Actualizar Datos"> </div>
+                        
             </form>
           </div>
         </div>
       </div>
     </section>    
 
- @endsection
+@section('js')
+<script src="{{asset('stylesAdmin/js/plantilla.js')}}">
+  
+
+</script>
+@endsection
+@endsection
