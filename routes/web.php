@@ -48,6 +48,8 @@ Route::get('historial','ApuntesController@index');
 
 Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
 Route::get('vistaCar/{nombre}','VistaCarrerasController@mostrarVistaCarreras');
+Route::get('vistaMaterias/{id}/{nombDpto}','VistaMateriasController@mostrarVistaMaterias');
+Route::get('vistaApuntes/{id}/{nombDpto}/{nombCarr}/{idCarr}','VistaApuntesController@mostrarVistaApuntes');
 
 //***********************Rutas WEB****************************
 Route::get('/home', 'HomeController@index')->name('home');
