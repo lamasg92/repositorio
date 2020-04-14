@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('navegacion')
-  {{ Breadcrumbs::render('dpto.apuntes', $dpto ,$carrera,$materia) }}
+  {{ Breadcrumbs::render('show.apunte', $dpto ,$carrera,$materia,$apunte) }}
 @endsection
 
 @section('content')
@@ -24,13 +24,7 @@
     <section class="ftco-section ftco-no-pt ftc-no-pb">
       <div class="container">
         
-        	@foreach($apuntes as $apu)
-        	<div class="row d-flex">
-        		<div class="col-md-9 ftco-animate">
-        		<a href="{{ url('dpto/'.$dpto->slug_dpto.'/'.$carrera->slug_carrera.'/'.$materia->slug_materia.'/'.$apu->nombre_apunte)}}" style="color: blue" >{{ $apu->nombre_apunte }} -- Autor/es: {{ $apu->autores }}</a> 
-        		</div>
-        	</div>
-        	@endforeach
+        <embed src="{{asset('apuntes/'.$apunte->archivo)}}" type="application/pdf" width="100%" height="1200px" />
         
       </div>
     </section> 	

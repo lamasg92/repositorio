@@ -53,8 +53,7 @@ class CarrerasController extends Controller
 
         return redirect()->route('carreras.index');
     }
-
-        
+      
    
   
 }

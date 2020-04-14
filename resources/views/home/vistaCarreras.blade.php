@@ -1,14 +1,18 @@
 @extends('layouts.home')
 
+@section('navegacion')
+  {{ Breadcrumbs::render('dpto.carreras',$dpto) }}
+@endsection
+
 @section('content')
     
-    <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('../images/image_2.jpg');">
+    <section class="hero-wrap hero-wrap-1" data-stellar-background-ratio="0.6" style="background-image: url('{{asset("/images/image_2.jpg")}}');">
       
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-2 bread"><?php echo $elnombredpto; ?><br>Repositorio</h1>
+            <h1 class="mb-2 bread"><?php echo $dpto->nombre_dpto; ?><br>Repositorio</h1>
           </div>
         </div>
       </div>
@@ -23,7 +27,7 @@
                <div class="card-body">
                    <h5 class="card-title">{{ $car->nombre_carrera }}</h5>
                    <p class="card-text">Plan: {{ $car->anio_plan }} <br> Duración: {{ $car->duracion }}</p>
-                   <a href="{{ url('vistaMaterias/'.$car->id.'/'.$elnombredpto) }}" class="btn btn-primary">Ver Materias</a>
+                   <a href="{{ url('dpto/'.$dpto->slug_dpto.'/'.$car->slug_carrera) }}" class="btn btn-primary">Ver Materias</a>
                </div>
             </div>
             

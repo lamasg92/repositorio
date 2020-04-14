@@ -8,24 +8,21 @@ use App\Materia;
 
 class VistaMateriasController extends Controller
 {
-    public function mostrarVistaMaterias($idCar, $nombDpto){
+    public function mostrarVistaMaterias($nombre, $carrera){
 
     	//$materias = Carrera::find(3)->materias()->get();
-    	$carreras = Carrera::where('id', $idCar)->get();
-    	foreach ($carreras as $value) {
-    		$nombCarr = $value->nombre_carrera;
-    	}
+    	$carrera = Carrera::where('slug_carrera', $carrera)->first();
+
     	$materias = Materia::join("materia_carrera","materias.id","=","materia_carrera.materia_id")
-    	->where('materia_carrera.carrera_id','=',$idCar)
-    	->select('materias.id','materias.nombre_materia', 'materias.semestre', 'materias.tipo', 'materia_carrera.anio')
+    	->where('materia_carrera.carrera_id','=',$carrera->id)
+    	->select('materias.id','materias.nombre_materia', 'materias.semestre', 'materias.tipo', 'materia_carrera.anio','materias.slug_materia')
     	->orderBy('materia_carrera.anio','asc')
     	->get();
     	
     	return view('home.vistaMat')->with([
     		'materias' => $materias,
-    		'nombDpto' => $nombDpto,
-    		'nombCarr' => $nombCarr,
-    		'idCarr' => $idCar,
+    		'dpto' => $carrera->departamento,
+    		'carrera' => $carrera,
     	]);
 
     }

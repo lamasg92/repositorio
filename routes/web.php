@@ -29,10 +29,17 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
 //******************************Rutas para carreras****************************************
   Route::resource('carreras','CarrerasController');
 
-//******************************Rutas para carreras****************************************
+//******************************Rutas para materias****************************************
   Route::resource('materias','MateriasController');
 
   Route::get('carrerasjs/{id}','MateriasController@getCarreras');
+
+//******************************Rutas para users****************************************
+
+  Route::resource('users','UsersController');
+  Route::get('user/{tipo}','UsersController@index');
+  Route::get('usercreate/{tipo}','UsersController@create');
+  Route::post('userstore/{tipo}','UsersController@store')->name('users.store');
 
   });
 });
@@ -45,16 +52,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
-  Route::get('perfil','PaginasController@perfil');
+  //Route::get('perfil','PaginasController@perfil');
+  Route::get('perfil','UsuarioController@datosUsuario')->name('perfil');
+  Route::post('actualizarperfil', 'UsuarioController@store');
   //***********************Rutas de Materias Decentes***************************
   Route::resource('materiasdocente','MateriasDocenteController');
 
   //***********************Rutas de Apuntes*************************************
   Route::resource('apuntes','ApuntesController');
-  Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
-  Route::get('vistaCar/{nombre}','VistaCarrerasController@mostrarVistaCarreras');
-  Route::get('vistaMaterias/{id}/{nombDpto}','VistaMateriasController@mostrarVistaMaterias');
-  Route::get('vistaApuntes/{id}/{nombDpto}/{nombCarr}/{idCarr}','VistaApuntesController@mostrarVistaApuntes');
+  //Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
+  Route::get('dpto/{nombre}','VistaCarrerasController@mostrarVistaCarreras')->name('dpto.carreras');
+  Route::get('dpto/{nombre}/{carrera}','VistaMateriasController@mostrarVistaMaterias')->name('dpto.materias');
+  Route::get('dpto/{nombre}/{carrera}/{materia}','VistaApuntesController@mostrarVistaApuntes')->name('dpto.apuntes');
+  Route::get('dpto/{nombre}/{carrera}/{materia}/{apunte}','ApuntesController@show')->name('show.apunte');
 
   Route::group(['middleware' => 'standard'], function () { 
     //**********Rutas exclusivas de Docenes ***********
@@ -64,11 +74,3 @@ Route::group(['middleware' => 'auth'], function () {
   });
 });
 
-/*****************Vistas de Ejemplos*********************
-Route::get('dpto', 'VistaController@mostrarDptos');
-Route::get('dpto/{slug_dpto}', 'VistaController@mostrarCarreras');
-Route::get('dpto/{slug_dpto}/carreras', 'VistaController@mostrarCarreras');
-Route::get('dpto/{slug_dpto}/carreras/{slug_carrera}', 'VistaController@mostrarMateria');
-Route::get('dpto/{slug_dpto}/carreras/{slug_carrera}/materias', 'VistaController@mostrarMateria');
-Route::get('dpto/{slug_dpto}/carreras/{slug_carrera}/materias/{slug_materia}', 'VistaController@mostrarApunte');
-/*/ //*/
