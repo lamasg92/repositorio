@@ -41,19 +41,19 @@
                 <div class="top-rigth links">
                    @auth 
               @if (Auth::user()->type == 'alumno')
-                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
-                        <div class="container d-flex align-items-center px-4">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                       <span class="oi oi-menu"></span> Menu Alumno
-                      </button>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+                  <div class="container d-flex align-items-center px-4">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="oi oi-menu"></span> Menu Alumno
+                    </button>
                       <form action="#" class="searchform order-lg-last">
-                       <div class="form-group d-flex">
-                      <input type="text" class="form-control pl-3" placeholder="Buscar">
-                      <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
-                     </div>
+                        <div class="form-group d-flex">
+                          <input type="text" class="form-control pl-3" placeholder="Buscar">
+                          <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
+                        </div>
                      </form>
                     <div class="collapse navbar-collapse" id="ftco-nav">
-                    <ul class="navbar-nav mr-auto">
+                      <ul class="navbar-nav mr-auto">
                       <li class="nav-item"><a href="{{url('/')}}" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
                       <li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Favoritos</FONT></a></li>
                       <li class="nav-item"><a href="{{url('perfil')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>

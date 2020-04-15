@@ -3977,8 +3977,8 @@ input[type="button"].btn-block {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
+  padding: 0rem 1rem;
+  margin-bottom: 0rem;
   list-style: none;
   background-color: #e9ecef;
   border-radius: 0.25rem; }
@@ -3989,7 +3989,8 @@ input[type="button"].btn-block {
     display: inline-block;
     padding-right: 0.5rem;
     color: #6c757d;
-    content: "/"; }
+    content:  url('https://useiconic.com/open-iconic/svg/chevron-right.svg');
+  } 
 
 .breadcrumb-item + .breadcrumb-item:hover::before {
   text-decoration: underline; }
@@ -8231,16 +8232,20 @@ h1, h2, h3, h4, h5,
 .ftco-navbar-light {
   background: transparent !important;
   z-index: 3;
-  padding: 0; }
+  padding: 0; 
+}
   .ftco-navbar-light .container {
     background: #0d1128;
-    width: 1110px; }
+    width: 1110px; 
+  }
   @media (max-width: 991.98px) {
     .ftco-navbar-light {
       background: #0d1128 !important;
       position: relative;
       top: 0;
-      padding: 8px 15px; } }
+      padding: 0px 12px; 
+      } 
+    }
   .ftco-navbar-light .navbar-brand {
     color: #fff; }
     .ftco-navbar-light .navbar-brand:hover, .ftco-navbar-light .navbar-brand:focus {
@@ -8257,7 +8262,7 @@ h1, h2, h3, h4, h5,
     padding-bottom: 1.4rem;
     padding-left: 20px;
     padding-right: 20px;
-    font-weight: 400;
+    font-weight: 500;
     color: #fff;
     opacity: 1 !important; }
     .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
@@ -8414,9 +8419,9 @@ h1, h2, h3, h4, h5,
     opacity: .3;
     background: #f1453d; }
   .hero-wrap.hero-wrap-2 {
-    height: 300px; }
+    height: 180px; }
     .hero-wrap.hero-wrap-2 .slider-text {
-      height: 300px; }
+      height: 180px; }
       .hero-wrap.hero-wrap-2 .slider-text .bread {
         font-weight: 900;
         color: #fff; }

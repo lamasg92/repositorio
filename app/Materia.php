@@ -19,7 +19,7 @@ class Materia extends Model
    
     public function apuntes()
     {
-        return $this->hasMany('App\Apuntes');
+        return $this->hasMany('App\Apunte');
     }
 
      public function carrera()
