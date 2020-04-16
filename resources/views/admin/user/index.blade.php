@@ -29,7 +29,7 @@
 
        <br><br> 
 
-      <input type ='button' class="btn btn-success"  value = 'Agregar' onclick="location.href = '{{url('admin/usercreate', $type) }}'"/>     
+      <input type ='button' class="btn btn-success"  value = 'Agregar' onclick="location.href = '{{route('users.create', $type) }}'"/>     
              
  
 </div>
@@ -64,7 +64,7 @@
                 <div>
                   
                   <a data-toggle="modal">
-                   <img src="{{ asset('images/users/'.$user->foto)  }}" width="40" height="40"> 
+                   <img src="{{ asset('images/user/'.$user->foto)  }}" width="40" height="40"> 
                   </a>
                   
                 </div>
@@ -72,16 +72,26 @@
             
            
             <td>
-              <a href=""  >
+            @if ($user->status!='inactivo')
+             
+                <a href="{{route('users.edit',[$user->id, $type]) }}"  >
                         <button type="submit" class="btn btn-warning">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>
                         </button>
                      </a>
-              <a href="" onclick="return confirm('¿Seguro dara de baja usuario?')">
+
+                <a href="{{route('users.desable',$user->id)}}" onclick="return confirm('¿Seguro dara de baja este usuario?')">
                         <button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" ></span>
                         </button>
-                     </a>
+                </a>
+            @else
+                <a href="{{route('users.enable',$user->id)}}" onclick="return confirm('¿Seguro desea dar de alta este usuario?')">
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>
+                        </button>
+                </a>
+            @endif
             </td>         
           
         </tr>

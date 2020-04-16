@@ -40,16 +40,26 @@
             <td>{{$materia->anio}}</td>
             <td>{{$materia->estado}}</td>
              <td>
-              <a href=""  >
+                @if ($materia->estado!='inactivo')
+             
+                <a href="{{route('materias.edit',$materia->id)}}"  >
                         <button type="submit" class="btn btn-warning">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>
                         </button>
                      </a>
-              <a href="" onclick="return confirm('¿Seguro dara de baja la materia?')">
+
+                <a href="{{route('materias.desable',$materia->id)}}" onclick="return confirm('¿Seguro dara de baja esta materia?')">
                         <button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" ></span>
                         </button>
-                     </a>
+                </a>
+            @else
+                <a href="{{route('materia.enable',$materia->id)}}" onclick="return confirm('¿Seguro desea dar de alta esta materia?')">
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>
+                        </button>
+                </a>
+            @endif
             </td>   
                       
         </tr>  </tr>

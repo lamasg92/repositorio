@@ -34,7 +34,7 @@
           @endif
             <td>{{$carrera->id}}</td>
             <td>{{$carrera->nombre_carrera}}</td>
-             <td>{{$carrera->duracion}}</td>
+            <td>{{$carrera->duracion}}</td>
             <td>{{$carrera->anio_plan}}</td>
             <td>{{$carrera->departamento->nombre_dpto}}</td>
             <td>{{$carrera->estado}}</td>
@@ -51,17 +51,27 @@
                    
             @endif
             </td>
-             <td>
-              <a href=""  >
+            <td>
+              @if ($carrera->estado!='inactivo')
+             
+                <a href="{{route('carreras.edit',$carrera->id)}}"  >
                         <button type="submit" class="btn btn-warning">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>
                         </button>
                      </a>
-              <a href="" onclick="return confirm('¿Seguro dara de baja la carrera?')">
+
+                <a href="{{route('carreras.desable',$carrera->id)}}" onclick="return confirm('¿Seguro dara de baja esta carrera?')">
                         <button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" ></span>
                         </button>
-                     </a>
+                </a>
+            @else
+                <a href="{{route('carreras.enable',$carrera->id)}}" onclick="return confirm('¿Seguro desea dar de alta esta carrera?')">
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>
+                        </button>
+                </a>
+            @endif
             </td>   
                       
         </tr>  </tr>
