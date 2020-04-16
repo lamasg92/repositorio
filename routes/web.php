@@ -25,12 +25,18 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
  
 //******************************Rutas para departamentos***********************************
   Route::resource('departamentos','DepartamentosController');
+  Route::get('/departamentos/{id}/desable','DepartamentosController@desable')->name('departamentos.desable');
+  Route::get('/departamentos/{id}/enable','DepartamentosController@enable')->name('departamentos.enable');
 
 //******************************Rutas para carreras****************************************
   Route::resource('carreras','CarrerasController');
+  Route::get('/carreras/{id}/desable','CarrerasController@desable')->name('carreras.desable');
+  Route::get('/carreras/{id}/enable','CarrerasController@enable')->name('carreras.enable');
 
 //******************************Rutas para materias****************************************
   Route::resource('materias','MateriasController');
+  Route::get('/materias/{id}/desable','MateriasController@desable')->name('materias.desable');
+  Route::get('/materias/{id}/enable','MateriasController@enable')->name('materias.enable');
 
   Route::get('carrerasjs/{id}','MateriasController@getCarreras');
 
