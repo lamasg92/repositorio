@@ -45,8 +45,12 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
 });
 
 Route::get('/', function () {
-    return view('home.index');
+    $dptos = App\Departamento::all();
+    return view('home.index')->with('dptos',$dptos);
 });
+
+  Route::get('/noAutorizhed',function(){
+    return view('auth.role');})->name('noAutorizhed');
 //***********************Rutas WEB****************************
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

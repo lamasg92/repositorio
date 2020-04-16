@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Departamento;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $request->user()->authorizeRoles(['user', 'admin']);
-        
-        return view('home.index');
+        $dptos = Departamento::all();
+        return view('home.index')->with('dptos',$dptos);
     }
 }
