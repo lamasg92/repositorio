@@ -66,7 +66,7 @@ class UsersController extends Controller
           if($request->file('foto')){
             $file =$request->file('foto');
             $imagen=$file->getClientOriginalName();//nombre de img
-            $path=public_path().'/images/users/';//donde guardamos img
+            $path=public_path().'/images/user/';//donde guardamos img
             $file->move($path,$imagen);//guardar imagen
             $usuario->imagen=$imagen;
         }
@@ -79,26 +79,71 @@ class UsersController extends Controller
            $usuario->roles()->attach( ['role_id' => 2]);
                       
         }
-        
-
        
-
+       
         flash("El usuario ". $tipo . " ha sido creada con exito" , 'success')->important();
        
 
-        return redirect()->route('admin' );
-       
-        
-
-        
+        return redirect()->route('users.index',$tipo );
+    
 
    }
+    public function show($id)
+    {
+        //
+    }
+        
 
-   public function edit($id){
-    $user=User::find($id);
-     $roles=Role::orderBy('name','ASC')->pluck('name','id')->ToArray();
-        return view('admin.users.edit')->with('user',$user)
-                                       ->with('roles',$roles);  
-     }
+
+   public function edit($id,$tipo){
+
+         $user=User::find($id);
+        
+        return view('admin.user.edit')->with('user',$user)
+                                      ->with('type',$tipo);
+                                       
+   }
+
+ 
+    public function update(Request $request, $id, $tipo)
+    {
+        $user=User::find($id);
+
+        $user->fill($request->all());
+     
+        if($request->file('foto')){
+            $file =$request->file('foto');
+            $foto=$file->getClientOriginalName();
+            if ($foto!=$user->foto){
+                $path=public_path().'/images/user/';
+                $file->move($path,$foto);
+                $user->foto=$foto;
+            }
+        }
+
+        $user->save();
+        flash("El usuario  ". $user->surname." ". $user->name . " ha sido modificada con exito" , 'success')->important();
+
+
+     
+        return redirect()->route('users.index',$tipo);
+    }
+
+ public function desable($id)
+    {
+        $usuario= User::find($id);
+        $usuario->status='inactivo';
+        $usuario->save();
+        return redirect()->route('users.index', $usuario->type);
+    }
+
+     public function enable($id)
+    {
+        $usuario= User::find($id);
+        $usuario->status='activo';
+        $usuario->save();
+        return redirect()->route('users.index',$usuario->type);
+    }
+ 
   
 }

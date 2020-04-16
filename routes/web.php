@@ -43,9 +43,13 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
 //******************************Rutas para users****************************************
 
   Route::resource('users','UsersController');
-  Route::get('user/{tipo}','UsersController@index');
-  Route::get('usercreate/{tipo}','UsersController@create');
+  Route::get('user/{tipo}','UsersController@index')->name('users.index');
+  Route::get('usercreate/{tipo}','UsersController@create')->name('users.create');
+  Route::get('useredit/{id}/{tipo}','UsersController@edit')->name('users.edit');
+  Route::patch('userupdate/{id}/{tipo}','UsersController@update')->name('users.update');
   Route::post('userstore/{tipo}','UsersController@store')->name('users.store');
+  Route::get('/users/{id}/desable','UsersController@desable')->name('users.desable');
+  Route::get('/userss/{id}/enable','UsersController@enable')->name('users.enable');
 
   });
 });

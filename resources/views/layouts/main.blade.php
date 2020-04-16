@@ -156,11 +156,11 @@
                 </a>
                  <ul class="treeview-menu">
 
-                <li class="active"><a href="{{url('admin/user', 'docente')}}" ><i class="fa fa-circle-o"></i>Lista de Docentes</a></li>
+                <li class="active"><a href="{{route('users.index', 'docente')}}" ><i class="fa fa-circle-o"></i>Lista de Docentes</a></li>
 
-                <li class="active"><a href="{{url('admin/user', 'alumno') }}" ><i class="fa fa-circle-o"></i>Lista de Alumnos</a></li>
+                <li class="active"><a href="{{route('users.index', 'alumno') }}" ><i class="fa fa-circle-o"></i>Lista de Alumnos</a></li>
 
-                <li class="active"><a href="{{url('admin/user', 'admin') }}" ><i class="fa fa-circle-o"></i>Lista de Administradores</a></li>
+                <li class="active"><a href="{{route('users.index', 'admin') }}" ><i class="fa fa-circle-o"></i>Lista de Administradores</a></li>
                                 
                 </ul>
             </li>
