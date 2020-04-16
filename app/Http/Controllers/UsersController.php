@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     
 
-    protected function index( $tipo){
+    protected function index($tipo){
 
         if ($tipo=='admin') {
            
@@ -28,16 +28,9 @@ class UsersController extends Controller
                   ->where( 'u.type','=',$tipo)
                   ->orderBy('dni','ASC')->paginate(10);
         }
-        
 
-     
-          
-      
-       
         return view('admin.user.index')->with('users',$users)
                                       ->with('type',$tipo);
-
-     
     }
 
 

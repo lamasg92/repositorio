@@ -161,7 +161,7 @@
                 <li class="active"><a href="{{route('users.index', 'alumno') }}" ><i class="fa fa-circle-o"></i>Lista de Alumnos</a></li>
 
                 <li class="active"><a href="{{route('users.index', 'admin') }}" ><i class="fa fa-circle-o"></i>Lista de Administradores</a></li>
-                                
+                               
                 </ul>
             </li>
             

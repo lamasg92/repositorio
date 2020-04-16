@@ -42,11 +42,11 @@
                 <th scope="row"> <a href="{{asset('apuntes')}}/{{$apunte['archivo']}}" target="_blank">ver</a></th>
                 <th>{{$apunte['autores']}}</th>
                 <th>{{$apunte['created_at']}}</th>
-                <th><a href="#" type="button" class="btn btn-primary" >Modificar</a></th></th>
+                <th><a href="#" type="button" class="btn btn-primary" >Modificar</a></th>
               </tr>
               @endforeach 
               </tbody>  
-              </table>  
+            </table>  
           </div>
         </div>
       </div>

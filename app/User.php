@@ -88,7 +88,7 @@ class User extends Authenticatable
 
     public function standard()
     {
-        if ($this->roles()->where('name', 'standard')->first())
+        if ($this->roles()->where('name', 'user')->first())
             return true;
         else
             return false;
