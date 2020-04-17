@@ -45,8 +45,31 @@
                    </div>
             @endif
             </td>
-            <td></td>
-                      
+             <td>
+
+              @if ($departamento->estado!='inactivo')
+             
+                <a href="{{route('departamentos.edit',$departamento->id)}}"  >
+                        <button type="submit" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>
+                        </button>
+                     </a>
+
+                <a href="{{route('departamentos.desable',$departamento->id)}}" onclick="return confirm('¿Seguro dara de baja este departamento?')">
+                        <button type="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" ></span>
+                        </button>
+                </a>
+            @else
+                <a href="{{route('departamentos.enable',$departamento->id)}}" onclick="return confirm('¿Seguro desea dar de alta este departamento?')">
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>
+                        </button>
+                </a>
+            @endif
+             
+            </td>  
+           
         </tr>
         </tr>
   @endforeach

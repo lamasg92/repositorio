@@ -13,11 +13,12 @@
           <div class="box box-info">
           <div class="box-body box-info">
             
-            {!! Form::open(['route'=>'departamentos.store', 'method'=>'POST','files'=>true])!!}
+         {!! Form::open(['route'=>'departamentos.store', 'method'=>'POST','files'=>true])!!}
 
              <div class="form-group">
               <h4>
-                {!! Field::text('nombre_dpto',null, ['class'=>'form-control'])!!}</h4>
+                {!! Field::text('nombre_dpto',null, ['class'=>'form-control'])!!}
+              </h4>
              </div>
 
              {{ Form::label('slug_dpto', 'URL:') }}
@@ -34,12 +35,14 @@
               <img src="" class="img-thumbnail previsualizarFoto" width="100%">
 
               </div>
+
               <div class= "form-group">
   
-
              <h4> {!! Form::label('estado','Estado')!!}
               {!! Form::select('estado', ['activo'=>'activo','inactivo'=>'inactivo'],null,['class'=>'form-control'])!!}</h4>
+
               </div>
+  
               <div class="form-group text-center">
               {!! Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
               <a class="btn btn-danger" href="{{ route('departamentos.index') }}">Cancelar</a>

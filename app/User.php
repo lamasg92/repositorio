@@ -39,17 +39,18 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany('App\Role')->withTimestamps();
+    
+        return $this->belongsToMany('App\Role','role_user')->using('App\RoleUser')->withPivot('user_id','role_id')->withTimestamps();
     }
 
-    public function materia_carreras()
+    public function materias()
     {
-        return $this->belongsToMany('App\MateriaCarrera','materia_docente','user_id','materia_carrera_id')->withPivot('estado')->withTimestamps();
+        return $this->belongsToMany('App\Materia','materia_docente','user_id','materia_id')->withPivot('estado')->withTimestamps();
     }
 
     public function apuntes()
     {
-        return $this->hasMany('App\Apuntes');
+        return $this->hasMany('App\Apunte');
     }
 
     public function carreras()
@@ -87,7 +88,7 @@ class User extends Authenticatable
 
     public function standard()
     {
-        if ($this->roles()->where('name', 'standard')->first())
+        if ($this->roles()->where('name', 'user')->first())
             return true;
         else
             return false;

@@ -21,6 +21,7 @@ class MDAdminUser
           flash("No tiene autorización para acceder a esta sección." , 'danger')->important();
           return redirect()->route('noAutorizhed');
         }
+
         return $next($request);
     }
 }

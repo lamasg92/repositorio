@@ -16,10 +16,7 @@ class ApuntesController extends Controller
     public function create()
     {
         $user=Auth::user();
-        $materiasdocente = MateriaDocente::where('user_id','=', $user->id)
-        ->join('materia_carrera','materia_carrera.id','=','materia_docente.materia_carrera_id')
-        ->join('materias','materias.id','=','materia_carrera.materia_id')
-        ->select('materia_carrera.id','materias.nombre_materia')->get();
+        $materiasdocente = $user->materias;
         return view('home.subida', ['materiasdocente' => $materiasdocente]); 
 
     }
@@ -30,6 +27,7 @@ class ApuntesController extends Controller
         $apuntesdocente = Apunte::where([['user_id','=', $user->id],['apuntes.estado','=','activo']])
         ->join('materias','materias.id','=','apuntes.materia_id')
         ->select('apuntes.id','apuntes.nombre_apunte','apuntes.materia_id','apuntes.archivo','apuntes.autores','apuntes.created_at','materias.nombre_materia')->get();
+
         return view('home.historial', ['apuntesdocente' => $apuntesdocente]);       
     }
 
@@ -37,16 +35,16 @@ class ApuntesController extends Controller
     {
         $user=Auth::user();
         $apunte = new Apunte($request->all());
-
         if($request->file('archivo')){
             $archivo = $request->file('archivo');
-            $nombre_archivo = $archivo->getClientOriginalName();
-            $archivo->move('apuntes',$nombre_archivo);
-            $apunte->archivo = $nombre_archivo; 
             $tipo = $archivo->getClientMimeType();  
             $apunte->tipo_archivo = $tipo;
+            
+            $nombre_archivo = $request->nombre_apunte.' - '.$apunte->materia->nombre_materia.'.'. substr($tipo,-3);
+            $archivo->move('apuntes',$nombre_archivo);
+            $apunte->archivo = $nombre_archivo; 
+            
         } 
-
         $apunte->user_id = $user->id;
         $apunte->estado = 'activo';
         $apunte->save();
