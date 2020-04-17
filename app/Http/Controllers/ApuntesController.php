@@ -27,11 +27,12 @@ class ApuntesController extends Controller
     public function index()
     {
         $user=Auth::user();
-        $apuntesdocente = Apunte::where('user_id','=', $user->id)
-        ->join('materias','materias.id','=','apuntes.materia_id')->get();
+        $apuntesdocente = Apunte::where([['user_id','=', $user->id],['apuntes.estado','=','activo']])
+        ->join('materias','materias.id','=','apuntes.materia_id')
+        ->select('apuntes.id','apuntes.nombre_apunte','apuntes.materia_id','apuntes.archivo','apuntes.autores','apuntes.created_at','materias.nombre_materia')->get();
         return view('home.historial', ['apuntesdocente' => $apuntesdocente]);       
     }
-  
+
     public function store(ApunteRequest $request)
     {
         $user=Auth::user();
@@ -55,6 +56,18 @@ class ApuntesController extends Controller
         return redirect()->route('subida');
     }
 
+    public function datos($id_apunte)
+    {
+        $datosapunte = Apunte::where('apuntes.id',$id_apunte)->join('materias','materias.id','=','apuntes.materia_id')->select('apuntes.id','apuntes.nombre_apunte','apuntes.materia_id','apuntes.archivo','apuntes.autores','materias.nombre_materia')->get();
+        //return $datosapunte;
+        $user=Auth::user();
+        $materiasdocente=MateriaDocente::where('user_id','=', $user->id)
+        ->join('materia_carrera','materia_carrera.id','=','materia_docente.materia_carrera_id')
+        ->join('materias','materias.id','=','materia_carrera.materia_id')
+        ->select('materia_carrera.id','materias.nombre_materia')->get();
+        return view('home.modificar',['datosapunte' => $datosapunte, 'materiasdocente' => $materiasdocente]);
+    }
+
     public function show($nombre, $carrera, $materia,$apunte){
         
         $carrera = Carrera::where('slug_carrera', $carrera)->first();
@@ -67,6 +80,20 @@ class ApuntesController extends Controller
             'dpto' => $carrera->departamento,
         ]);
 
+    }
+
+    public function update($id_apunte, request $request)
+    {
+        Apunte::where('id', $id_apunte)->update( array('nombre_apunte'=>$request->input('nombre_apunte'),'materia_id'=>$request->input('materia_id'),'autores'=>$request->input('autores')));
+
+        return redirect()->route('historial'); 
+    }
+
+    public function eliminar($id_apunte)
+    {
+        Apunte::where('id', $id_apunte)->update( array('estado'=>'inactivo'));
+
+        return redirect()->route('historial'); 
     }
 
 }
