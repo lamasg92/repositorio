@@ -82,10 +82,15 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('dpto/{nombre}/{carrera}/{materia}/{apunte}','ApuntesController@show')->name('show.apunte');
 
   Route::group(['middleware' => 'standard'], function () { 
-    //**********Rutas exclusivas de Docenes ***********
+    //**********Rutas exclusivas de Docentes ***********
     Route::get('subida','ApuntesController@create')->name('subida');
     Route::post('subirapunte','ApuntesController@store');
-    Route::get('historial','ApuntesController@index');
+    
+    Route::get('historial','ApuntesController@index')->name('historial');
+    Route::get('modificar/{id_apunte}', 'ApuntesController@datos');
+    Route::post('modificarapunte/{id_apunte}', 'ApuntesController@update');
+    Route::get('eliminar/{id_apunte}', 'ApuntesController@eliminar');
+    Route::post('cambiaremail', 'UsuarioController@cambiaremail');
   });
 });
 

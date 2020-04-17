@@ -9,13 +9,13 @@ use Request;
 class PaginasController extends Controller
 {
 
-   	public function perfilOK()
+   	public function index()
     {
         //return Request::input('imagen');
         //return Request::input('carrera');
         //return Request::input('ingreso');
         //return Request::input('lu');
-        //return view('home.temporal');
+        return view('home.temporal');
     }
    
 }
