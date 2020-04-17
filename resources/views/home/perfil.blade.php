@@ -22,7 +22,7 @@
             <h2 class="mb-4">Mis datos</h2>
             <form name="formulario" method="POST" enctype="multipart/form-data" action="{{url('actualizarperfil')}}">
               {{csrf_field()}}
-                    <img src="{{asset('imagenes/users')}}/{{Auth::user()->foto}}" class="img-thumbnail previsualizarFoto" width="200" height="200">
+                    <img src="{{asset('images/user/'.Auth::user()->foto)}}" class="img-thumbnail previsualizarFoto" width="200" height="200">
                     <div><h4>{!! Field::file('imagen',['class'=>'foto'] )!!}</h4></div>         
                 
                 <div>

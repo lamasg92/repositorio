@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Departamento;
+use App\Carrera;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,8 @@ class HomeController extends Controller
     {
         $request->user()->authorizeRoles(['user', 'admin']);
         $dptos = Departamento::all();
-        return view('home.index')->with('dptos',$dptos);
+        $carreras = Carrera::orderBy('departamento_id')->get();
+        return view('home.index')->with('dptos',$dptos)
+                                 ->with('carreras',$carreras);
     }
 }

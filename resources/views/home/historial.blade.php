@@ -37,7 +37,7 @@
              @foreach($apuntesdocente as $apunte)    
              <tr>
                 <th scope="row">{{$apunte['nombre_apunte']}}</th>
-                <th scope="row">{{$apunte['nombre_materia']}}</th>
+                <th scope="row">{{$apunte->materia['nombre_materia']}}</th>
                 <th scope="row">{{$apunte['archivo']}}</th>
                 <th scope="row"> <a href="{{asset('apuntes')}}/{{$apunte['archivo']}}" target="_blank">ver</a></th>
                 <th>{{$apunte['autores']}}</th>

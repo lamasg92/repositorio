@@ -4,7 +4,7 @@
     <title>UNIVERSIDAD NACIONAL DE SALTA</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset('css/open-iconic-bootstrap.min.css')}}">
@@ -22,6 +22,16 @@
     <link rel="stylesheet" href="{{asset('css/icomoon.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     
+    <style type="text/css">
+      .menu-fixed {
+        position:fixed;
+        z-index:1000;
+        top:0;
+        max-width:1110px;
+        width:100%;
+        box-shadow:0px 0px 0px rgba(0,0,0,.5);
+      }
+    </style>
     
   </head>
   <body>
@@ -35,23 +45,17 @@
 		  </div>
     </div>
 
-    <div class="container">
-    <div class=class="col-lg-8 d-block" align="right">
-              @if (Route::has('login'))                 
+  <div class="container">
+    <div class="menu col-lg-12 d-block" align="right">
+          @if (Route::has('login'))                 
                 <div class="top-rigth links">
-                   @auth 
-              @if (Auth::user()->type == 'alumno')
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+              @auth 
+              <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
                   <div class="container d-flex align-items-center px-4">
+              @if (Auth::user()->type == 'alumno')
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="oi oi-menu"></span> Menu Alumno
                     </button>
-                      <form action="#" class="searchform order-lg-last">
-                        <div class="form-group d-flex">
-                          <input type="text" class="form-control pl-3" placeholder="Buscar">
-                          <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
-                        </div>
-                     </form>
                     <div class="collapse navbar-collapse" id="ftco-nav">
                       <ul class="navbar-nav mr-auto">
                       <li class="nav-item"><a href="{{url('/')}}" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
@@ -60,20 +64,10 @@
                       <li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
                       </ul>
                    </div>
-                 </div>
-                </nav> 
                @else                  
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
-                  <div class="container d-flex align-items-center px-4">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="oi oi-menu"></span> Menu Docente
                     </button>
-                    <form action="#" class="searchform order-lg-last">
-                      <div class="form-group d-flex">
-                        <input type="text" class="form-control pl-3" placeholder="Buscar">
-                        <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
-                      </div>
-                    </form>
                     <div class="collapse navbar-collapse" id="ftco-nav">
                       <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a href="{{url('/')}}" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
@@ -82,21 +76,27 @@
                         <li class="nav-item"><a href="{{url('perfil')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
                         <li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
                       </ul>
-                    </div>
-                  </div>
-                  </nav> 
-            @endif      
-        @else
-                      <a href="{{ route('login') }}" class="btn btn-primary">Ingresar</a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn btn-primary" >Registrarse</a>
-                        @endif
-                     <div><p></p></div>
-                    @endauth             
-                  </div>
-              @endif
+                    </div> 
+                @endif  
+                    <form action="#" class="searchform order-lg-last">
+                      <div class="form-group d-flex">
+                        <input type="text" class="form-control pl-3" placeholder="Buscar">
+                        <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
+                      </div>
+                    </form>
+                 </div>
+              </nav>    
+            @else
+              <a href="{{ route('login') }}" class="btn btn-primary">Ingresar</a>
+                @if (Route::has('register'))
+                  <a href="{{ route('register') }}" class="btn btn-primary" >Registrarse</a>
+                @endif
+                 <div><p></p></div>
+                @endauth             
+              </div>
+            @endif
   @yield('navegacion')
-          </div>
+        </div>
   </div>
 		
    </body>   
@@ -138,6 +138,20 @@
 
   <script>
       $('#flash-overlay-modal').modal();
+  </script>
+
+  <script type="text/javascript">
+      $(document).ready(function(){
+        var altura = $('.menu').offset().top;
+        
+        $(window).on('scroll', function(){
+          if ( $(window).scrollTop() > altura ){
+            $('.menu').addClass('menu-fixed');
+          } else {
+            $('.menu').removeClass('menu-fixed');
+          }
+        });
+      });
   </script>
     
   </body>

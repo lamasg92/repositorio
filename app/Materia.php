@@ -16,6 +16,11 @@ class Materia extends Model
     {
         return $this->belongsToMany('App\Carrera','materia_carrera')->using('App\MateriaCarrera')->withPivot('anio', 'estado')->withTimestamps();
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User','materia_docente','user_id','materia_id')->withPivot('estado')->withTimestamps();
+    }
    
     public function apuntes()
     {

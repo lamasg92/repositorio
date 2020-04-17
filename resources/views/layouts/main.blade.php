@@ -64,7 +64,7 @@
          
         <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-            <img src="{{asset('imagenes/users/'.Auth::user()->foto)}}" class="user-image" alt="User Image">
+            <img src="{{asset('images/user/'.Auth::user()->foto)}}" class="user-image" alt="User Image">
             <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">

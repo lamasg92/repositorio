@@ -6,7 +6,7 @@
 
 @section('content')
 	
-	<section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('{{asset("/images/image_2.jpg")}}');">
+	<section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('{{asset("/images/carrera/".$carrera->imagen)}}');">
       
       <div class="overlay"></div>
       <div class="container">
@@ -24,7 +24,7 @@
       <div class="container">
 
         <div class="embed-responsive embed-responsive-1by1">
-            <embed class="embed-responsive-item" src="{{asset('apuntes/'.$apunte->archivo)}}" type="application/pdf"/>
+            <embed class="embed-responsive-item" src="{{asset('apuntes/'.$apunte->archivo)}}" type="{{$apunte->tipo}}"/>
         </div>
         
         

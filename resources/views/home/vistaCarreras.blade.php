@@ -6,7 +6,7 @@
 
 @section('content')
     
-    <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('{{asset("/images/image_2.jpg")}}');">
+  <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('{{asset("/images/departamento/".$dpto->logo)}}');">
       
       <div class="overlay"></div>
       <div class="container">

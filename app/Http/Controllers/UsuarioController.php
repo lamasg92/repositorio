@@ -18,7 +18,7 @@ class UsuarioController extends Controller
         	$foto = $request->file('imagen');
             $nombre_foto = $foto->getClientOriginalName();
         	DB::table('users')->where('id', $user->id)->update( array('foto'=>$nombre_foto));      	
-            $foto->move('imagenes/users', $nombre_foto);
+            $foto->move('images/user', $nombre_foto);
        
         } 
     

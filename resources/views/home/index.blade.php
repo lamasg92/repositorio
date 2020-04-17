@@ -43,7 +43,7 @@
               <div class="media-body p-2 mt-3">
                   @if (Route::has('login'))
                    @auth
-                        <h3><a href="{{ url('dpto/$dpto_slug')}}" style="color: white" >{{$dpto->nombre_dpto}}</a> </h3>
+                        <h3><a href="{{ url('dpto/'.$dpto->slug_dpto)}}" style="color: white" >{{$dpto->nombre_dpto}}</a> </h3>
                    @else
                         <h3><a href="#" style="color: white" >{{$dpto->nombre_dpto}}</a> </h3>
                    @endauth
@@ -120,135 +120,20 @@
               </div>
             </div>  
                 <div class="row">
+                  @foreach($carreras as $carrera)
                     <div class="col-md-3 course ftco-animate">
                         <div class="text pt-4">
-                            <div class="img" style="background-image: url(images/las.jpg);"></div>
-                            <h3><a href="#">Licenciatura en Analisis de Sistemas</a></h3>
+                            <div class="img" style="background-image: 
+                            url({{'images/carrera/'.$carrera->imagen}});"></div>
+                            <h3><a href="{{url('dpto/'.$carrera->departamento->slug_dpto.'/'.$carrera->slug_carrera)}}">{{$carrera->nombre_carrera}}</a></h3>
                             <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>INFORMATICA</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: 5 años</span>
+                                <span><i class="icon-user mr-2"></i>{{$carrera->departamento->nombre_dpto}}</span>
+                                <span><i class="icon-calendar mr-2"></i>Duracion: {{$carrera->duracion}} años</span>
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-3 course ftco-animate">
-                        <div class="text pt-4">
-                            <div class="img" style="background-image: url(images/tup.jpg);"></div>
-                            <h3><a href="#">Tecn. Universitaria en Programación</a></h3>
-                            <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>INFORMATICA</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: 3 años</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 course ftco-animate">
-                        <div class="text pt-4">
-                            <div class="img" style="background-image: url(images/pm.jpg);"></div>
-                            <h3><a href="#">Profesorado en Matematicas</a></h3>
-                            <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>MATEMATICA</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: 5 años</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 course ftco-animate">
-                        <div class="text pt-4">
-                            <div class="img" style="background-image: url(images/pm.jpg);"></div>
-                            <h3><a href="#">Licenciatura en Matemáticas</a></h3>
-                            <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>MATEMATICA</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: 5 años</span>
-                            </p>
-                        </div>
-                    </div>
+                  @endforeach
                 </div>
-
-                <div class="row">
-                    <div class="col-md-3 course ftco-animate">
-                        <div class="text pt-4">
-                            <div class="img" style="background-image: url(images/pm.jpg);"></div>
-                            <h3><a href="#">Tecn. Universitaria en Estadisticas</a></h3>
-                            <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>Matematica</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: 3 años</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 course ftco-animate">
-                        <div class="text pt-4">
-                            <div class="img" style="background-image: url(images/quimica.jpg);"></div>
-                            <h3><a href="#">Licenciatura en Química</a></h3>
-                            <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>QUIMICA</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: 5 años</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 course ftco-animate">
-                        <div class="text pt-4">
-                            <div class="img" style="background-image: url(images/quimica.jpg);"></div>
-                            <h3><a href="#">Profesorado en Quimica</a></h3>
-                            <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>Quimica</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: 5 años</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 course ftco-animate">
-                        <div class="text pt-4">
-                            <div class="img" style="background-image: url(images/quimica.jpg);"></div>
-                            <h3><a href="#">Bromatologia</a></h3>
-                            <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>QUIMICA</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: 5 años</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3 course ftco-animate">
-                        <div class="text pt-4">
-                            <div class="img" style="background-image: url(images/quimica.jpg);"></div>
-                            <h3><a href="#">Analista quimico</a></h3>
-                            <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>QUIMICA</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: 3 años</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 course ftco-animate">
-                        <div class="text pt-4">
-                            <div class="img" style="background-image: url(images/fisica.jpg);"></div>
-                            <h3><a href="#">Licenciatura en Fisica</a></h3>
-                            <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>FISICA</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: 5 años</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 course ftco-animate">
-                        <div class="text pt-4">
-                            <div class="img" style="background-image: url(images/fisica.jpg);"></div>
-                            <h3><a href="#">Profesorado en fisica</a></h3>
-                            <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>FISICA</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: 5 años</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 course ftco-animate">
-                        <div class="text pt-4">
-                            <div class="img" style="background-image: url(images/fisica.jpg);"></div>
-                            <h3><a href="#">Tecn. Electrónica Universitaria</a></h3>
-                            <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>FISICA</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: 3 años</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                </div>
-            </div>
+              </div>
         </section>
 @endsection
