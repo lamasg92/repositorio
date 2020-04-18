@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection; 
 use App\Apunte;
 use App\Carrera;
+use App\Favorito;
 use App\MateriaDocente;
 use App\Http\Requests\ApunteRequest;
 
@@ -56,15 +57,55 @@ class ApuntesController extends Controller
     }
 
     public function show($nombre, $carrera, $materia,$apunte){
-        
+        $user=Auth::user();
         $carrera = Carrera::where('slug_carrera', $carrera)->first();
         $apunte = Apunte::where('nombre_apunte', $apunte)->first();
+        $favorito = Favorito::where('user_id','=', $user->id)
+        ->where('apunte_id','=',$apunte->id)
+        ->where('carrera_id','=',$carrera->id)
+        ->get();
 
         return view('home.showApunte')->with([
             'apunte' => $apunte,
             'carrera' => $carrera,
             'materia' => $apunte->materia,
             'dpto' => $carrera->departamento,
+            'favorito' => $favorito,
+        ]);
+
+    }
+    public function guardaFav($nombre, $carrera, $materia,$apunte){
+        $user=Auth::user();
+        $carrera = Carrera::where('slug_carrera', $carrera)->first();
+        $apunte = Apunte::where('nombre_apunte', $apunte)->first();
+
+        $favoritos = new Favorito();
+        $favoritos->user_id = $user->id;
+        $favoritos->apunte_id = $apunte->id;
+        $favoritos->carrera_id = $carrera->id;
+        $favoritos->estado = 'activo';
+        $favoritos->save();
+
+        flash("El apunte ". $apunte->nombre_apunte . " se guardo con exito." , 'success')->important();
+
+        return redirect()->route('show.apunte', ['dpto' => $carrera->departamento,'carrera' => $carrera,'materia' => $apunte->materia,'apunte' => $apunte]);
+    }
+
+     public function unapunte($carrera,$materia,$apunte){
+        $user=Auth::user();
+        $carrera = Carrera::where('id', $carrera)->first();
+        $apunte = Apunte::where('nombre_apunte', $apunte)->first();
+        $favorito = Favorito::where('user_id','=', $user->id)
+        ->where('apunte_id','=',$apunte->id)
+        ->where('carrera_id','=',$carrera->id)
+        ->get();
+
+        return view('home.showApunte')->with([
+            'apunte' => $apunte,
+            'carrera' => $carrera,
+            'materia' => $apunte->materia,
+            'dpto' => $carrera->departamento,
+            'favorito' => $favorito,
         ]);
 
     }

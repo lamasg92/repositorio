@@ -53,6 +53,8 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
   //Route::get('perfil','PaginasController@perfil');
+  Route::get('favoritos','FavoritosController@listaFav')->name('favoritos');
+  Route::get('favoritos/{nombre}/{carrera}/{materia}/{apunte}','ApuntesController@guardaFav')->name('guardaFav.apunte');
   Route::get('perfil','UsuarioController@datosUsuario')->name('perfil');
   Route::post('actualizarperfil', 'UsuarioController@store');
   //***********************Rutas de Materias Decentes***************************
@@ -65,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('dpto/{nombre}/{carrera}','VistaMateriasController@mostrarVistaMaterias')->name('dpto.materias');
   Route::get('dpto/{nombre}/{carrera}/{materia}','VistaApuntesController@mostrarVistaApuntes')->name('dpto.apuntes');
   Route::get('dpto/{nombre}/{carrera}/{materia}/{apunte}','ApuntesController@show')->name('show.apunte');
+  Route::get('mostrar/{carrera}/{materia}/{apunte}','ApuntesController@unapunte')->name('unshow.apunte');
 
   Route::group(['middleware' => 'standard'], function () { 
     //**********Rutas exclusivas de Docenes ***********

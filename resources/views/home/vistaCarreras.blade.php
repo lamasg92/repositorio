@@ -23,7 +23,7 @@
         <div class="row d-flex">
         @foreach($carreras as $car)
             <div class="card" style="width: 18rem;">
-               <!--img src="{{ $car->imagen }}" class="card-img-top" alt="Img Carrera"-->
+               <img src="../images/carrera/{{ $car->imagen }}" class="card-img-top" alt="Img Carrera">
                <div class="card-body">
                    <h5 class="card-title">{{ $car->nombre_carrera }}</h5>
                    <p class="card-text">Plan: {{ $car->anio_plan }} <br> Duración: {{ $car->duracion }}</p>
