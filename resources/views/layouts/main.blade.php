@@ -64,7 +64,7 @@
          
         <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-            <img src="{{asset('imagenes/users/'.Auth::user()->foto)}}" class="user-image" alt="User Image">
+            <img src="{{asset('images/user/'.Auth::user()->foto)}}" class="user-image" alt="User Image">
             <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
@@ -156,12 +156,12 @@
                 </a>
                  <ul class="treeview-menu">
 
-                <li class="active"><a href="{{url('admin/user', 'docente')}}" ><i class="fa fa-circle-o"></i>Lista de Docentes</a></li>
+                <li class="active"><a href="{{route('users.index', 'docente')}}" ><i class="fa fa-circle-o"></i>Lista de Docentes</a></li>
 
-                <li class="active"><a href="{{url('admin/user', 'alumno') }}" ><i class="fa fa-circle-o"></i>Lista de Alumnos</a></li>
+                <li class="active"><a href="{{route('users.index', 'alumno') }}" ><i class="fa fa-circle-o"></i>Lista de Alumnos</a></li>
 
-                <li class="active"><a href="{{url('admin/user', 'admin') }}" ><i class="fa fa-circle-o"></i>Lista de Administradores</a></li>
-                                
+                <li class="active"><a href="{{route('users.index', 'admin') }}" ><i class="fa fa-circle-o"></i>Lista de Administradores</a></li>
+                               
                 </ul>
             </li>
             

@@ -56,4 +56,56 @@ class CarrerasController extends Controller
       
    
   
+  public function edit($id)
+    {     
+        $carrera=Carrera::find($id);
+        $departamentos=Departamento::where('estado','=','activo')->orderBy('nombre_dpto','ASC')->pluck('nombre_dpto','id')->ToArray();
+
+        return view('admin.carrera.edit')->with('carrera',$carrera)
+                                         ->with('departamentos',$departamentos);                         
+    }
+
+    
+    public function update(Request $request, $id)
+    {
+        $carrera=Carrera::find($id);
+
+        $carrera->fill($request->all());
+        $carrera->nombre_carrera=strtoupper($carrera->nombre_carrera);
+        if($request->file('imagen')){
+            $file =$request->file('imagen');
+            $imagen=$file->getClientOriginalName();
+            if ($imagen!=$carrera->imagen){
+                $path=public_path().'/images/carrera/';
+                $file->move($path,$imagen);
+                $carrera->imagen=$imagen;
+            }
+        }
+
+        $carrera->save();
+        flash("La carrera  ". $carrera->nombre_carrera . " ha sido modificada con exito" , 'success')->important();
+     
+        return redirect()->route('carreras.index');
+    }
+
+    public function desable($id)
+    {
+        $carrera= Carrera::find($id);
+        $carrera->estado='inactivo';
+        $carrera->save();
+        return redirect()->route('carreras.index');
+    }
+
+     public function enable($id)
+    {
+        $carrera= Carrera::find($id);
+        $carrera->estado='activo';
+        $carrera->save();
+        return redirect()->route('carreras.index');
+    }
+
+    
+    
+
+
 }

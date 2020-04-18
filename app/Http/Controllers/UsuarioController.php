@@ -18,7 +18,7 @@ class UsuarioController extends Controller
         	$foto = $request->file('imagen');
             $nombre_foto = $foto->getClientOriginalName();
         	DB::table('users')->where('id', $user->id)->update( array('foto'=>$nombre_foto));      	
-            $foto->move('imagenes/users', $nombre_foto);
+            $foto->move('images/user', $nombre_foto);
        
         } 
     
@@ -46,10 +46,19 @@ class UsuarioController extends Controller
     public function datosUsuario()
     {
     	$user=Auth::user();
-        $datosusuario = UsuarioCarrera::where('user_id', '=', $user->id)->get();;
+        $datosusuario = UsuarioCarrera::where('user_id', '=', $user->id)
+        ->join('carreras','carreras.id','=','usuario_carrera.carrera_id')->get();;
         $carreras=Carrera::paginate(10);
         return view('home.perfil') ->with([
         	'datosusuario' => $datosusuario, 
         	'carreras' => $carreras]);
+    }
+
+    public function cambiaremail(request $request)
+    {
+    	$user=Auth::user();
+    	dB::table('users')->where('id', $user->id)->update( array('email'=>$request->input('nuevoemail')));      	
+        
+        return redirect()->route('perfil');
     }
 }

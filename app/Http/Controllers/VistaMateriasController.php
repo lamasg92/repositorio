@@ -17,9 +17,10 @@ class VistaMateriasController extends Controller
     	->where('materia_carrera.carrera_id','=',$carrera->id)
     	->select('materias.id','materias.nombre_materia', 'materias.semestre', 'materias.tipo', 'materia_carrera.anio','materias.slug_materia')
     	->orderBy('materia_carrera.anio','asc')
+        ->orderBy('materias.semestre','asc')
     	->get();
     	
-    	return view('home.vistaMat')->with([
+    	return view('home.vistaMaterias')->with([
     		'materias' => $materias,
     		'dpto' => $carrera->departamento,
     		'carrera' => $carrera,
