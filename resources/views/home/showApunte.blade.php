@@ -20,7 +20,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-12 ftco-animate text-center">
-					<h3 class="mb-4 bread"><a href="{{ url('dpto/'.$dpto->slug_dpto)}}">
+					<h3 class="mb-4 bread font-responsive-3"><a href="{{ url('dpto/'.$dpto->slug_dpto)}}">
 						<?php echo $dpto->nombre_dpto; ?></a> <br/>
 						<a href="{{ url('dpto/'.$dpto->slug_dpto.'/'.$carrera->slug_carrera) }}">
 							<?php echo $carrera->nombre_carrera; ?></a><br><?php echo $materia->nombre_materia; ?><br>Apuntes</h3>
@@ -37,19 +37,19 @@
               <u><a style="color: blue; size: 20px;"> Agregado a Favoritos</a></u>
             @else
                 <a href="{{ url('favoritos/'.$dpto->slug_dpto.'/'.$carrera->slug_carrera.'/'.$materia->slug_materia.'/'.$apunte->nombre_apunte )}}" class="btn btn-primary" onclick="return ConfirmGuardar()">Agregar a Favoritos</a>
-            @endif
-               
+            @endif   
           </div>
         </div>      
       </div>
     </section> <br>
     <section class="ftco-section ftco-no-pt ftc-no-pb">
       <div class="container">
-        <h3><?php echo 'Título: '.$apunte->nombre_apunte; ?></h3>
-        <h4><?php echo 'Autor/es: '.$apunte->autores; ?></h4>
+        <h3 class="font-responsive-3"><?php echo 'Título: '.$apunte->nombre_apunte; ?></h3>
+        <h4 class="font-responsive-3"><?php echo 'Autor/es: '.$apunte->autores; ?></h4>
         <div class="embed-responsive embed-responsive-1by1">
-            <embed class="embed-responsive-item" src="{{asset('apuntes/'.$apunte->archivo)}}" type="{{$apunte->tipo}}"/>
+            <iframe src="http://docs.google.com/gview?url={{asset('apuntes/'.$apunte->archivo)}}&embedded=true" frameborder="0"></iframe>
         </div>
       </div>
-    </section> 	
+    </section>
+    <br> 	
 @endsection

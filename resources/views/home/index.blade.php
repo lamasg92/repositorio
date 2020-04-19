@@ -41,13 +41,7 @@
           @endif
             <div class="media block-6 d-block text-center">
               <div class="media-body p-2 mt-3">
-                  @if (Route::has('login'))
-                   @auth
-                        <h3><a href="{{ url('dpto/'.$dpto->slug_dpto)}}" style="color: white" >{{$dpto->nombre_dpto}}</a> </h3>
-                   @else
-                        <h3><a href="#" style="color: white" >{{$dpto->nombre_dpto}}</a> </h3>
-                   @endauth
-                  @endif
+                  <h3><a href="{{ url('dpto/'.$dpto->slug_dpto)}}" style="color: white" >{{$dpto->nombre_dpto}}</a> </h3>
               </div>
             </div>      
           </div>
@@ -125,7 +119,7 @@
                         <div class="text pt-4">
                             <div class="img" style="background-image: 
                             url({{'images/carrera/'.$carrera->imagen}});"></div>
-                            <h3><a href="{{url('dpto/'.$carrera->departamento->slug_dpto.'/'.$carrera->slug_carrera)}}">{{$carrera->nombre_carrera}}</a></h3>
+                            <h3 class="content-texto-3"><a href="{{url('dpto/'.$carrera->departamento->slug_dpto.'/'.$carrera->slug_carrera)}}">{{$carrera->nombre_carrera}}</a></h3>
                             <p class="meta d-flex">
                                 <span><i class="icon-user mr-2"></i>{{$carrera->departamento->nombre_dpto}}</span>
                                 <span><i class="icon-calendar mr-2"></i>Duracion: {{$carrera->duracion}} años</span>
