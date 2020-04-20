@@ -91,6 +91,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('modificarapunte/{id_apunte}', 'ApuntesController@update');
     Route::get('eliminar/{id_apunte}', 'ApuntesController@eliminar');
     Route::post('cambiaremail', 'UsuarioController@cambiaremail');
+    Route::post('cambiarpass', 'UsuarioController@cambiarpass');
   });
 });
 
