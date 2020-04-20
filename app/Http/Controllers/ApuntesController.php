@@ -99,8 +99,13 @@ class ApuntesController extends Controller
 
         flash("El apunte ". $apunte->nombre_apunte . " se guardo con exito." , 'success')->important();
 
-        return redirect()->route('show.apunte', ['dpto' => $carrera->departamento,'carrera' => $carrera,'materia' => $apunte->materia,'apunte' => $apunte]);
-    }
+        return redirect()->route('show.apunte', [
+             'nombre' => $nombre,
+             'carrera' => $carrera->slug_carrera,
+             'materia' => $materia,
+             'apunte' => $apunte->nombre_apunte
+            ]);
+     }
 
      public function unapunte($carrera,$materia,$apunte){
         $user=Auth::user();
