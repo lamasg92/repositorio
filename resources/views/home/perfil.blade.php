@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title', '| Perfil')
+
 @section('content')  
 
     <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('images/image_2.jpg');">

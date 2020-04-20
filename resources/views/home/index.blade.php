@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title', '| Inicio')
+
 @section('content')
     <section class="home-slider owl-carousel">
       <div class="slider-item" style="background-image:url(images/universidad.jpg);">

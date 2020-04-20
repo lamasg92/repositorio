@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title', '| Apuntes')
+
 @section('navegacion')
   {{ Breadcrumbs::render('dpto.apuntes', $dpto ,$carrera,$materia) }}
 @endsection

@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title', '| Materias')
+
 @section('navegacion')
   {{ Breadcrumbs::render('dpto.materias', $dpto ,$carrera) }}
 @endsection

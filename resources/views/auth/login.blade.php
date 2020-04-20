@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title', '| Ingresar')
+
 @section('content')
         <div class="text ml-2">
         <span class="position"><p></p></span>
