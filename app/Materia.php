@@ -27,10 +27,11 @@ class Materia extends Model
         return $this->belongsTo('App\Carrera');
     }
 
-    public static function selectCarreras($id){
-      
-      return Carrera::where('departamento_id','=', $id)->get();
-
-    }
+     
     
+     public function materiacarrera()
+    {
+        return $this->hasMany('App\MateriaCarrera');
+    }
+
 }

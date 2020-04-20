@@ -64,22 +64,22 @@
          
         <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-            <img src="{{asset('imagenes/users/'.Auth::user()->foto)}}" class="user-image" alt="User Image">
+            <img src="{{asset('images/user/'.Auth::user()->foto)}}" class="user-image" alt="User Image">
             <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
             <!-- User image -->
               <li class="user-header">
-               <img src="{{asset('imagenes/users/'.Auth::user()->foto)}}" class="img-circle" alt="User Image">
+               <img src="{{asset('images/user/'.Auth::user()->foto)}}" class="img-circle" alt="User Image">
               </li>
             <!-- Menu footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                  <a >Perfil</a>
-                 </div>
-                <div class="pull-right">
-                   <a href="{{ route('logout') }}" class="btn btn-default btn-flat" id="logout"
-                   onclick="event.preventDefault();
+
+                   <a href="{{route('users.profile')}}" class="btn btn-default btn-flat">Perfil</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat" id="logout"  onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
                     Salir
                    </a>
@@ -105,7 +105,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="{{asset('imagenes/users/'.Auth::user()->foto)}}" class="img-circle" alt="User Image">
+              <img src="{{asset('images/user/'.Auth::user()->foto)}}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                <p>{{ Auth::user()->name }}</p>
