@@ -14,10 +14,11 @@
  <table id="tabla table-striped" class="display table table-hover" cellspacing="0" width="100%">
     <thead>
         <tr>
-            <th style="width:10px">Codigo</th>
+            <th style="width:10px">#</th>
             <th>Nombre</th>
+            <th>Sitio Web</th>
             <th>Estado</th>
-            <th>logo</th> 
+            <th>Imagen</th> 
             <th></th>
         </tr>
     </thead>
@@ -31,18 +32,55 @@
           @endif
             <td>{{$departamento->id}}</td>
             <td>{{$departamento->nombre_dpto}}</td>
+            <td>{{$departamento->sitio_web}}</td>
             <td>{{$departamento->estado}}</td>
             <td> 
-            @if($departamento->extension!=null)
-
+            @if($departamento->logo!=null)
+                 <div>
+                  
+                  <a data-toggle="modal">
+                   <img src="{{ asset('images/departamento/'.$departamento->logo)  }}" width="40" height="40"> 
+                   </a>
+                  
+                   </div>
             @endif
             </td>
-            <td>
-                      
+             <td>
+
+              @if ($departamento->estado!='inactivo')
+             
+                <a href="{{route('departamentos.edit',$departamento->id)}}"  >
+                        <button type="submit" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>
+                        </button>
+                     </a>
+
+                <a href="{{route('departamentos.desable',$departamento->id)}}" onclick="return confirm('¿Seguro dara de baja este departamento?')">
+                        <button type="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" ></span>
+                        </button>
+                </a>
+            @else
+                <a href="{{route('departamentos.enable',$departamento->id)}}" onclick="return confirm('¿Seguro desea dar de alta este departamento?')">
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>
+                        </button>
+                </a>
+            @endif
+             
+            </td>  
+           
+        </tr>
         </tr>
   @endforeach
    </tbody>
  </table>
+<div class="text-center">
+
+  {!!$departamentos->links()!!}
+
+</div>
+
 @else
 <div class="alert alert-dismissable alert-warning">
   <button type="button" class="close" data-dismiss="alert">×</button>

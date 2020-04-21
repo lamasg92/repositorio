@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title', '| Registrarme')
+
 @section('content')
 
         <div class="text ml-2">

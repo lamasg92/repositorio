@@ -17,7 +17,7 @@ class MDStandard
     {
         $user=\Auth::user();
         
-        if($user->standard()){
+        if($user->type=='alumno'){
             abort(401);
         }
         return $next($request);
