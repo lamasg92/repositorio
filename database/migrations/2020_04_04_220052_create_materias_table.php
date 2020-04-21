@@ -16,6 +16,7 @@ class CreateMateriasTable extends Migration
         Schema::create('materias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre_materia');
+            $table->string('slug_materia')->unique();
             $table->enum('semestre', ['primer','segundo','anual'])->nullable();
             $table->enum('tipo', ['obligatoria','optativa'])->default('obligatoria');
             $table->enum('estado', ['activo','inactivo'])->default('activo');

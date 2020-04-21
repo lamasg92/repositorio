@@ -11,7 +11,7 @@ Composer -> https://getcomposer.org/download/
 PHP version 7.1.3 o mayor.
 
 Base de Datos: MYSQL (Recomendada)
-
+____________________________________________________________________________________________________________
 PASOS DE DESCARGA DE PROYECO EN MI PC
 
 1 -En GitHub
@@ -47,6 +47,76 @@ PASOS DE DESCARGA DE PROYECO EN MI PC
     
     6.1 - Prendemos Apache y MySQL
     6.2 - http://localhost/repositorio/public/
+
+____________________________________________________________________________________________________________
+MANEJO DENTRO DEL PROYECTO
+
+Por cada nueva tareas o funcinalidad crear una rama en el Git y Github
+1 - En Github:
+
+    1.1 - Presinar "Branch" y escribir el nombre de la nueva rama.
+    1.2 - Presionar "Create branch: Nombre_rama" (con esto creamos una rama con todo lo que este en la rama actual)
+    
+2 - En Git (MI PC)
+    
+    Nos ubicamos en nuetro repositorio
+    a) git branch Nombre_rama 
+    b) git checkout -b Nombre_rama
+
+    Moverse a otra rama
+    a) git checkout Nombre_rama
+
+____________________________________________________________________________________________________________
+CREAR ARCHIVOS EN EL PROYECTO
+
+Crear un archivo de Migracion
+
+    php artisan make:migration  create_NOMBRE_table --create=NOMBRE
+    Nota: con el atributo –create=   podemos indicar como se llamará la tabla en la base de datos para esa migración.
+
+Ejecutar migracion
+
+    php artisan migrate Nombre //Si no se indica el nombre se ejecutan todas las migraciones creadas
+
+Crear Modelo
+
+    php artisan make:model NombreModelo
+
+Crear Contrlador
+
+    php artisan make:controller NombreControlador
+    
+____________________________________________________________________________________________________________
+SUBIR CAMBIOS A MI REPOSITORIO DE GITGUB (En Git)
+
+Revisar que cambios realice
+
+    git status
+    
+Crear un paquete con los archivos que quiero subir
+    
+    git add .   //usar . para agregar todos los cambios, puede hacerlo uno por uno inidicando el nombre del archivo
+    
+Crear un commit 
+
+    git commit -m "Nombre_Commit"
+    
+subir al repositorio
+
+    git push origin <branch>
+    
+____________________________________________________________________________________________________________
+BAJAR CAMBIOS A MI REPOSITORIO A LA PC (En Git)
+
+La forma más sencilla de actualizar el repositorio local es mediante el comando
+
+    git pull
+
+Podremos especificar a qué rama remota corresponde la rama local con el siguiente comando:
+
+    git branch --set-upstream-to=origin/master master
+
+
 
 Todos los derechos reservados!!
 ________________________________________________________________________

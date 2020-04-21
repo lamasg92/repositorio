@@ -21,9 +21,9 @@ class CreateApuntesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('archivo')->unique();
-            $table->string('tipo_archivo');
-            $table->string('autores');
-            $table->enum('status', ['activo','inactivo'])->default('activo');
+            $table->string('tipo_archivo')->nullable();
+            $table->string('autores')->nullable();
+            $table->enum('estado', ['activo','inactivo'])->default('activo');
             $table->timestamps();
         });
     }

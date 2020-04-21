@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Departamento;
+use App\Carrera;
 
 class HomeController extends Controller
 {
@@ -24,7 +26,9 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $request->user()->authorizeRoles(['user', 'admin']);
-        
-        return view('home');
+        $dptos = Departamento::all();
+        $carreras = Carrera::orderBy('departamento_id')->get();
+        return view('home.index')->with('dptos',$dptos)
+                                 ->with('carreras',$carreras);
     }
 }
