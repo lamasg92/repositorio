@@ -9,10 +9,16 @@ class MateriaCarrera extends Pivot
 {
     protected $table="materia_carrera";
 
-    protected $fillable= ['materia_id','carrera_id','anio', 'estado'];
+    protected $fillable= ['id','materia_id','carrera_id','anio', 'estado'];
 
-    public function users()
+    public function materia()
     {
-        return $this->belongsToMany('App\User','materia_docente')->withPivot('estado')->withTimestamps();
+        return $this->belongsTo('App\Materia');
     }
+
+    public function carrera()
+    {
+        return $this->belongsTo('App\Carrera');
+    }
+
 }

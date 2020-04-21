@@ -17,8 +17,8 @@ class CreateMateriaDocenteTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('materia_carrera_id');
-            $table->foreign('materia_carrera_id')->references('id')->on('materia_carrera');
+            $table->unsignedBigInteger('materia_id');
+            $table->foreign('materia_id')->references('id')->on('materias');
             $table->enum('estado', ['activo','inactivo'])->default('activo');
             $table->timestamps();
         });
