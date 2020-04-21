@@ -1,28 +1,30 @@
 @extends('layouts.home')
 
+@section('title', '| Materias')
+
 @section('navegacion')
   {{ Breadcrumbs::render('dpto.materias', $dpto ,$carrera) }}
 @endsection
 
 @section('content')
 	
-	<section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('{{asset("/images/image_0.jpg")}}');">
+	<section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('{{asset("/images/carrera/".$carrera->imagen)}}');">
       
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
 
-					   <h3 class="mb-2 bread"><a href="{{ url('dpto/$dpto->slug_dpto')}}">
-             <?php echo $dpto->nombre_dpto.'</a> <br/>'.$carrera->nombre_carrera; ?>
+					   <h3 class="mb-2 bread font-responsive-4"><a href="{{ url('dpto/$dpto->slug_dpto')}}">
+              {{$dpto->nombre_dpto}}</a> <br/>{{$carrera->nombre_carrera}}
              <br>Repositorio</h3>
           </div>
         </div>
       </div>
     </section>
-	
+	<br>
 	<section class="ftco-section ftco-no-pt ftc-no-pb">
-      <div class="container">
+      <div class="container justify-content-center">
         <div class="row d-flex">      
           <div class="table-responsive">
             <table class="table table-hover table-sm table-bordered table-striped">

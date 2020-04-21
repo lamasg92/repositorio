@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title', '| Historial')
+
 @section('content')
 
   <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('images/image_0.jpg');">
@@ -26,23 +28,23 @@
                 <tr>
                   <th scope="col">Nombre Archivo</th>
                   <th scope="col">Materia</th>
-                  <th scope="col">#</th>
                   <th scope="col"></th>
                   <th scope="col">Autor/es</th>
                   <th scope="col">Fecha subida</th>
-                  <th scope="col"> </th>               
+                  <th scope="col"> </th>     
+                  <th scope="col"> </th>          
               </tr>
              </thead>
              <tbody>
              @foreach($apuntesdocente as $apunte)    
-             <tr>
+             <tr>                
                 <th scope="row">{{$apunte['nombre_apunte']}}</th>
                 <th scope="row">{{$apunte['nombre_materia']}}</th>
-                <th scope="row">{{$apunte['archivo']}}</th>
-                <th scope="row"> <a href="{{asset('apuntes')}}/{{$apunte['archivo']}}" target="_blank">ver</a></th>
+                <th scope="row"> <a href="{{asset('apuntes')}}/{{$apunte['archivo']}}" target="_blank">{{$apunte['archivo']}}</a></th>
                 <th>{{$apunte['autores']}}</th>
                 <th>{{$apunte['created_at']}}</th>
-                <th><a href="#" type="button" class="btn btn-primary" >Modificar</a></th>
+                <th><a href="{{url('modificar',['id_apunte' => $apunte->id])}}" type="button" class="btn btn-primary" >Modificar</a></th></th>
+                <th><a href="{{url('eliminar',['id_apunte' => $apunte->id])}}" type="button" class="btn btn-danger" >Eliminar</a></th></th>
               </tr>
               @endforeach 
               </tbody>  

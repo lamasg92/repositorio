@@ -70,37 +70,46 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
   
 });
 
+//********************************Rutas WEB***********************************
 Route::get('/', function () {
     $dptos = App\Departamento::all();
-    return view('home.index')->with('dptos',$dptos);
-});
-
-  Route::get('/noAutorizhed',function(){
+    $carreras = App\Carrera::orderBy('departamento_id')->get();
+    return view('home.index')->with('dptos',$dptos)
+                             ->with('carreras',$carreras);
+    });
+Route::get('/noAutorizhed',function(){
     return view('auth.role');})->name('noAutorizhed');
-//***********************Rutas WEB****************************
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
-  //Route::get('perfil','PaginasController@perfil');
+  Route::get('favoritos','FavoritosController@listaFav')->name('favoritos');
+  Route::get('favoritos/{nombre}/{carrera}/{materia}/{apunte}','ApuntesController@guardaFav')->name('guardaFav.apunte');
+  Route::get('/home', 'HomeController@index')->name('home');
+  Route::get('dpto', 'HomeController@index')->name('dpto');
+  Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
   Route::get('perfil','UsuarioController@datosUsuario')->name('perfil');
   Route::post('actualizarperfil', 'UsuarioController@store');
-  //***********************Rutas de Materias Decentes***************************
+  //***********************Rutas de Materias Docentes***************************
   Route::resource('materiasdocente','MateriasDocenteController');
 
   //***********************Rutas de Apuntes*************************************
   Route::resource('apuntes','ApuntesController');
-  //Route::get('vistaDepartamentos','VistaDeptosController@mostrarVistaDptos');
   Route::get('dpto/{nombre}','VistaCarrerasController@mostrarVistaCarreras')->name('dpto.carreras');
   Route::get('dpto/{nombre}/{carrera}','VistaMateriasController@mostrarVistaMaterias')->name('dpto.materias');
   Route::get('dpto/{nombre}/{carrera}/{materia}','VistaApuntesController@mostrarVistaApuntes')->name('dpto.apuntes');
   Route::get('dpto/{nombre}/{carrera}/{materia}/{apunte}','ApuntesController@show')->name('show.apunte');
+  Route::get('mostrar/{carrera}/{materia}/{apunte}','ApuntesController@unapunte')->name('unshow.apunte');
 
   Route::group(['middleware' => 'standard'], function () { 
-    //**********Rutas exclusivas de Docenes ***********
+    //**********Rutas exclusivas de Docentes ***********
     Route::get('subida','ApuntesController@create')->name('subida');
     Route::post('subirapunte','ApuntesController@store');
-    Route::get('historial','ApuntesController@index');
+    
+    Route::get('historial','ApuntesController@index')->name('historial');
+    Route::get('modificar/{id_apunte}', 'ApuntesController@datos');
+    Route::post('modificarapunte/{id_apunte}', 'ApuntesController@update');
+    Route::get('eliminar/{id_apunte}', 'ApuntesController@eliminar');
+    Route::post('cambiaremail', 'UsuarioController@cambiaremail');
+    Route::post('cambiarpass', 'UsuarioController@cambiarpass');
   });
 });
 

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\UsuarioCarrera;
 use Illuminate\Support\Facades\DB;
 use App\Carrera;
+use Hash;
 
 class UsuarioController extends Controller
 {
@@ -18,10 +19,9 @@ class UsuarioController extends Controller
         	$foto = $request->file('imagen');
             $nombre_foto = $foto->getClientOriginalName();
         	DB::table('users')->where('id', $user->id)->update( array('foto'=>$nombre_foto));      	
-            $foto->move('imagenes/users', $nombre_foto);
+            $foto->move('images/user', $nombre_foto);
        
-        } 
-    
+        }     
 
         $existe = UsuarioCarrera::where('user_id', '=', $user->id)->get();
         if(count($existe)==0)
@@ -40,16 +40,50 @@ class UsuarioController extends Controller
         }
         
         //flash("Sus datos se actualizaron correctamente" , 'success')->important();
+        $request->session()->flash('alert-success', 'Sus datos se actualizaron correctamente');
         return redirect()->route('perfil');
     }
 
     public function datosUsuario()
     {
     	$user=Auth::user();
-        $datosusuario = UsuarioCarrera::where('user_id', '=', $user->id)->get();;
+        $datosusuario = UsuarioCarrera::where('user_id', '=', $user->id)
+        ->join('carreras','carreras.id','=','usuario_carrera.carrera_id')->get();;
         $carreras=Carrera::paginate(10);
         return view('home.perfil') ->with([
         	'datosusuario' => $datosusuario, 
         	'carreras' => $carreras]);
+    }
+
+    public function cambiaremail(request $request)
+    {
+    	$user=Auth::user();
+    	dB::table('users')->where('id', $user->id)->update( array('email'=>$request->input('nuevoemail')));      	        
+        return redirect()->route('perfil');
+    }
+
+     public function cambiarpass(request $request)
+    {
+    	if($request->input('nuevaPass1') == $request->input('nuevaPass2'))
+    	{
+
+    		$user=Auth::user();
+    		$pass_user = $request->input('actualPass');
+    		if(Hash::check($pass_user,$user->password))
+    		{    			
+    			DB::table('users')->where('id', $user->id)->update(array('password'=>bcrypt($request->input('nuevaPass1'))));
+    			$request->session()->flash('alert-success', 'Se cambió su contraseña');
+
+    		}
+    		else
+    		{
+    			$request->session()->flash('alert-success', 'No se encontró su contraseña de acceso');
+    		}    		
+    	}
+    	else
+    	{
+    		$request->session()->flash('alert-success', 'Las nuevas contraseñas no coinciden');
+    	}    
+        return redirect()->route('perfil');
     }
 }

@@ -59,8 +59,8 @@ class DepartamentosController extends Controller
 
         $departamento->fill($request->all());
         $departamento->nombre_dpto=strtoupper($departamento->nombre_dpto);
-        if($request->file('imagen')){
-            $file =$request->file('imagen');
+        if($request->file('logo')){
+            $file =$request->file('logo');
             $logo=$file->getClientOriginalName();
             if ($logo!=$departamento->logo){
                 $path=public_path().'/images/departamento/';
