@@ -14,7 +14,7 @@
      
             @else
 
-              @if (type=='alumno')
+              @if ($type=='alumno')
 
                 <h3 class="text-center">NUEVO ALUMNO</h3>
               @else
@@ -57,7 +57,7 @@
 
               <div class="form-group text-center">
               {!! Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
-              <a class="btn btn-danger" href="{{url('admin/user', $type )}}">Cancelar</a>
+              <a class="btn btn-danger" href="{{route('users.create', $type )}}">Cancelar</a>
               </div>
           
  

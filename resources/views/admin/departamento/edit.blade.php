@@ -21,6 +21,11 @@
               {!! Form::text('nombre_dpto',$departamento->nombre_dpto, ['class'=>'form-control'])!!}
               </div>
 
+              <div class="form-group">
+              {!! Form::label('sitio_web','Sitio Web')!!}
+              {!! Form::text('sitio_web',$departamento->sitio_web, ['class'=>'form-control'])!!}
+              </div>
+
               <div>
                    {!!form::label('Imagen Actual: ')!!} <img src="{{ asset('images/departamento/'.$departamento->logo)  }}" width="40" height="40" > 
               </div>

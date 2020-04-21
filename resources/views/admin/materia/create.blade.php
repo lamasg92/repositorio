@@ -33,8 +33,8 @@
             </div>
 
                           
-              <div class= "form-group titulo_h4">
-              {!! Field::select('departamento_id', $departamentos, ['class'=>'select-dpto' ,'select-carrera','empty'=>'Seleccione un departamento'])!!}
+              <div class= "form-group">
+              {!! Field::select('departamento_id', $departamentos, ['class'=>'select-dpto' ,'empty'=>'Seleccione un departamento'])!!}
               </div>
 
               <div class="form-group">
@@ -74,7 +74,6 @@
 @section('js')
 <script>
     $('.select-dpto').chosen();
-
     $('.select-carrera').chosen({
       placeholder_text_multiple: "Seleccione las Carreras",
     });
