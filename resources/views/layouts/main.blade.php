@@ -31,6 +31,8 @@
 
     <link rel="stylesheet" href="{{asset('stylesAdmin/plugins/chosen/chosen.css')}}">
 
+
+
     @yield('style')
     <!-- Scripts -->
     <script>

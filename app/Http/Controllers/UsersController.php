@@ -7,6 +7,7 @@ use App\Http\Requests\EditUserRequest;
 use App\User;
 use App\Role;
 use Illuminate\Support\Facades\DB;
+use Hash;
 
 
 class UsersController extends Controller
@@ -158,16 +159,40 @@ class UsersController extends Controller
    }
 
 
-   public function updateMyPassword(PasswordRequest $request){
+   public function updateMyPassword(Request $request){
  
 
-    $user=\Auth::user();
-    
-     $user->password=bcrypt($request->newpassword);
-     $user->save();
-    flash("Su contraseña se ha cambiado correctamente ", 'success')->important();
-     
-       return redirect()->route('users.updatePassword');
+    if($request->input('nuevaPass1') == $request->input('nuevaPass2'))
+          {
+
+            $user=\Auth::user();
+            $pass_user = $request->input('actualPass');
+            if(Hash::check($pass_user,$user->password))
+            {         
+              DB::table('users')->where('id', $user->id)->update(array('password'=>bcrypt($request->input('nuevaPass1'))));
+            
+               flash("Su contraseña ha sido cambiada con exito", 'success')->important();
+
+                 return redirect()->route('users.profile');
+
+            }
+            else
+            {
+              
+              flash("No se encontro su contraseña de acceso ", 'success')->error()->important();
+                   return redirect()->route('users.updatePassword');
+            }       
+          }
+          else
+          {
+           flash("Las nuevas contraseñas no coinciden ", 'success')->error()->important();
+                   return redirect()->route('users.updatePassword');
+            
+          }    
+          
+
+
+
    }
    
   

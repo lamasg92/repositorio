@@ -38,6 +38,14 @@
 
               </div>
 
+              <div>
+              {!! Form::label('nombre_carrera','Carrera')!!}
+                 
+              {!! Form::text('nombre_carrera',$materia->nombre_carrera, ['class'=>'form-control', 'disabled'])!!}
+
+              </div>
+
+
              <div class="form-group">
                {!! Form::label('anio','Año')!!}
                {!! Form::number('anio',$materia->anio, ['class'=>'form-control'])!!}

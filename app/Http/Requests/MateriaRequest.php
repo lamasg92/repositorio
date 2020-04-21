@@ -27,7 +27,6 @@ class MateriaRequest extends FormRequest
         return [
             'nombre_materia'=>'max:120|required|unique:materias',
             'slug_materia'=> 'max:120|required|unique:materias',
-            'departamento_id'=>'required',
             'carreras'=>'required',
             'semestre'=>'required',
             'tipo'=>'required',
