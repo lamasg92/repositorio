@@ -33,10 +33,6 @@
             </div>
 
                           
-              <div class= "form-group">
-              {!! Field::select('departamento_id', $departamentos, ['class'=>'select-dpto' ,'empty'=>'Seleccione un departamento'])!!}
-              </div>
-
               <div class="form-group">
               {!! Form::label('carreras','Carreras')!!}
               {!! Form::select('carreras[]', $carreras, null, ['class'=>'form-control select-carrera','multiple'])!!} 
@@ -73,7 +69,7 @@
 
 @section('js')
 <script>
-    $('.select-dpto').chosen();
+
     $('.select-carrera').chosen({
       placeholder_text_multiple: "Seleccione las Carreras",
     });
@@ -91,7 +87,6 @@
 
  <script src="{{asset('stylesAdmin/js/plantilla.js')}}"></script>
 
- <script src="{{asset('stylesAdmin/js/dropdown.js')}}"></script>
-   
+ 
 
 @endsection

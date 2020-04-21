@@ -40,9 +40,8 @@ class MateriasController extends Controller
          
           $carreras=Carrera::where('estado','=','activo')->orderBy('nombre_carrera','ASC')->pluck('nombre_carrera','id')->ToArray();
 
-          $departamentos=Departamento::where('estado','=','activo')->orderBy('nombre_dpto','ASC')->pluck('nombre_dpto','id')->ToArray();
 
-        return view('admin.materia.create')->with('carreras',$carreras)->with('departamentos',$departamentos);
+        return view('admin.materia.create')->with('carreras',$carreras);
     
        }
 
