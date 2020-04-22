@@ -98,6 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('dpto/{nombre}/{carrera}/{materia}','VistaApuntesController@mostrarVistaApuntes')->name('dpto.apuntes');
   Route::get('dpto/{nombre}/{carrera}/{materia}/{apunte}','ApuntesController@show')->name('show.apunte');
   Route::get('mostrar/{carrera}/{materia}/{apunte}','ApuntesController@unapunte')->name('unshow.apunte');
+  Route::get('quitar/{carrera}/{materia}/{apunte}','ApuntesController@quitarApunte')->name('quitar.apunte');
 
   Route::group(['middleware' => 'standard'], function () { 
     //**********Rutas exclusivas de Docentes ***********
