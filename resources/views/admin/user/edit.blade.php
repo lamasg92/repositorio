@@ -13,7 +13,12 @@
            
           </div>
           <div class="box-body">
-            {!! Form::model($user,['route'=>['users.update',$user->id,$type], 'method'=>'PATCH', 'files'=>true])!!}
+            {!! Form::model($user,['route'=>['users.update',$user->id, $type], 'method'=>'PATCH', 'files'=>true])!!}
+
+              <div class="form-group">
+              {!! Form::label('dni','DNI')!!}
+              {!! Form::text('dni',$user->dni, ['class'=>'form-control', 'disabled'])!!}
+              </div>
 
               <div class="form-group">
               {!! Form::label('surname','Apellido')!!}

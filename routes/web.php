@@ -34,24 +34,40 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
   Route::get('/carreras/{id}/enable','CarrerasController@enable')->name('carreras.enable');
 
 //******************************Rutas para materias****************************************
-  Route::resource('materias','MateriasController');
-  Route::get('/materias/{id}/desable','MateriasController@desable')->name('materias.desable');
-  Route::get('/materias/{id}/enable','MateriasController@enable')->name('materias.enable');
-
-  Route::get('carrerasjs/{id}','MateriasController@getCarreras');
+ 
+   Route::get('materias/index','MateriasController@index')->name('materias.index');
+   Route::get('materias/create','MateriasController@create')->name('materias.create');
+   Route::patch('materias/update/{idmateria}/{id}','MateriasController@update')->name('materias.update');
+   Route::post('materias/store','MateriasController@store')->name('materias.store');
+  Route::get('/materias/{id}/{carrera}/desable','MateriasController@desable')->name('materias.desable');
+  Route::get('/materias/{id}/{carrera}/enable','MateriasController@enable')->name('materias.enable');
+ Route::get('/materias/{id}/{carrera}/edit','MateriasController@edit')->name('materias.edit');
+ 
 
 //******************************Rutas para users****************************************
 
-  Route::resource('users','UsersController');
+
   Route::get('user/{tipo}','UsersController@index')->name('users.index');
   Route::get('usercreate/{tipo}','UsersController@create')->name('users.create');
   Route::get('useredit/{id}/{tipo}','UsersController@edit')->name('users.edit');
   Route::patch('userupdate/{id}/{tipo}','UsersController@update')->name('users.update');
   Route::post('userstore/{tipo}','UsersController@store')->name('users.store');
   Route::get('/users/{id}/desable','UsersController@desable')->name('users.desable');
-  Route::get('/userss/{id}/enable','UsersController@enable')->name('users.enable');
+  Route::get('/users/{id}/enable','UsersController@enable')->name('users.enable');
+
+  //**********************Rutas para mi perfil admin***************************************************
+ //Route::resource('users','UsersController');
+
+ Route::get('profile','UsersController@profile')->name('users.profile');
+ Route::get('users/updatePassword','UsersController@updatePassword')->name('users.updatePassword');
+ Route::post('users/updateMyPassword','UsersController@updateMyPassword')->name('users.updateMyPassword');
+ Route::get('users/editProfile','UsersController@editProfile')->name('users.editProfile');
+ Route::patch('users/editMyProfile','UsersController@editMyProfile')->name('users.editMyProfile');
+
+ 
 
   });
+  
 });
 
 //********************************Rutas WEB***********************************
@@ -94,6 +110,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('modificarapunte/{id_apunte}', 'ApuntesController@update');
     Route::get('eliminar/{id_apunte}', 'ApuntesController@eliminar');
     Route::post('cambiaremail', 'UsuarioController@cambiaremail');
+    Route::post('cambiarpass', 'UsuarioController@cambiarpass');
   });
 });
 
