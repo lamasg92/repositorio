@@ -73,7 +73,7 @@ class ApuntesController extends Controller
         $apunte = Apunte::where('nombre_apunte', $apunte)->first();
         $favorito = Favorito::where('user_id','=', $user->id)
         ->where('apunte_id','=',$apunte->id)
-        ->where('carrera_id','=',$carrera->id)
+        ->where('estado','=','activo')
         ->get();
 
         return view('home.showApunte')->with([
@@ -87,24 +87,31 @@ class ApuntesController extends Controller
     }
     public function guardaFav($nombre, $carrera, $materia,$apunte){
         $user=Auth::user();
-        $carrera = Carrera::where('slug_carrera', $carrera)->first();
-        $apunte = Apunte::where('nombre_apunte', $apunte)->first();
+        $carr = Carrera::where('slug_carrera', $carrera)->first();
+        $apun = Apunte::where('nombre_apunte', $apunte)->first();
+        $favo = Favorito::where('user_id','=', $user->id)
+        ->where('apunte_id','=',$apun->id)
+        ->where('carrera_id','=',$carr->id)
+        ->where('estado','=','inactivo')
+        ->get();
+        if(!$favo->isEmpty()){
+            $favoritos = Favorito::where('user_id','=', $user->id)
+            ->where('apunte_id','=',$apun->id)
+            ->where('carrera_id','=',$carr->id)
+            ->update(array('estado' => 'activo'));
+        }else{
+            $favoritos = new Favorito();
+            $favoritos->user_id = $user->id;
+            $favoritos->apunte_id = $apun->id;
+            $favoritos->carrera_id = $carr->id;
+            $favoritos->estado = 'activo';
+            $favoritos->save();
+        }
 
-        $favoritos = new Favorito();
-        $favoritos->user_id = $user->id;
-        $favoritos->apunte_id = $apunte->id;
-        $favoritos->carrera_id = $carrera->id;
-        $favoritos->estado = 'activo';
-        $favoritos->save();
+        flash("El apunte ". $apun->nombre_apunte . " se guardo con exito." , 'success')->important();
 
-        flash("El apunte ". $apunte->nombre_apunte . " se guardo con exito." , 'success')->important();
-
-        return redirect()->route('show.apunte', [
-             'nombre' => $nombre,
-             'carrera' => $carrera->slug_carrera,
-             'materia' => $materia,
-             'apunte' => $apunte->nombre_apunte
-            ]);
+        return redirect()->route('show.apunte', ['dpto' => $nombre,'carrera' => $carrera,'materia' => $materia,'apunte' => $apunte]);
+    
      }
 
      public function unapunte($carrera,$materia,$apunte){
@@ -113,7 +120,7 @@ class ApuntesController extends Controller
         $apunte = Apunte::where('nombre_apunte', $apunte)->first();
         $favorito = Favorito::where('user_id','=', $user->id)
         ->where('apunte_id','=',$apunte->id)
-        ->where('carrera_id','=',$carrera->id)
+        ->where('estado','=','activo')
         ->get();
 
         return view('home.showApunte')->with([
@@ -124,6 +131,20 @@ class ApuntesController extends Controller
             'favorito' => $favorito,
         ]);
 
+    }
+
+    public function quitarApunte($carrera,$materia,$apunte){
+        $user=Auth::user();
+        //$carrera = Carrera::where('id', $carrera)->first();
+        $apu = Apunte::where('nombre_apunte', $apunte)->first();
+        $favoritos = Favorito::where('user_id','=', $user->id)
+        ->where('apunte_id','=',$apu->id)
+        ->where('carrera_id','=',$carrera)
+        ->update(array('estado' => 'inactivo'));
+
+        flash("El apunte fue eliminado con Exito" , 'success')->important();
+
+        return redirect()->route('favoritos');
     }
 
     public function update($id_apunte, request $request)

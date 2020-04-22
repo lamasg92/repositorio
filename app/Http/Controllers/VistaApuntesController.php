@@ -13,7 +13,9 @@ class VistaApuntesController extends Controller
     	
         $materia = Materia::where('slug_materia', $materia)->first();
     	$carrera = Carrera::where('slug_carrera', $carrera)->first();
-    	$apuntes = Apunte::where('materia_id', $materia->id)->get();
+    	$apuntes = Apunte::where('materia_id', $materia->id)
+        ->where('estado','=','activo')
+        ->get();
 
     	return view('home.vistaApuntes')->with([
     		'apuntes' => $apuntes,
