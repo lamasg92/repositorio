@@ -14,14 +14,6 @@ use App\Http\Requests\ApunteRequest;
 
 class ApuntesController extends Controller
 {
-    public function create()
-    {
-        $user=Auth::user();
-        $materiasdocente = $user->materias;
-        return view('home.subida', ['materiasdocente' => $materiasdocente]); 
-
-    }
-
     public function index()
     {
         $user=Auth::user();
@@ -30,6 +22,14 @@ class ApuntesController extends Controller
         ->select('apuntes.id','apuntes.nombre_apunte','apuntes.materia_id','apuntes.archivo','apuntes.autores','apuntes.created_at','materias.nombre_materia')->get();
 
         return view('home.historial', ['apuntesdocente' => $apuntesdocente]);       
+    }
+
+    public function create()
+    {
+        $user=Auth::user();
+        $materiasdocente = $user->materias;
+        return view('home.subida', ['materiasdocente' => $materiasdocente]); 
+
     }
 
     public function store(ApunteRequest $request)
@@ -85,68 +85,7 @@ class ApuntesController extends Controller
         ]);
 
     }
-    public function guardaFav($nombre, $carrera, $materia,$apunte){
-        $user=Auth::user();
-        $carr = Carrera::where('slug_carrera', $carrera)->first();
-        $apun = Apunte::where('nombre_apunte', $apunte)->first();
-        $favo = Favorito::where('user_id','=', $user->id)
-        ->where('apunte_id','=',$apun->id)
-        ->where('carrera_id','=',$carr->id)
-        ->where('estado','=','inactivo')
-        ->get();
-        if(!$favo->isEmpty()){
-            $favoritos = Favorito::where('user_id','=', $user->id)
-            ->where('apunte_id','=',$apun->id)
-            ->where('carrera_id','=',$carr->id)
-            ->update(array('estado' => 'activo'));
-        }else{
-            $favoritos = new Favorito();
-            $favoritos->user_id = $user->id;
-            $favoritos->apunte_id = $apun->id;
-            $favoritos->carrera_id = $carr->id;
-            $favoritos->estado = 'activo';
-            $favoritos->save();
-        }
-
-        flash("El apunte ". $apun->nombre_apunte . " se guardo con exito." , 'success')->important();
-
-        return redirect()->route('show.apunte', ['dpto' => $nombre,'carrera' => $carrera,'materia' => $materia,'apunte' => $apunte]);
     
-     }
-
-     public function unapunte($carrera,$materia,$apunte){
-        $user=Auth::user();
-        $carrera = Carrera::where('id', $carrera)->first();
-        $apunte = Apunte::where('nombre_apunte', $apunte)->first();
-        $favorito = Favorito::where('user_id','=', $user->id)
-        ->where('apunte_id','=',$apunte->id)
-        ->where('estado','=','activo')
-        ->get();
-
-        return view('home.showApunte')->with([
-            'apunte' => $apunte,
-            'carrera' => $carrera,
-            'materia' => $apunte->materia,
-            'dpto' => $carrera->departamento,
-            'favorito' => $favorito,
-        ]);
-
-    }
-
-    public function quitarApunte($carrera,$materia,$apunte){
-        $user=Auth::user();
-        //$carrera = Carrera::where('id', $carrera)->first();
-        $apu = Apunte::where('nombre_apunte', $apunte)->first();
-        $favoritos = Favorito::where('user_id','=', $user->id)
-        ->where('apunte_id','=',$apu->id)
-        ->where('carrera_id','=',$carrera)
-        ->update(array('estado' => 'inactivo'));
-
-        flash("El apunte fue eliminado con Exito" , 'success')->important();
-
-        return redirect()->route('favoritos');
-    }
-
     public function update($id_apunte, request $request)
     {
         Apunte::where('id', $id_apunte)->update( array('nombre_apunte'=>$request->input('nombre_apunte'),'materia_id'=>$request->input('materia_id'),'autores'=>$request->input('autores')));

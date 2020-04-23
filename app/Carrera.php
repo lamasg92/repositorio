@@ -14,7 +14,7 @@ class Carrera extends Model
     {
         return $this->belongsTo('App\Departamento');
     }
-
+    
     public function materias()
     {
         return $this->belongsToMany('App\Materia','materia_carrera')->using('App\MateriaCarrera')->withPivot('anio', 'estado')->withTimestamps();
@@ -22,7 +22,7 @@ class Carrera extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User')->withPivot('libreta','anio_ingreso', 'estado')->withTimestamps();
+        return $this->belongsToMany('App\User','carrera_usuario')->withPivot('id','libreta','anio_ingreso', 'estado')->withTimestamps();
     }
 
   

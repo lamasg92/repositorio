@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function carreras()
     {
-        return $this->belongsToMany('App\Carrera')->withPivot('libreta','anio_ingresp', 'estado')->withTimestamps();
+        return $this->belongsToMany('App\Carrera','usuario_carrera')->withPivot('id','libreta','anio_ingreso', 'estado')->withTimestamps();
     }
 
     public function authorizeRoles($roles)
