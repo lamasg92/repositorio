@@ -151,9 +151,6 @@ class UsersController extends Controller
 
    }
 
-  
-      
-
     public function updatePassword(){
     return view('admin.user.updatePassword');
    }

@@ -15,17 +15,17 @@
     }else{ return false;}
   }
 </script>
-	
-	<section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('{{asset("/images/carrera/".$carrera->imagen)}}');">
+  
+  <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('{{asset("/images/carrera/".$carrera->imagen)}}');">
       
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-12 ftco-animate text-center">
-					<h3 class="mb-4 bread font-responsive-3"><a href="{{ url('dpto/'.$dpto->slug_dpto)}}">
-						<?php echo $dpto->nombre_dpto; ?></a> <br/>
-						<a href="{{ url('dpto/'.$dpto->slug_dpto.'/'.$carrera->slug_carrera) }}">
-							<?php echo $carrera->nombre_carrera; ?></a><br><?php echo $materia->nombre_materia; ?><br>Apuntes</h3>
+          <h3 class="mb-4 bread font-responsive-3"><a href="{{ url('dpto/'.$dpto->slug_dpto)}}">
+            <?php echo $dpto->nombre_dpto; ?></a> <br/>
+            <a href="{{ url('dpto/'.$dpto->slug_dpto.'/'.$carrera->slug_carrera) }}">
+              <?php echo $carrera->nombre_carrera; ?></a><br><?php echo $materia->nombre_materia; ?><br>Apuntes</h3>
           </div>
         </div>
       </div>
@@ -47,11 +47,11 @@
     <section class="ftco-section ftco-no-pt ftc-no-pb">
       <div class="container">
         <h3 class="font-responsive-3"><?php echo 'Título: '.$apunte->nombre_apunte; ?></h3>
-        <h4 class="font-responsive-3"><?php echo 'Autor/es: '.$apunte->autores; ?></h4>
+        <h4 class="font-responsive-2"><?php echo 'Autor/es: '.$apunte->autores; ?></h4>
         <div class="embed-responsive embed-responsive-1by1">
-            <iframe src="http://docs.google.com/gview?url={{asset('apuntes/'.$apunte->archivo)}}&embedded=true" frameborder="0"></iframe>
+            <iframe src="{{asset('apuntes/'.$apunte->archivo)}}" frameborder="0"></iframe>
         </div>
       </div>
     </section>
-    <br> 	
+    <br>  
 @endsection

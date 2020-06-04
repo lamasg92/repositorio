@@ -76,7 +76,10 @@ class UsuarioController extends Controller
 
     public function bajaMateria($id)
     {
-         
+        $materiadocente=MateriaDocente::find($id);
+        $materiadocente->estado='inactivo';
+        $materiadocente->save();
+        
         flash('alert-danger', 'La materia ha sido dado de baja.')->important();;
         return redirect()->route('perfil');
     }

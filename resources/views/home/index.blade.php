@@ -49,8 +49,8 @@
           </div>
         @endforeach
         </div>
-            </div>
-        </section>
+      </div>
+    </section>
 
     <section class="ftco-section testimony-section">
       <div class="container">
@@ -108,28 +108,77 @@
       </div>
     </section>
 
-        <section class="ftco-section">
-          <div class="container-fluid px-4">
-            <div class="row justify-content-center mb-5 pb-2">
-              <div class="col-md-8 text-center heading-section ftco-animate">
-                <h2 class="mb-4">Carreras</h2>
-              </div>
-            </div>  
-                <div class="row">
-                  @foreach($carreras as $carrera)
-                    <div class="col-md-3 course ftco-animate">
-                        <div class="text pt-4">
-                            <div class="img" style="background-image: 
-                            url({{'images/carrera/'.$carrera->imagen}});"></div>
-                            <h3 class="content-texto-3"><a href="{{url('dpto/'.$carrera->departamento->slug_dpto.'/'.$carrera->slug_carrera)}}">{{$carrera->nombre_carrera}}</a></h3>
-                            <p class="meta d-flex">
-                                <span><i class="icon-user mr-2"></i>{{$carrera->departamento->nombre_dpto}}</span>
-                                <span><i class="icon-calendar mr-2"></i>Duracion: {{$carrera->duracion}} años</span>
-                            </p>
-                        </div>
+    <section class="ftco-section">
+      <div class="container-fluid px-4">
+        <div class="row justify-content-center mb-5 pb-2">
+          <div class="col-md-8 text-center heading-section ftco-animate">
+            <h2 class="mb-4">Carreras</h2>
+          </div>
+        </div>  
+            <div class="row">
+              @foreach($carreras as $carrera)
+                <div class="col-md-3 course ftco-animate">
+                    <div class="text pt-4">
+                        <div class="img" style="background-image: 
+                        url({{'images/carrera/'.$carrera->imagen}});"></div>
+                        <h3 class="content-texto-3"><a href="{{url('dpto/'.$carrera->departamento->slug_dpto.'/'.$carrera->slug_carrera)}}">{{$carrera->nombre_carrera}}</a></h3>
+                        <p class="meta d-flex">
+                            <span><i class="icon-user mr-2"></i>{{$carrera->departamento->nombre_dpto}}</span>
+                            <span><i class="icon-calendar mr-2"></i>Duracion: {{$carrera->duracion}} años</span>
+                        </p>
                     </div>
-                  @endforeach
                 </div>
-              </div>
-        </section>
+              @endforeach
+            </div>
+          </div>
+    </section>
+
+  <section>
+    <div class="row">
+      <div class="col-md-3 course ftco-animate">
+       <div class="testimony-wrap d-flex">
+        <div class="user-img" style="background-image: url(images/logo-exactas.jpg)">
+        </div>
+        <div class="text ml-2">
+          <p class="name">
+            <a href="http://exactas.unsa.edu.ar/" style="color: black" target="_blank">
+              Facultad de Ciencias Exactas</a>
+          </p>
+          <span class="position"></span>
+        </div>
+      </div>     
+    </div>
+    <div class="col-md-3 course ftco-animate">
+       <div class="testimony-wrap d-flex">
+        <div class="bg-darken text-center" style="border-radius: 50%;">
+          <div class="user-img" style="background-image: url(images/logo-biblioteca.png)">
+          </div>
+        </div>
+        <div class="text ml-2">
+          <p class="name">
+            <a href="http://bibexa.unsa.edu.ar/" style="color: black" target="_blank">
+              Biblioteca Facultad de Ciencias Exactas</a>
+          </p>
+          <span class="position"></span>
+        </div>
+      </div>     
+    </div>
+  @foreach($dptos as $dpto)
+    @if(!is_null($dpto->sitio_web))
+      <div class="col-md-3 course ftco-animate">
+        <div class="testimony-wrap d-flex">
+          <div class="user-img" style='background-image:url("{{asset('images/departamento/'.$dpto->logo)}}");'>
+          </div>
+            <div class="text ml-2">
+              <p class="name">
+                <a href="{{'http://'.$dpto->sitio_web}}" style="color: black" target="_blank">{{$dpto->nombre_dpto}}</a>
+              </p>
+              <span class="position"></span>
+            </div>
+        </div> 
+     </div>
+    @endif
+  @endforeach
+ </div>
+</section>
 @endsection

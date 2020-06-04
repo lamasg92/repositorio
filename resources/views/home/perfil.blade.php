@@ -101,8 +101,8 @@
               @foreach($datosusuario as $materia)    
                <tr>
                   <th scope="row">{{$materia['nombre_materia']}}</th>
-                  <th scope="row">{{$materia['estado']}}</th>
-                  <th scope="row"></th>
+                  <th scope="row">{{$materia->pivot['estado']}}</th>
+                  <th scope="row"><a class="btn dtn-danger" href="{{url('bajaMateria/'.$materia->pivot['id'])}}">X</a></th>
                </tr>
               @endforeach 
           </tbody>  

@@ -27,7 +27,11 @@ class ApuntesController extends Controller
     public function create()
     {
         $user=Auth::user();
-        $materiasdocente = $user->materias;
+        $materiasdocente = $user->select('m.id','nombre_materia')
+                            ->join('materia_docente as md','md.user_id','=','users.id')
+                            ->join('materias as m','m.id','=','md.materia_id')
+                            ->where('md.estado','=','activo')->get();
+                            
         return view('home.subida', ['materiasdocente' => $materiasdocente]); 
 
     }
