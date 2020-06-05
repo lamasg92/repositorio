@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\UsuarioCarrera;
 use Illuminate\Support\Facades\DB;
 use App\Carrera;
+use App\MateriaDocente;
+use App\UsuarioCarrera;
 use Hash;
 
 class UsuarioController extends Controller
@@ -16,30 +17,12 @@ class UsuarioController extends Controller
         $user=Auth::user();
         if($request->file('imagen'))
         {
-        	$foto = $request->file('imagen');
+            $foto = $request->file('imagen');
             $nombre_foto = $foto->getClientOriginalName();
-        	DB::table('users')->where('id', $user->id)->update( array('foto'=>$nombre_foto));      	
+            DB::table('users')->where('id', $user->id)->update( array('foto'=>$nombre_foto));       
             $foto->move('images/user', $nombre_foto);
        
-        }     
-
-        $existe = UsuarioCarrera::where('user_id', '=', $user->id)->get();
-        if(count($existe)==0)
-        {
-        	$usuariocarrera = new UsuarioCarrera($request->all());
-	        $usuariocarrera->user_id = $user->id;
-	        $usuariocarrera->estado = 'activo';
-	        $usuariocarrera->carrera_id = $request->input('carrera');
-	        $usuariocarrera->anio_ingreso = $request->input('ingreso');
-	        $usuariocarrera->libreta = $request->input('lu');
-	        $usuariocarrera->save();
         }
-        else
-        {
-        	DB::table('usuario_carrera')->where('user_id', $user->id)->update( array('carrera_id'=>$request->input('carrera'),'anio_ingreso'=>$request->input('ingreso'),'libreta'=>$request->input('lu')));
-        }
-        
-        //flash("Sus datos se actualizaron correctamente" , 'success')->important();
         $request->session()->flash('alert-success', 'Sus datos se actualizaron correctamente');
         return redirect()->route('perfil');
     }
@@ -47,12 +30,58 @@ class UsuarioController extends Controller
     public function datosUsuario()
     {
     	$user=Auth::user();
-        $datosusuario = UsuarioCarrera::where('user_id', '=', $user->id)
-        ->join('carreras','carreras.id','=','usuario_carrera.carrera_id')->get();;
-        $carreras=Carrera::paginate(10);
+
+        if ($user->type=='alumno'){
+            $datosusuario = $user->carreras;
+        }else{
+            $datosusuario = $user->materias;
+        }
+        $carreras=Carrera::all();
+
         return view('home.perfil') ->with([
-        	'datosusuario' => $datosusuario, 
-        	'carreras' => $carreras]);
+            'datosusuario' => $datosusuario, 
+            'carreras' => $carreras]);
+    }
+
+    public function agregarCarrera(request $request)
+    {
+        $user=Auth::user();
+        $usuariocarrera = new UsuarioCarrera($request->all());
+        $usuariocarrera->user_id = $user->id;
+        $usuariocarrera->save();
+
+        $request->session()->flash('alert-success', 'Carrera agregada con exito');
+        return redirect()->route('perfil');
+    }
+
+    public function eliminarCarrera($id)
+    {
+        $usuariocarrera = UsuarioCarrera::find($id);
+        $usuariocarrera->delete();
+        flash('alert-danger', 'Carrera ha sido eliminada.')->important();;
+        return redirect()->route('perfil');
+    }
+
+    public function agregarMateria(request $request)
+    {
+        $user=Auth::user();
+        $materiadocente= new MateriaDocente();
+        $materiadocente->user_id=$user->id;
+        $materiadocente->materia_id=$request->materia_id;
+        $materiadocente->save();
+
+        $request->session()->flash('alert-success', 'Materia agregada con exito');
+        return redirect()->route('perfil');
+    }
+
+    public function bajaMateria($id)
+    {
+        $materiadocente=MateriaDocente::find($id);
+        $materiadocente->estado='inactivo';
+        $materiadocente->save();
+        
+        flash('alert-danger', 'La materia ha sido dado de baja.')->important();;
+        return redirect()->route('perfil');
     }
 
     public function cambiaremail(request $request)
@@ -85,5 +114,13 @@ class UsuarioController extends Controller
     		$request->session()->flash('alert-success', 'Las nuevas contraseñas no coinciden');
     	}    
         return redirect()->route('perfil');
+    }
+
+    public function getCarreraMateria(Request $request, $id)
+    {
+        if($request->ajax()){
+            $materias=Carrera::find($id)->materias;
+            return response()->json($materias);
+        }
     }
 }

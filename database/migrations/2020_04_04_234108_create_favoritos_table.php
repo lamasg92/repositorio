@@ -19,6 +19,9 @@ class CreateFavoritosTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('apunte_id');
             $table->foreign('apunte_id')->references('id')->on('apuntes');
+            $table->unsignedBigInteger('carrera_id');
+            $table->foreign('carrera_id')->references('id')->on('carreras');
+            $table->enum('estado', ['activo','inactivo'])->default('activo');
             $table->timestamps();
         });
     }

@@ -1,5 +1,7 @@
 @extends('layouts.home')
 
+@section('title', '| Perfil')
+
 @section('content')  
 
     <section class="hero-wrap hero-wrap-2" data-stellar-background-ratio="0.6" style="background-image: url('images/image_2.jpg');">
@@ -21,77 +23,103 @@
        @endforeach
      </div> <!-- end .flash-message -->
 
-       <section class="ftco-section ftco-no-pt ftc-no-pb">
-      <div class="container">
-        <div class="row d-flex">
+<section class="ftco-section ftco-no-pt ftc-no-pb">
+  <div class="container">
+    <div class="row d-flex">
 
-          <div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
-            <h2 class="mb-4">Mis datos</h2>
+      <div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
+        <h2 class="mb-4">Mis datos</h2>
 
-            <form name="formulario" method="POST" enctype="multipart/form-data" action="{{url('actualizarperfil')}}">
-              {{csrf_field()}}
-                    <img src="{{asset('images/user/'.Auth::user()->foto)}}" class="img-thumbnail previsualizarFoto" width="200" height="200">
-                    <div><h4>{!! Field::file('imagen',['class'=>'foto'] )!!}</h4></div>         
-                
-                <div>
-                  <label for="dni">DNI: {{Auth::user()->dni}} </label>
-                </div>
-                  
-                <div>
-                  <label for="apellido">Apellido: {{Auth::user()->surname}}</label>
-                </div>
-                  
-                 <div>
-                   <label for="nombre">Nombre: {{Auth::user()->name}}</label>
-                 </div>
-                  
-             
-                  <label for="email">Email: {{Auth::user()->email}} </label>
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emailModal" data-backdrop="false"> Cambiar Email </button>
-                            
-
-                  @if(!$datosusuario->isEmpty())
-                    <select class="form-control" name="carrera" id="carrera" required="true"> 
-                    <option value="">-- Elija Carrera --</option>
-                    @foreach($datosusuario as $usuario)
-                    <option selected="true" value="{{$usuario['carrera_id']}}">{{$usuario['nombre_carrera']}}</option>
-                    @endforeach
-                    @foreach($carreras as $carrera)
-                    @if($carrera->nombre_carrera != $usuario->nombre_carrera)
-                      <option value="{{$carrera['id']}}">{{$carrera['nombre_carrera']}}</option>
-                    @endif
-                    @endforeach
-                    </select>
-                  @else
-                    <select class="form-control" name="carrera" id="carrera" required="true"> 
-                    <option value="">-- Elija Carrera --</option>
-                    @foreach($carreras as $carrera)
-                      <option value="{{$carrera['id']}}">{{$carrera['nombre_carrera']}}</option>
-                    @endforeach
-                    </select>
-                  @endif
-             
-                  
-                  @if(!$datosusuario->isEmpty())
-                  @foreach($datosusuario as $usuario)
-                  <label for="ingreso">Año Ingreso:</label>                  
-                  <input type="text" pattern="\d*"  id="ingreso" name="ingreso" value="{{$usuario['anio_ingreso']}}" required="true">                   
-                  <label for="lu">LU:</label>
-                  <input type="text" pattern="\d*" name="lu" value="{{$usuario['libreta']}}" required="true">
-                  @endforeach
-                  @else
-                  <label for="ingreso">Año Ingreso:</label>                  
-                  <input type="text" pattern="\d*" id="ingreso" name="ingreso" value="" required="true">            
-                  <label for="lu">LU:</label>
-                  <input type="text" pattern="\d*" id="lu" name="lu" value="" required="true">
-                  @endif
-              <div><input type="submit"  class="btn btn-primary" value="Actualizar Datos"></div>
-              
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#passModal" data-backdrop="false"> Cambiar Contraseña </button>          
-            </form>                     
-
+        <form name="formulario" method="POST" enctype="multipart/form-data" action="{{url('actualizarperfil')}}">
+          {{csrf_field()}}
+          <img src="{{asset('images/user/'.Auth::user()->foto)}}" class="img-thumbnail previsualizarFoto" width="200" height="200">
+          <div>
+            <h4>{!! Field::file('imagen',['class'=>'foto'] )!!}</h4>
+          </div>         
+          <div>
+            <label for="dni">DNI: {{Auth::user()->dni}} </label>
+          </div>              
+          <div>
+            <label for="apellido">Apellido: {{Auth::user()->surname}}</label>
+          </div>   
+          <div>
+            <label for="nombre">Nombre: {{Auth::user()->name}}</label>
           </div>
-               
+
+          <div>
+            <input type="submit"  class="btn btn-primary" value="Actualizar Datos">
+          </div>
+      </form> 
+              
+          <label for="email">Email: {{Auth::user()->email}} </label>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emailModal" data-backdrop="false"> Cambiar Email </button>
+          <br>
+    @if(Auth::user()->type=='alumno')
+      <div class="border-div">
+        <h4>Datos acedemicos</h4>
+          @if(!$datosusuario->isEmpty())
+          <div class="table-responsive">
+          <table class="table table-hover table-sm table-bordered table-striped">
+              <thead class="">
+                <tr>
+                  <th scope="col">Carrera</th>
+                  <th scope="col">Ingreso</th>
+                  <th scope="col">LU</th>
+                  <th scope="col">Eliminar</th>           
+              </tr>
+             </thead>
+             <tbody>
+             @foreach($datosusuario as $carUser)    
+             <tr>
+                <th scope="row">{{$carUser['nombre_carrera']}}</th>
+                <th scope="row">{{$carUser->pivot['anio_ingreso']}}</th>
+                <th scope="row">{{$carUser->pivot['libreta']}}</th>
+                <th scope="row"><a class="btn dtn-danger" href="{{url('eliminarCarrera/'.$carUser->pivot['id'])}}">X</a></th>
+              </tr>
+              @endforeach 
+          </tbody>  
+        </table>
+        </div>
+        @endif
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#carreraModal" data-backdrop="false">Agregar Carrera</button> 
+      </div>
+    @else
+      <div class="border-div">
+        <h4>Datos acedemicos</h4>
+          @if(!$datosusuario->isEmpty())
+          <div class="table-responsive">
+          <table class="table table-hover table-sm table-bordered table-striped">
+              <thead class="">
+                <tr>
+                  <th scope="col">Materia</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col"></th>          
+              </tr>
+             </thead>
+             <tbody>
+              @foreach($datosusuario as $materia)    
+               <tr>
+                  <th scope="row">{{$materia['nombre_materia']}}</th>
+                  <th scope="row">{{$materia->pivot['estado']}}</th>
+                  <th scope="row"><a class="btn dtn-danger" href="{{url('bajaMateria/'.$materia->pivot['id'])}}">X</a></th>
+               </tr>
+              @endforeach 
+          </tbody>  
+        </table>
+      </div>
+        @endif
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#materiaModal" data-backdrop="false">Agregar Materia</button> 
+      </div>
+
+    @endif
+        <br>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#passModal" data-backdrop="false"> Cambiar Contraseña </button>                            
+    
+   </div>
+  </div>
+</section> 
 
            <!-- EmailModal -->
             <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-hidden="true"> 
@@ -160,12 +188,94 @@
                 </div>
               </div>
             </div>
-
-        </div>
+<!-- agregarCarreraModal -->
+<div class="modal fade" id="carreraModal" tabindex="-1" role="dialog" aria-hidden="true"> 
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar nueva carrera</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
       </div>
-    </section>    
+         <!-- Modal Body -->
+        <div class="modal-body">
+          <form name="formularioNuevaCarrera" method="POST" action="{{('agregarCarrera')}}">
+                                  {{csrf_field()}}
+              <div class="form-group">
+                  <label for="actualPass">Carrera</label>
+                    <select class="form-control" name="carrera_id" id="carrera_id" required="true"> 
+                    <option value="">-- Elija Carrera --</option>
+                    @foreach($carreras as $carrera)
+                      <option value="{{$carrera['id']}}">{{$carrera['nombre_carrera']}}</option>
+                    @endforeach
+                    </select>
+              </div>
+              <div class="form-group">
+                  <label for="anio_ingreso">Año de ingreso</label>
+                  <input id="anio_ingreso" class="form-control" required="true" name="anio_ingreso"/>
+              </div>
+              <div class="form-group">
+                  <label for="libreta">Libreta Universitaria</label>
+                  <input id="libreta" class="form-control" required="true" name="libreta"/>
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <input type="submit"  class="btn btn-primary" value="Agregar">
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-@section('js')
-<script src="{{asset('stylesAdmin/js/plantilla.js')}}"></script>
+<!-- agregarMateriaModal -->
+<div class="modal fade" id="materiaModal" tabindex="-1" role="dialog" aria-hidden="true"> 
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar nueva materia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+         <!-- Modal Body -->
+        <div class="modal-body">
+          <form name="formularioNuevaMateria" method="POST" action="{{('agregarMateria')}}">
+                                  {{csrf_field()}}
+              <div class="form-group">
+                <label for="actualPass">Carrera</label>
+                  <select class="form-control" name="id_carrera" id="id_carrera" required="true">
+                    <option value="">-- Elija Carrera --</option>
+                  @foreach($carreras as $carrera)
+                    <option value="{{$carrera['id']}}">{{$carrera['nombre_carrera']}}</option>
+                  @endforeach
+                  </select>
+              </div>
+            <div class="form-group">
+              <label for="actualPass">Materia</label>
+              <select class="form-control" id="materia_id" name="materia_id" required="true">
+                <option value="">-- Elija una materia --</option>
+              </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <input type="submit"  class="btn btn-primary" value="Agregar">
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+ 
 @endsection
+@section('js')
+<script type="text/javascript">
+    $("#id_carrera").change(function(event){
+      $.get("getCarreraMateria/"+event.target.value+"",function(response,id_carrera){
+          $("#materia_id").empty();
+            for(i=0; i<response.length; i++){
+              $("#materia_id").append("<option value='"+response[i].id+"'>"+response[i].nombre_materia+"</option>");
+            }
+       });
+    });  
+</script>
 @endsection

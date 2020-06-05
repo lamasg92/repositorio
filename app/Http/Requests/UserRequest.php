@@ -25,9 +25,10 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
+            
             'dni' => 'required|integer|unique:users',
-            'email' => 'required|string|email|max:50|unique:users',
-            'foto'=>'image',
+            'email' => 'required|string|email|max:50',
+            
           
            
         ];

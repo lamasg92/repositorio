@@ -1,37 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UNIVERSIDAD NACIONAL DE SALTA</title>
+    <title> UNSa | Exactas @yield('title')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta property="og:image" content="@yield('ogImage', asset('images/portada.jpg'))"/>
+    <link rel="shortcut icon" type="image/x-ico" href="{{ asset('images/ico-portada.png') }}">
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="{{asset('css/open-iconic-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/animate.css')}}">
-    
     <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}">
-
     <link rel="stylesheet" href="{{asset('css/aos.css')}}">
-
     <link rel="stylesheet" href="{{asset('css/ionicons.min.css')}}">
-    
     <link rel="stylesheet" href="{{asset('css/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('css/icomoon.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    
-    <style type="text/css">
-      .menu-fixed {
-        position:fixed;
-        z-index:1000;
-        top:0;
-        max-width:1110px;
-        width:100%;
-        box-shadow:0px 0px 0px rgba(0,0,0,.5);
-      }
-    </style>
+    <link rel="stylesheet" href="{{asset('css/new-style.css')}}">
     
   </head>
   <body>
@@ -39,35 +25,33 @@
     	<div class="container">
     		<div class="row no-gutters d-flex align-items-center align-items-stretch">
     			<div class="col-md-4 d-flex align-items-center py-4">
-    				<a class="navbar-brand" href="{{route('home')}}">REPOSITORIO DE APUNTES <span>Facultad de Ciencias Exactas</span></a>
+    				<a class="navbar-brand font-responsive-5" href="{{url('/')}}">REPOSITORIO DE APUNTES <span>Facultad de Ciencias Exactas</span></a>
     			</div>
 	    	</div>
 		  </div>
     </div>
 
   <div class="container">
-    <div class="menu col-lg-12 d-block" align="right">
+    <div class="col-lg-12 d-block" align="right">
           @if (Route::has('login'))                 
                 <div class="top-rigth links">
               @auth 
+            <div class="menu">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
                   <div class="container d-flex align-items-center px-4">
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="oi oi-menu"></span> Menu
+                  </button>
               @if (Auth::user()->type == 'alumno')
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="oi oi-menu"></span> Menu Alumno
-                    </button>
                     <div class="collapse navbar-collapse" id="ftco-nav">
                       <ul class="navbar-nav mr-auto">
                       <li class="nav-item"><a href="{{url('/')}}" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
-                      <li class="nav-item"><a href="#" class="nav-link pl-0"><FONT SIZE=4>Favoritos</FONT></a></li>
+                      <li class="nav-item"><a href="{{url('favoritos')}}" class="nav-link pl-0"><FONT SIZE=4>Favoritos</FONT></a></li>
                       <li class="nav-item"><a href="{{url('perfil')}}" class="nav-link pl-0"><FONT SIZE=4>Mi Perfil</FONT></a></li>
                       <li class="nav-item"><a href="{{ route('logout')}}" class="nav-link pl-0"><FONT SIZE=4>Cerrar Sesión</FONT></a></li>
                       </ul>
                    </div>
                @else                  
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="oi oi-menu"></span> Menu Docente
-                    </button>
                     <div class="collapse navbar-collapse" id="ftco-nav">
                       <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a href="{{url('/')}}" class="nav-link pl-0"><FONT SIZE=4>Home</FONT></a></li>
@@ -78,14 +62,15 @@
                       </ul>
                     </div> 
                 @endif  
-                    <form action="#" class="searchform order-lg-last">
+                    <!--form action="#" class="searchform order-lg-last">
                       <div class="form-group d-flex">
                         <input type="text" class="form-control pl-3" placeholder="Buscar">
                         <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
                       </div>
-                    </form>
+                    </form-->
                  </div>
-              </nav>    
+              </nav>  
+            </div>  
             @else
               <a href="{{ route('login') }}" class="btn btn-primary">Ingresar</a>
                 @if (Route::has('register'))
@@ -95,7 +80,7 @@
                 @endauth             
               </div>
             @endif
-  @yield('navegacion')
+        @yield('navegacion')
         </div>
   </div>
 		
@@ -153,6 +138,6 @@
         });
       });
   </script>
-    
+     @yield('js')
   </body>
 </html>

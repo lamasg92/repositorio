@@ -1,0 +1,62 @@
+.skin-blue .main-header .navbar {
+ background-color:#f55634;
+}
+
+.skin-blue .main-header .logo:hover {
+
+    background-color: #fd5f10;
+
+}
+
+.skin-blue .main-header .logo {
+ background-color:#f55634;
+ color:#fff;
+ border-bottom:0 solid transparent
+}
+
+
+.skin-blue .main-header li.user-header {
+	background-color: #fd5f00;
+}
+
+.btn.btn-primary:hover {
+    background-color: white;
+    color: #f55634;
+
+}
+
+
+.btn.btn-primary {
+    background: #f55634;
+    border: 1px solid #fd5f00;
+    color: #fff;
+    border-radius: 12px;
+}
+
+
+.btn-default:hover {
+	background-color: white;
+    color: #f55634;
+}
+
+
+.btn-default {
+background: #f55634;
+    border: 1px solid #fd5f00;
+    color: #fff;
+    border-radius: 12px;
+}
+
+.btn-danger:hover {
+    background-color: white;
+    color: #f55634;
+}
+.btn-danger {
+    background-color: #f55634;
+    border-color: #f55634;
+    border-radius: 12px;
+}
+
+.navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-default {
+	color: #fff;
+}

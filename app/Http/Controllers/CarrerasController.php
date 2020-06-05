@@ -102,10 +102,7 @@ class CarrerasController extends Controller
         $carrera->estado='activo';
         $carrera->save();
         return redirect()->route('carreras.index');
-    }
-
-    
-    
+    }   
 
 
 }

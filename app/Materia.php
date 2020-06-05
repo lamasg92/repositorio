@@ -14,12 +14,12 @@ class Materia extends Model
 
     public function carreras()
     {
-        return $this->belongsToMany('App\Carrera','materia_carrera')->using('App\MateriaCarrera')->withPivot('anio', 'estado')->withTimestamps();
+        return $this->belongsToMany('App\Carrera','materia_carrera')->using('App\MateriaCarrera')->withPivot('id','anio', 'estado')->withTimestamps();
     }
 
     public function users()
     {
-        return $this->belongsToMany('App\User','materia_docente','user_id','materia_id')->withPivot('estado')->withTimestamps();
+        return $this->belongsToMany('App\User','id','materia_docente','user_id','materia_id')->withPivot('id','estado')->withTimestamps();
     }
    
     public function apuntes()
@@ -32,10 +32,11 @@ class Materia extends Model
         return $this->belongsTo('App\Carrera');
     }
 
-    public static function selectCarreras($id){
-      
-      return Carrera::where('departamento_id','=', $id)->get();
-
-    }
+     
     
+     public function materiacarrera()
+    {
+        return $this->hasMany('App\MateriaCarrera');
+    }
+
 }
