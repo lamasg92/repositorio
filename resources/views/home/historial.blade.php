@@ -22,6 +22,7 @@
           <div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
             <h2 class="mb-4">Apuntes subidos</h2>
           </div>
+          @if(!$apuntesdocente->isEmpty())
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -43,13 +44,26 @@
                 <th scope="row"> <a href="{{asset('apuntes')}}/{{$apunte['archivo']}}" target="_blank">{{$apunte['archivo']}}</a></th>
                 <th>{{$apunte['autores']}}</th>
                 <th>{{$apunte['created_at']}}</th>
-                <th><a href="{{url('modificar',['id_apunte' => $apunte->id])}}" type="button" class="btn btn-primary" >Modificar</a></th></th>
-                <th><a href="{{url('eliminar',['id_apunte' => $apunte->id])}}" type="button" class="btn btn-danger" >Eliminar</a></th></th>
+                @if($apunte['estado'] == 'activo')
+                  <th><a href="{{url('modificar',['id_apunte' => $apunte->id])}}" type="button" class="btn btn-primary" >Modificar</a></th></th>
+                  <th><a onclick="return confirm('Seguro que quiere eliminar?')" href="{{url('eliminar',['id_apunte' => $apunte->id])}}" type="button" class="btn btn-danger" >Eliminar</a></th></th>
+                @else
+                  <th scope="row">Este archivo está inactivo</th>
+                @endif               
               </tr>
               @endforeach 
               </tbody>  
             </table>  
           </div>
+          @else
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <th >Usted no ha subido ningun apunte</th>
+              </thead>
+            </table>              
+          </div>
+          @endif
         </div>
       </div>
     </section>  

@@ -56,7 +56,7 @@
           <br>
     @if(Auth::user()->type=='alumno')
       <div class="border-div">
-        <h4>Datos acedemicos</h4>
+        <h4>Datos académicos</h4>
           @if(!$datosusuario->isEmpty())
           <div class="table-responsive">
           <table class="table table-hover table-sm table-bordered table-striped">
@@ -86,14 +86,16 @@
       </div>
     @else
       <div class="border-div">
-        <h4>Datos acedemicos</h4>
+        <h4>Datos académicos</h4>
           @if(!$datosusuario->isEmpty())
           <div class="table-responsive">
           <table class="table table-hover table-sm table-bordered table-striped">
               <thead class="">
                 <tr>
                   <th scope="col">Materia</th>
+                  <th scope="col">Fecha alta</th>
                   <th scope="col">Estado</th>
+
                   <th scope="col"></th>          
               </tr>
              </thead>
@@ -101,8 +103,13 @@
               @foreach($datosusuario as $materia)    
                <tr>
                   <th scope="row">{{$materia['nombre_materia']}}</th>
+                  <th scope="row">{{$materia['created_at']}}</th>
                   <th scope="row">{{$materia->pivot['estado']}}</th>
-                  <th scope="row"><a class="btn dtn-danger" href="{{url('bajaMateria/'.$materia->pivot['id'])}}">X</a></th>
+                  @if($materia->pivot['estado'] == 'activo')
+                    <th scope="row"><a href="{{url('bajaMateria/'.$materia->pivot['id'])}}">Dar de Baja</a></th>
+                  @else
+                    <th scope="row"></th>
+                  @endif
                </tr>
               @endforeach 
           </tbody>  
