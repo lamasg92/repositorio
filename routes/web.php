@@ -32,12 +32,19 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){
   Route::get('/carreras/{id}/enable','CarrerasController@enable')->name('carreras.enable');
   //******************************Rutas para materias****************************************
   Route::get('materias/index','MateriasController@index')->name('materias.index');
+  Route::get('materias/{id}/show','MateriasController@show')->name('materias.show');
   Route::get('materias/create','MateriasController@create')->name('materias.create');
-  Route::patch('materias/update/{idmateria}/{id}','MateriasController@update')->name('materias.update');
+  Route::get('/materias/{id}/edit','MateriasController@edit')->name('materias.edit');
+  Route::patch('materias/update/{id}','MateriasController@update')->name('materias.update');
   Route::post('materias/store','MateriasController@store')->name('materias.store');
-  Route::get('/materias/{id}/{carrera}/desable','MateriasController@desable')->name('materias.desable');
-  Route::get('/materias/{id}/{carrera}/enable','MateriasController@enable')->name('materias.enable');
-  Route::get('/materias/{id}/{carrera}/edit','MateriasController@edit')->name('materias.edit');
+  Route::get('/materias/{id}/desable','MateriasController@desable')
+        ->name('materias.desable');
+  Route::get('/materias/{id}/enable','MateriasController@enable')
+        ->name('materias.enable');
+  Route::get('/materias/{id}/deleteCarrera','MateriasController@deleteCarrera')
+        ->name('materias.deleteCarrera');
+  Route::post('/materias/addCarrera','MateriasController@addCarrera')
+        ->name('materias.addCarrera');
   //******************************Rutas para users************************************
   Route::get('user/{tipo}','UsersController@index')->name('users.index');
   Route::get('usercreate/{tipo}','UsersController@create')->name('users.create');

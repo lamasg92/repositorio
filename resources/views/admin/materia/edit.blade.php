@@ -14,18 +14,20 @@
           </div>
           <div class="box-body">
             
-           {!!Form::model($materia,['route'=>['materias.update',$materia->materia_id,$materia->id], 'method'=>'PATCH', 'files'=>true])!!}
+           {!!Form::model($materia,['route'=>['materias.update',$materia->id], 'method'=>'PATCH', 'files'=>true])!!}
 
               <div class="form-group">
              {!! Form::label('nombre_materia','Nombre')!!}
               {!! Form::text('nombre_materia',$materia->nombre_materia, ['class'=>'form-control'])!!}
               </div>
 
+              {{ Form::label('slug_materia', 'URL:') }}
+            {{ Form::text('slug_materia', $materia->slug_materia, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255') ) }}
                         
               <div>
               {!! Form::label('semestre','Cuatrimestre')!!}
                  
-              {!! Form::select('semestre',['primero'=>'primero','segundo'=>'segundo','anual'=>'anual'],$materia->semestre,['class'=>'form-control'])!!}
+              {!! Form::select('semestre',['primer'=>'primer','segundo'=>'segundo','anual'=>'anual'],$materia->semestre,['class'=>'form-control'])!!}
 
               </div>
 
@@ -36,22 +38,9 @@
                  
               {!! Form::select('tipo',['obligatoria'=>'obligatoria','optativa'=>'optativa'],$materia->tipo,['class'=>'form-control'])!!}
 
-              </div>
+              </div>  
 
-              <div>
-              {!! Form::label('nombre_carrera','Carrera')!!}
-                 
-              {!! Form::text('nombre_carrera',$materia->nombre_carrera, ['class'=>'form-control', 'disabled'])!!}
-
-              </div>
-
-
-             <div class="form-group">
-               {!! Form::label('anio','Año')!!}
-               {!! Form::number('anio',$materia->anio, ['class'=>'form-control'])!!}
-             </div>
-
-             
+              <br>          
 
               <div class="form-group">
               {!! Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
@@ -67,4 +56,17 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('js')
+
+<script>
+  $(document).ready(function(){
+        $("#nombre_materia, #slug_materia").stringToSlug({
+            callback: function(text){
+                $('#slug_materia').val(text);
+            }
+        });
+   });
+</script>
 @endsection

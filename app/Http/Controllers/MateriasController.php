@@ -5,13 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Carrera;
-
 use App\Materia;
-
 use App\Departamento;
-
 use App\MateriaCarrera;
-
 use App\Http\Requests\MateriaRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -20,30 +16,25 @@ class MateriasController extends Controller
     
     public function index(Request $request)
     {
-       
-         $materias= DB::table('materia_carrera as mc')
-              ->join('materias as m','mc.materia_id','=','m.id')
-              ->join('carreras as c','mc.carrera_id','=','c.id')
-              ->select('mc.id','m.nombre_materia','m.semestre','m.tipo','c.nombre_carrera','mc.anio','mc.estado','mc.materia_id','mc.carrera_id')
-              ->paginate(10);
-
-              
-
-             
+        $materias=Materia::paginate(15);
+         //dd($materias);             
         return view('admin.materia.index')->with('materias',$materias);
-        
-        }           
+    }           
 
 
-     public function create()
+    public function create()
     {
-         
-          $carreras=Carrera::where('estado','=','activo')->orderBy('nombre_carrera','ASC')->pluck('nombre_carrera','id')->ToArray();
-
-
+        $carreras=Carrera::where('estado','=','activo')->orderBy('nombre_carrera','ASC')->pluck('nombre_carrera','id')->ToArray();
         return view('admin.materia.create')->with('carreras',$carreras);
-    
-       }
+    }
+
+    public function show($id){
+      $carreras=Carrera::where('estado','=','activo')->orderBy('nombre_carrera','ASC')->get();
+      $materia=Materia::find($id);
+     // dd($carreras);
+      return view('admin.materia.show')->with('materia',$materia)
+                                       ->with('carreras',$carreras);
+    }
 
     
     public function store(MateriaRequest $request)
@@ -68,68 +59,54 @@ class MateriasController extends Controller
     }                    
 
             
-  public function edit($id,$id_carrera)
+  public function edit($id)
+  {     
+        $materia=Materia::find($id);
+        return view('admin.materia.edit')->with('materia',$materia);
+                                                                           
+  }
 
-
-    {     
-        $materia= DB::table('materia_carrera as mc')
-              ->join('materias as m','mc.materia_id','=','m.id')
-              ->join('carreras as c','mc.carrera_id','=','c.id')
-              ->select('mc.id','m.nombre_materia','m.semestre','m.tipo','c.nombre_carrera','mc.anio','mc.estado','mc.materia_id','mc.carrera_id')
-               -> where('mc.materia_id','=',$id)
-              ->where('mc.carrera_id','=',$id_carrera)
-              ->first();
-            
-
-          $carreras=Carrera::where('estado','=','activo')->orderBy('nombre_carrera','ASC')->pluck('nombre_carrera','id')->ToArray();
-
-
-        return view('admin.materia.edit')->with('materia',$materia)
-                                        ->with('carreras',$carreras);
-                                                                  
-    }
-
-    
-    public function update(Request $request, $idmateria,$id)
+    public function update(Request $request,$id)
     {
-
-     
-
-        $materia=Materia::find($idmateria);
+        $materia=Materia::find($id);
         $materia->fill($request->all());
-        $materia->save();
-        $materiacarrera= MateriaCarrera::where('id','=',$id)->first();
-        $materiacarrera->anio=$request->anio;
-                      
+        $materia->save();                      
    
-        $materiacarrera->save();
         flash("La materia  ". $materia->nombre_materia . " ha sido modificada con exito" , 'success')->important();
-        return redirect()->route('materias.index');
+        return redirect()->route('materias.show',[$id]);
     }
 
-    public function desable($id, $id_carrera)
+    public function desable($id)
     {
-        $materia= MateriaCarrera::where('materia_id','=',$id)
-              ->where('carrera_id','=',$id_carrera)
-              ->first();
-          
-             
+        $materia= Materia::find($id);  
         $materia->estado='inactivo';
         $materia->save();
         return redirect()->route('materias.index');
     }
 
-     public function enable($id,$id_carrera)
+     public function enable($id)
     {
-
-        $materia= MateriaCarrera::where('materia_id','=',$id)
-                  ->where('carrera_id','=',$id_carrera)
-                  ->first();
-          
-             
+        $materia= Materia::find($id);
         $materia->estado='activo';
         $materia->save();
         return redirect()->route('materias.index');
+    }
+
+    public function deleteCarrera($id){
+      $materiaCarrera=MateriaCarrera::find($id);
+      $materiaCarrera->delete();
+
+      return redirect()->route('materias.show',[$materiaCarrera->materia_id]);
+    }
+
+    public function addCarrera(Request $request){
+      $materia=Materia::find($request->materia_id);
+      $materia->carreras()->attach($request->carrera_id,
+            [ 'anio' => $request->anio,
+              'estado' => 'activo'
+          ]);
+
+      return redirect()->route('materias.show',[$request->materia_id]);
     }
 
     

@@ -4,7 +4,11 @@
     <title> UNSa | Exactas @yield('title')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- imagen para redes -->
     <meta property="og:image" content="@yield('ogImage', asset('images/portada.jpg'))"/>
+    <meta property="og:image:width" content="620"/>
+    <meta property="og:image:height" content="465"/>
+    <!--        fin        -->
     <link rel="shortcut icon" type="image/x-ico" href="{{ asset('images/ico-portada.png') }}">
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/open-iconic-bootstrap.min.css')}}">
