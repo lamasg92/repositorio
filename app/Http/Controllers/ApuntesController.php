@@ -17,9 +17,9 @@ class ApuntesController extends Controller
     public function index()
     {
         $user=Auth::user();
-        $apuntesdocente = Apunte::where([['user_id','=', $user->id],['apuntes.estado','=','activo']])
+        $apuntesdocente = Apunte::where([['user_id','=', $user->id]])
         ->join('materias','materias.id','=','apuntes.materia_id')
-        ->select('apuntes.id','apuntes.nombre_apunte','apuntes.materia_id','apuntes.archivo','apuntes.autores','apuntes.created_at','materias.nombre_materia')->get();
+        ->select('apuntes.id','apuntes.nombre_apunte','apuntes.materia_id','apuntes.archivo','apuntes.autores','apuntes.estado','apuntes.created_at','materias.nombre_materia')->get();
 
         return view('home.historial', ['apuntesdocente' => $apuntesdocente]);       
     }
@@ -30,44 +30,57 @@ class ApuntesController extends Controller
         $materiasdocente = $user->select('m.id','nombre_materia')
                             ->join('materia_docente as md','md.user_id','=','users.id')
                             ->join('materias as m','m.id','=','md.materia_id')
-                            ->where('md.estado','=','activo')->get();
-                            
+                            ->where('md.estado','=','activo')
+                            ->groupBy('m.id')->get();                            
         return view('home.subida', ['materiasdocente' => $materiasdocente]); 
 
     }
 
     public function store(ApunteRequest $request)
-    {
-        $user=Auth::user();
-        $apunte = new Apunte($request->all());
-        if($request->file('archivo')){
-            $archivo = $request->file('archivo');
-            $tipo = $archivo->getClientMimeType();  
-            $apunte->tipo_archivo = $tipo;
-            
-            $nombre_archivo = $request->nombre_apunte.' - '.$apunte->materia->nombre_materia.'.'. substr($tipo,-3);
-            $archivo->move('apuntes',$nombre_archivo);
-            $apunte->archivo = $nombre_archivo; 
-            
-        } 
-        $apunte->user_id = $user->id;
-        $apunte->estado = 'activo';
-        $apunte->save();
+    {     
 
-        flash("El apunte ". $apunte->nombre_apunte . " ha sido subido con exito." , 'success')->important();
+        $existe_apunte = Apunte::where('nombre_apunte','=',$request->nombre_apunte)->first();
+        if(!$existe_apunte)
+        {
+            $user=Auth::user();
+            $apunte = new Apunte($request->all());
+            if($request->file('archivo'))
+            {
+                $archivo = $request->file('archivo');
+                $tipo = $archivo->getClientMimeType();  
+                $apunte->tipo_archivo = $tipo;
+                
+                $nombre_archivo = $request->nombre_apunte.' - '.$apunte->materia->nombre_materia.'.'. substr($tipo,-3);
+                $path=public_path().'/apuntes/';
+                $archivo->move($path,$nombre_archivo);
+                $apunte->archivo = $nombre_archivo;             
+            } 
+            $apunte->user_id = $user->id;
+            $apunte->estado = 'activo';
+            $apunte->save();
+
+            flash("El apunte ". $apunte->nombre_apunte . " ha sido subido con exito." , 'success')->important();
+        }
+        else
+        {
+            flash("Ya existe un apunte con el mismo nombre." , 'success')->important();
+
+        }    
 
         return redirect()->route('subida');
     }
 
+  
     public function datos($id_apunte)
     {
         $datosapunte = Apunte::where('apuntes.id',$id_apunte)->join('materias','materias.id','=','apuntes.materia_id')->select('apuntes.id','apuntes.nombre_apunte','apuntes.materia_id','apuntes.archivo','apuntes.autores','materias.nombre_materia')->get();
         //return $datosapunte;
         $user=Auth::user();
-        $materiasdocente=MateriaDocente::where('user_id','=', $user->id)
-        ->join('materia_carrera','materia_carrera.id','=','materia_docente.materia_carrera_id')
-        ->join('materias','materias.id','=','materia_carrera.materia_id')
-        ->select('materia_carrera.id','materias.nombre_materia')->get();
+        $materiasdocente = $user->select('m.id','nombre_materia')
+                            ->join('materia_docente as md','md.user_id','=','users.id')
+                            ->join('materias as m','m.id','=','md.materia_id')
+                            ->where('md.estado','=','activo')
+                            ->groupBy('m.id')->get(); 
         return view('home.modificar',['datosapunte' => $datosapunte, 'materiasdocente' => $materiasdocente]);
     }
 
